@@ -49,6 +49,7 @@ public:
 
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setTextGold(Text& text, int gold, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
+	void updateGold(Text& text,int gold);
 
 	bool townAction(RenderWindow& window, int& heroHP, int & heroMaxHP, int & dmg, int & gold);
 

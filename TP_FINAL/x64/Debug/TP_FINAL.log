@@ -1,4 +1,5 @@
-﻿  battleGround.cpp
+﻿  Source.cpp
+  battleGround.cpp
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(34,59): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
           with
           [
@@ -112,5 +113,12 @@ C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(300,41): warning C4244
           [
               T=float
           ]
+  game.cpp
+  town.cpp
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(79,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(79,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(92,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(92,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Génération de code en cours...
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(150): warning C4715: 'battleGrounds::generateMonster' : les chemins de contrôle ne retournent pas tous une valeur
   TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe

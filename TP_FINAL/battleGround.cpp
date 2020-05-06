@@ -209,7 +209,7 @@ bool battleGrounds::game(RenderWindow& window, int& heroHP, const int heroMaxHP,
 	int aliveMonster = 3;
 	int monsterAttack = 1 + (world / 4);
 	for (int i = 0; i < 3; i++) {
-		monsterhp[i] = 2;
+		monsterhp[i] = monsterMaxHP;
 		
 	}
 	

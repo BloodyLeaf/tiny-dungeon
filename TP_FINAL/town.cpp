@@ -92,6 +92,12 @@ void town::setTextGold(Text& text, int gold, Font& font, const char* police, int
 	text.setPosition(posX, posY);
 }
 
+void town::updateGold(Text& text,int gold)
+{
+	std::string message = std::to_string(gold);
+	text.setString(message);
+}
+
 bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dmg, int& gold)
 {
 
@@ -114,7 +120,7 @@ bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dm
 
 					dmg++;
 					gold -= 25;
-					
+					updateGold(_text, gold);
 					break;
 
 				case Keyboard::Num2:
@@ -122,12 +128,14 @@ bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dm
 					heroHP += 5;
 					heroMaxHP += 5;
 					gold -= 25;
+					updateGold(_text, gold);
 					break;
 
 				case Keyboard::Num3:
 
 					heroHP = heroMaxHP;
 					gold -= 25;
+					updateGold(_text, gold);
 					break;
 
 				case Keyboard::Right:

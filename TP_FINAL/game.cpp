@@ -47,13 +47,14 @@ void game::playGame(void)
 
 				_town.init(gold);
 				_heroAlive = _town.townAction(_window, heroHP, maxHeroHp, dmg,gold);
-				gold += 15;
+				
 				
 			}
 			else {
 				_currentBattleGround.initTemporaire();
 				_heroAlive = _currentBattleGround.game(_window, heroHP, maxHeroHp, dmg, _world);
 				_level++;
+				gold += 15;
 			}
 
 		}

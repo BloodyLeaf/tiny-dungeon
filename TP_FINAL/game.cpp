@@ -45,7 +45,7 @@ void game::playGame(void)
 				_level = 0;
 				_world++;
 
-				_town.init(gold);
+				_town.init(gold,heroHP,maxHeroHp,dmg);
 				_heroAlive = _town.townAction(_window, heroHP, maxHeroHp, dmg,gold);
 				
 				

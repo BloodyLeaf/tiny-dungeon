@@ -32,12 +32,21 @@ private :
 	RectangleShape _backgroundMenu;
 
 	Font _font;
-	Text _text;
+
 	Text _textGold;
+	Text _textGoldQty;
+
+	Text _textHP;
+	Text _textCurrentHP;
+	Text _textHPDivider;
+	Text _textMaxHP;
+
+	Text _textDmg;
+	Text _textDmgCurrent;
 
 public:
 
-	void init(int gold);
+	void init(int gold, int herohp, int heroMaxHp, int dmg);
 
 	void initBuilding(void);
 
@@ -48,8 +57,8 @@ public:
 	void initMenu(void);
 
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
-	void setTextGold(Text& text, int gold, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
-	void updateGold(Text& text,int gold);
+	void setTextIntegerStats(Text& text, int stats, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
+	void updateIntegerStats(Text& text,int newStats);
 
 	bool townAction(RenderWindow& window, int& heroHP, int & heroMaxHP, int & dmg, int & gold);
 

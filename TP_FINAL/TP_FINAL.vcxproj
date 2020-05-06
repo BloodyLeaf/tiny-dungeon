@@ -145,19 +145,21 @@
     <ClCompile Include="attack.cpp" />
     <ClCompile Include="battleGround.cpp" />
     <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="hpBar.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="town.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="attack.h" />
     <ClInclude Include="battleGround.h" />
     <ClInclude Include="Bouton.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="hpBar.h" />
     <ClInclude Include="MenuPrincipal.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="town.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

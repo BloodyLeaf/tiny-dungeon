@@ -11,6 +11,7 @@ But du projet : Réaliser un jeu de style D&D tour par tour
 
 #include "MenuPrincipal.h"
 #include "battleGround.h"
+#include "game.h"
 
 
 using namespace sf;
@@ -18,15 +19,9 @@ using namespace sf;
 int main(void) {
 
 
-	RenderWindow window(VideoMode(1500, 800), "Tiny Dungeon");
-	window.setFramerateLimit(60);
-	Event event;
+	game tiny_Dungeon;
 
-	menuPrincipal menuPrincipal;
-	battleGrounds battleGround1;
-
-	battleGround1.game(window);
-
+	tiny_Dungeon.playGame();
 	
 
 

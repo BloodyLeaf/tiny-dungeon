@@ -27,15 +27,13 @@ private:
 
 	Text _text;
 
-	bouton _option1;
-	bouton _option2;
-	bouton _option3;
-	bouton _option4;
+	RectangleShape _BackgroundMenu;
+	bouton _option[3];
+	
 
-	hpBar _testBar;
-	hpBar _testBar2;
-	hpBar _testBar3;
-	hpBar _testBar4;
+	hpBar _heroHPBar;
+	hpBar _testBarMonster[3];
+	
 
 	Color _monsterColor[3]; //Temporairement pour replacer les bonnes couleur apres les animations
 
@@ -43,6 +41,7 @@ public:
 
 	void initTemporaire(void);													//Initialise la couleur du monstre et du héro
 
+	void initMenu(void);
 
 	//void setBackground(void);
 	//void setMonster(void);
@@ -59,7 +58,7 @@ public:
 
 	void tour(void);															//Switch Case selon l'action
 
-	bool game(RenderWindow& window,int & heroHP,const int heroMaxHP,const int dmg);
+	bool game(RenderWindow& window,int & heroHP,const int heroMaxHP,const int dmg, int world);
 
 	void animationLevelStart(RenderWindow& window);
 	void animationMonsterAttack(RenderWindow& window, int id);

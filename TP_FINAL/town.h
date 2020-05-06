@@ -31,9 +31,13 @@ private :
 
 	RectangleShape _backgroundMenu;
 
+	Font _font;
+	Text _text;
+	Text _textGold;
+
 public:
 
-	void init(void);
+	void init(int gold);
 
 	void initBuilding(void);
 
@@ -42,6 +46,9 @@ public:
 	void initBackground(void);
 
 	void initMenu(void);
+
+	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
+	void setTextGold(Text& text, int gold, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 
 	bool townAction(RenderWindow& window, int& heroHP, int & heroMaxHP, int & dmg, int & gold);
 

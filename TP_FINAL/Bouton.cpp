@@ -21,6 +21,11 @@ void bouton::setRectangleShape(int posX, int posY, int w, int h)
 	_posBouton.setSize(Vector2f(w, h));
 }
 
+void bouton::setDimension(int w, int h)
+{
+	_posBouton.setSize(Vector2f(w, h));
+}
+
 void bouton::setPosition(int posX, int posY)
 {
 	_posBouton.setPosition(posX, posY);
@@ -36,6 +41,18 @@ void bouton::setTexture(const char* nomBouton)
 {
 	_textureBouton.loadFromFile(nomBouton);
 	_posBouton.setTexture(&_textureBouton);
+}
+
+void bouton::setOutline(int thickness, Color color)
+{
+	_posBouton.setOutlineThickness(thickness);
+	_posBouton.setOutlineColor(color);
+}
+
+void bouton::setToTransparent(void)
+{
+	setOutline(0, Color::Transparent);
+	setDimension(0, 0);
 }
 
 void bouton::print(RenderWindow& window)

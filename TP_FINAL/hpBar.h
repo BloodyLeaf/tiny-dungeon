@@ -29,6 +29,8 @@ public:
 
 	//void setPercent(int hp);
 
+	void setToTransparent(void);
+
 	void printHPBar(RenderWindow& window);
 
 };

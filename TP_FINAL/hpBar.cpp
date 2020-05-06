@@ -23,6 +23,14 @@ void hpBar::init(int x, int y, float hp, float maxHP)
 	_remaining.setFillColor(Color::Red);
 
 }
+void hpBar::setToTransparent(void)
+{
+	_background.setFillColor(Color::Transparent);
+	_remaining.setFillColor(Color::Transparent);
+	_background.setOutlineThickness(0);
+	_background.setOutlineColor(Color::Transparent);
+	
+}
 void hpBar::printHPBar(RenderWindow& window)
 {
 	window.draw(_background);

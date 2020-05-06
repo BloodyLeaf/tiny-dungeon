@@ -7,12 +7,14 @@ Définition des méthode de l'objet Game
 
 #include "town.h"
 
-void town::init(void)
+void town::init(int gold)
 {
 	initBuilding();
 	initHero();
 	initBackground();
 	initMenu();
+	setText(_text, "Gold :", _font, "ressources/arial.ttf", 300, 100, 24, Color::White, Text::Bold);
+	setTextGold(_textGold, gold, _font, "ressources/arial.ttf", 380, 100, 24, Color::White, Text::Bold);
 }
 
 void town::initBuilding(void)
@@ -47,13 +49,47 @@ void town::initBackground(void)
 void town::initMenu(void)
 {
 	_option1.initialiserBouton(1100,40,300,150,"ressources/augmentAttack.png");
+	_option1.setOutline(5, Color::Black);
+
 	_option2.initialiserBouton(1100, 230, 300, 150, "ressources/augmentHP.png");
+	_option2.setOutline(5, Color::Black);
+
 	_option3.initialiserBouton(1100, 420, 300, 150, "ressources/fullHeal.png");
+	_option3.setOutline(5, Color::Black);
+
 	_option4.initialiserBouton(1100, 640, 300, 150, "ressources/nextLevel.png");
+	_option4.setOutline(5, Color::Black);
+
 
 	_backgroundMenu.setSize(Vector2f(500, 800));
 	_backgroundMenu.setPosition(1001, 0);
 	_backgroundMenu.setFillColor(Color::White);
+
+
+}
+
+void town::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
+{
+	font.loadFromFile(police);
+	text.setFont(font);
+	text.setString(message);
+	text.setCharacterSize(taille);
+	text.setFillColor(color);
+	text.setStyle(style);
+	text.setPosition(posX, posY);
+}
+
+void town::setTextGold(Text& text, int gold, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
+{
+
+	std::string message = std::to_string(gold);
+	font.loadFromFile(police);
+	text.setFont(font);
+	text.setString(message);
+	text.setCharacterSize(taille);
+	text.setFillColor(color);
+	text.setStyle(style);
+	text.setPosition(posX, posY);
 }
 
 bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dmg, int& gold)
@@ -61,7 +97,7 @@ bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dm
 
 	Event event;
 	
-
+	
 	townEntrance(window);
 
 	while (true) {
@@ -78,6 +114,7 @@ bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dm
 
 					dmg++;
 					gold -= 25;
+					
 					break;
 
 				case Keyboard::Num2:
@@ -144,4 +181,6 @@ void town::printTown(RenderWindow& window)
 	_option2.print(window);
 	_option3.print(window);
 	_option4.print(window);
+	window.draw(_text);
+	window.draw(_textGold);
 }

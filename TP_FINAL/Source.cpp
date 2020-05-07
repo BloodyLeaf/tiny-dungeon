@@ -7,7 +7,6 @@ But du projet : Réaliser un jeu de style D&D tour par tour
 */
 
 #include <SFML/Graphics.hpp>
-//#include "Window.h"
 
 #include "MenuPrincipal.h"
 #include "battleGround.h"

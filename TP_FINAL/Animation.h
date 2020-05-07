@@ -18,6 +18,6 @@ private:
 
 public:
 
-	void animationForward(RenderWindow& window, RectangleShape moving);
+	
 
 };

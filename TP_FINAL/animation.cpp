@@ -7,7 +7,3 @@ Définition des méthode de l'objet Animation
 
 #include "Animation.h"
 
-void animation::animationForward(RenderWindow& window, RectangleShape moving)
-{
-	
-}

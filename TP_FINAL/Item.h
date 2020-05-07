@@ -14,6 +14,7 @@ Déclaration des méthodes de la classe Items
 class Item
 {
 	private:
+		int _id;
 		std::string _name;	// Item's name
 		int _type;			// Type of item - boots: 1, armor: 2, weapon: 3, potion 4; 		
 		int _speedMod;		// Speed modifier
@@ -23,11 +24,12 @@ class Item
 
 	public:
 		// Constructeurs
-		Item();																					// Builds an empty debug object
-		Item(std::string name, int type, int speedMod, int defMod, int strMod, int dexMod);		// Builds an item with set values
-		~Item();																				// Destroys the object
+		Item();																						// Builds an empty debug object
+		Item(int id, std::string name, int type, int speedMod, int defMod, int strMod, int dexMod);	// Builds an item with set values
+		~Item();																					// Destroys the object
 
 		// Getteurs
+		const int GetID();
 		const std::string GetName();
 		const int GetType();
 		const int GetSpeedMod();
@@ -36,7 +38,8 @@ class Item
 		const int GetDexterityMod();
 
 		// Setteurs
-		void SetItem(std::string name, int type, int speedMod, int defMod, int strMod, int dexMod);
+		void SetItem(int id, std::string name, int type, int speedMod, int defMod, int strMod, int dexMod);
+		void SetID(int id);
 		void SetName(std::string name);
 		void SetType(int type);
 		void SetSpeedMod(int speedMod);

@@ -13,6 +13,7 @@ Déclaration des méthodes de la classe Items
 // Return:		none
 // Description:	Creates an empty debug object.
 Item::Item() {
+	_id = 0;
 	_name = "Debug";
 	_type = 0;
 	_speedMod = 0;
@@ -28,12 +29,14 @@ Item::Item() {
 //				speedMod, defMod, strMod, dexMod - Item's stat modifiers.
 // Return:		none
 // Description:	Creates an empty debug object.
-Item::Item(std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
+Item::Item(int id,  std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
+	assert(id <= INT_MAX && id >= INT_MIN);
 	assert(type <= 4 && type >= 0);
 	assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
 	assert(defMod <= INT_MAX && defMod >= INT_MIN);
 	assert(strMod <= INT_MAX && strMod >= INT_MIN);
 	assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
+	_id = id;
 	_name = name;
 	_type = type;
 	_speedMod = speedMod;
@@ -48,6 +51,7 @@ Item::Item(std::string name, int type, int speedMod, int defMod, int strMod, int
 // Return:		none
 // Description:	Destroys the object.
 Item::~Item() {
+	_id = 0;
 	_name = "";
 	_speedMod = 0;
 	_defMod = 0;
@@ -56,6 +60,10 @@ Item::~Item() {
 }
 
 // Getteurs
+const int Item::GetID() {
+	return _id;
+}
+
 const std::string Item::GetName() {
 	return _name;
 }
@@ -81,18 +89,25 @@ const int Item::GetDexterityMod() {
 }
 
 // Setteurs
-void Item::SetItem(std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
-	////assert(type <= 4 && type >= 0);
-	//assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
-	//assert(defMod <= INT_MAX && defMod >= INT_MIN);
-	//assert(strMod <= INT_MAX && strMod >= INT_MIN);
-	//assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
+void Item::SetItem(int id, std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
+	assert(id <= INT_MAX && id >= INT_MIN);
+	assert(type <= 4 && type >= 0);
+	assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
+	assert(defMod <= INT_MAX && defMod >= INT_MIN);
+	assert(strMod <= INT_MAX && strMod >= INT_MIN);
+	assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
+	_id = id;
 	_name = name;
 	_type = type;
 	_speedMod = speedMod;
 	_defMod = defMod;
 	_strMod = strMod;
 	_dexMod = dexMod;
+}
+
+void Item::SetID(int id) {
+	assert(id <= INT_MAX && id >= INT_MIN);
+	_id = id;
 }
 
 void Item::SetName(std::string name) {
@@ -187,6 +202,8 @@ int GetLineCount(std::ifstream& file) {
 void LoadItems(std::ifstream& file, std::string filePath, std::vector<Item>& item) {
 	file.open(filePath);
 
+	// Temp variables
+	int id;
 	std::string name;
 	int type;
 	int speedMod;
@@ -195,13 +212,13 @@ void LoadItems(std::ifstream& file, std::string filePath, std::vector<Item>& ite
 	int dexMod;
 
 	for (int i = 0; i < item.size(); i++) {
-		file >> name >> type >> speedMod >> defMod >> strMod >> dexMod;
+		file >> id >> name >> type >> speedMod >> defMod >> strMod >> dexMod;
 		for (int j = 0; j < name.length(); j++) {
 			if (name[j] == '_') {
 				name[j] = ' ';
 			}
 		}
-		item[i].SetItem(name, type, speedMod, defMod, strMod, dexMod);
+		item[i].SetItem(id, name, type, speedMod, defMod, strMod, dexMod);
 	}
 	file.close();
 }

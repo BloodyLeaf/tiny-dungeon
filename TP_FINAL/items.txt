@@ -1,4 +1,4 @@
-Bottes_de_cuir 1 0 0 0 0
-Plastron_de_cuir 2 0 0 0 0
-Epee_dentrainement 3 0 0 0 1
-Epee_vorpale_de_la_mort_qui_tue 3 0 0 10 10
+100 Bottes_de_cuir 1 0 0 0 0
+200 Plastron_de_cuir 2 0 0 0 0
+300 Epee_dentrainement 3 0 0 0 1
+301 Epee_vorpale_de_la_mort_qui_tue 3 0 0 10 10

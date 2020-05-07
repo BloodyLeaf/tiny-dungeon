@@ -9,6 +9,7 @@ Déclaration des méthode de l'objet Town
 #include <SFML/Graphics.hpp>
 
 #include "Bouton.h"
+#include "hero.h"
 
 using namespace sf;
 
@@ -46,11 +47,11 @@ private :
 
 public:
 
-	void init(int gold, int herohp, int heroMaxHp, int dmg);
+	void init(hero & hero);
 
 	void initBuilding(void);
 
-	void initHero(void);
+	void initHero(hero & hero);
 
 	void initBackground(void);
 
@@ -60,10 +61,10 @@ public:
 	void setTextIntegerStats(Text& text, int stats, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void updateIntegerStats(Text& text,int newStats);
 
-	bool townAction(RenderWindow& window, int& heroHP, int & heroMaxHP, int & dmg, int & gold);
+	bool townAction(RenderWindow& window, hero & hero);
 
-	void townEntrance(RenderWindow& window);
-	void townExit(RenderWindow& window);
+	void townEntrance(RenderWindow& window,hero & hero);
+	void townExit(RenderWindow& window,hero & hero);
 
-	void printTown(RenderWindow& window);
+	void printTown(RenderWindow& window,hero & hero);
 };

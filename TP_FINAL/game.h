@@ -9,6 +9,7 @@ Déclaration des méthode de l'objet Game
 #include <SFML/Graphics.hpp>
 #include "battleGround.h"
 #include "town.h"
+#include "hero.h"
 
 using namespace sf;
 
@@ -25,9 +26,12 @@ private :
 	int _world;
 	int _level;
 
+	hero _hero;
 	
 
 public:
+
+	void initHero(void);
 
 	void initGame(void);
 

@@ -7,24 +7,24 @@ Définition des méthode de l'objet Game
 
 #include "town.h"
 
-void town::init(int gold,int herohp, int heroMaxHp, int dmg)
+void town::init(hero & hero)
 {
 	initBuilding();
-	initHero();
+	initHero(hero);
 	initBackground();
 	initMenu();
 	//Pour le gold
 	setText(_textGold, "Gold :", _font, "ressources/arial.ttf", 300, 50, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textGoldQty, gold, _font, "ressources/arial.ttf", 380, 50, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textGoldQty, hero.getGold(), _font, "ressources/arial.ttf", 380, 50, 24, Color::White, Text::Bold);
 
 	//Pour les HP
 	setText(_textHP, "Points de vie :", _font, "ressources/arial.ttf", 300, 85, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textCurrentHP, herohp, _font, "ressources/arial.ttf", 500, 85, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textCurrentHP, hero.getPv(), _font, "ressources/arial.ttf", 500, 85, 24, Color::White, Text::Bold);
 	setText(_textHPDivider, " / ", _font, "ressources/arial.ttf", 525, 85, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textMaxHP, heroMaxHp, _font, "ressources/arial.ttf", 550, 85, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textMaxHP, hero.getMaxPv(), _font, "ressources/arial.ttf", 550, 85, 24, Color::White, Text::Bold);
 
 	setText(_textDmg, "Attaque : ", _font, "ressources/arial.ttf", 300, 120, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textDmgCurrent, dmg , _font, "ressources/arial.ttf", 420, 120, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textDmgCurrent, hero.getStr() , _font, "ressources/arial.ttf", 420, 120, 24, Color::White, Text::Bold);
 }
 
 void town::initBuilding(void)
@@ -42,11 +42,9 @@ void town::initBuilding(void)
 	_wallRight.setFillColor(Color::White);
 }
 
-void town::initHero(void)
+void town::initHero(hero & hero)
 {
-	_hero.setSize(Vector2f(100, 100));
-	_hero.setFillColor(Color::Cyan);
-	_hero.setPosition(-150, 600 );
+	hero.setPosition(-150, 600 );
 }
 
 void town::initBackground(void)
@@ -108,13 +106,13 @@ void town::updateIntegerStats(Text& text,int newStats)
 	text.setString(message);
 }
 
-bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dmg, int& gold)
+bool town::townAction(RenderWindow& window, hero & hero)
 {
 
 	Event event;
 	
 	
-	townEntrance(window);
+	townEntrance(window,hero);
 
 	while (true) {
 		while (window.pollEvent(event)) {
@@ -127,34 +125,37 @@ bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dm
 					break;
 				
 				case Keyboard::Num1:
-
-					dmg++;
-					gold -= 25;
-					updateIntegerStats(_textGoldQty, gold);
-					updateIntegerStats(_textDmgCurrent, dmg);
+					if (hero.getGold() >= 25) {
+						hero.setStr(hero.getStr() + 1);
+						hero.setGold(hero.getGold() - 25);
+						updateIntegerStats(_textGoldQty, hero.getGold());
+						updateIntegerStats(_textDmgCurrent, hero.getStr());
+					}
 					break;
 
 				case Keyboard::Num2:
-
-					heroHP += 5;
-					heroMaxHP += 5;
-					gold -= 25;
-					updateIntegerStats(_textGoldQty, gold);
-					updateIntegerStats(_textCurrentHP, heroHP);
-					updateIntegerStats(_textMaxHP, heroMaxHP);
+					if (hero.getGold() >= 25) {
+						hero.setPv(hero.getPv() + 5);
+						hero.setMaxPv(hero.getMaxPv() + 5);
+						hero.setGold(hero.getGold() - 25);
+						updateIntegerStats(_textGoldQty, hero.getGold());
+						updateIntegerStats(_textCurrentHP, hero.getPv());
+						updateIntegerStats(_textMaxHP, hero.getMaxPv());
+					}
 					break;
 
 				case Keyboard::Num3:
-
-					heroHP = heroMaxHP;
-					gold -= 25;
-					updateIntegerStats(_textGoldQty, gold);
-					updateIntegerStats(_textCurrentHP, heroHP);
+					if (hero.getGold() >= 25) {
+						hero.setPv(hero.getMaxPv());
+						hero.setGold(hero.getGold() - 25);
+						updateIntegerStats(_textGoldQty, hero.getGold());
+						updateIntegerStats(_textCurrentHP, hero.getPv());
+					}
 					break;
-
+					
 				case Keyboard::Right:
 
-					townExit(window);
+					townExit(window,hero);
 					return true;
 					break;
 				default:
@@ -165,35 +166,35 @@ bool town::townAction(RenderWindow& window, int& heroHP, int& heroMaxHP, int& dm
 		}
 
 		window.clear();
-		printTown(window);
+		printTown(window,hero);
 		window.display();
 	}
 }
 
-void town::townEntrance(RenderWindow& window)
+void town::townEntrance(RenderWindow& window,hero & hero)
+{
+	for (int i = 0; i < 117; i++) {
+		hero.setPosition(hero.getPositionX() + 5, hero.getPositionY());
+		window.clear();
+		printTown(window,hero);
+		window.display();
+	}
+}
+
+void town::townExit(RenderWindow& window,hero & hero)
 {
 	for (int i = 0; i < 117; i++) {
 		_hero.setPosition(_hero.getPosition().x + 5, _hero.getPosition().y);
 		window.clear();
-		printTown(window);
+		printTown(window,hero);
 		window.display();
 	}
 }
 
-void town::townExit(RenderWindow& window)
-{
-	for (int i = 0; i < 117; i++) {
-		_hero.setPosition(_hero.getPosition().x + 5, _hero.getPosition().y);
-		window.clear();
-		printTown(window);
-		window.display();
-	}
-}
-
-void town::printTown(RenderWindow& window)
+void town::printTown(RenderWindow& window,hero & hero)
 {
 	window.draw(_background);
-	window.draw(_hero);
+	hero.printChar(window);
 	window.draw(_wallLeft);
 	window.draw(_wallTop);
 	window.draw(_wallRight);

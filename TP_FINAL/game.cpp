@@ -7,9 +7,15 @@ Définition des méthode de l'objet Game
 
 #include "game.h"
 
+void game::initHero(void)
+{
+	_hero.initPersonnage();
+	
+}
+
 void game::initGame()
 {
-
+	initHero();
 	_window.create(VideoMode(1500, 800), "Tiny Dungeon");
 	_window.setFramerateLimit(60);
 	_heroAlive = true;
@@ -20,7 +26,7 @@ void game::initGame()
 
 void game::initNewBG(void)
 {
-	_currentBattleGround.initTemporaire();
+	_currentBattleGround.initTemporaire(_hero);
 }
 
 void game::playGame(void)
@@ -29,10 +35,7 @@ void game::playGame(void)
 
 	initGame();
 
-	int gold=0;
-	int heroHP=35;
-	int maxHeroHp=35;
-	int dmg=1;
+	
 	int toBeat = 3 + (_world / 3);
 
 
@@ -45,16 +48,16 @@ void game::playGame(void)
 				_level = 0;
 				_world++;
 
-				_town.init(gold,heroHP,maxHeroHp,dmg);
-				_heroAlive = _town.townAction(_window, heroHP, maxHeroHp, dmg,gold);
+				_town.init(_hero);										//Refaire les méthode de town avec un hero
+				_heroAlive = _town.townAction(_window, _hero);			// et non un int
 				
 				
 			}
 			else {
-				_currentBattleGround.initTemporaire();
-				_heroAlive = _currentBattleGround.game(_window, heroHP, maxHeroHp, dmg, _world);
+				_currentBattleGround.initTemporaire(_hero);
+				_heroAlive = _currentBattleGround.game(_window,_hero, _world);
 				_level++;
-				gold += 15;
+				_hero.setGold(_hero.getGold()+ 15);
 			}
 
 		}

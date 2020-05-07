@@ -30,6 +30,10 @@ Item::Item() {
 // Description:	Creates an empty debug object.
 Item::Item(std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
 	assert(type <= 4 && type >= 0);
+	assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
+	assert(defMod <= INT_MAX && defMod >= INT_MIN);
+	assert(strMod <= INT_MAX && strMod >= INT_MIN);
+	assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
 	_name = name;
 	_type = type;
 	_speedMod = speedMod;
@@ -78,6 +82,11 @@ const int Item::GetDexterityMod() {
 
 // Setteurs
 void Item::SetItem(std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
+	////assert(type <= 4 && type >= 0);
+	//assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
+	//assert(defMod <= INT_MAX && defMod >= INT_MIN);
+	//assert(strMod <= INT_MAX && strMod >= INT_MIN);
+	//assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
 	_name = name;
 	_type = type;
 	_speedMod = speedMod;
@@ -96,18 +105,22 @@ void Item::SetType(int type) {
 }
 
 void Item::SetSpeedMod(int speedMod) {
+	assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
 	_speedMod = speedMod;
 }
 
 void Item::SetDefenseMod(int defMod) {
+	assert(defMod <= INT_MAX && defMod >= INT_MIN);
 	_defMod = defMod;
 }
 
 void Item::SetStrengthMod(int strMod) {
+	assert(strMod <= INT_MAX && strMod >= INT_MIN);
 	_strMod = strMod;
 }
 
 void Item::SetDexterityMod(int dexMod) {
+	assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
 	_dexMod = dexMod;
 }
 
@@ -141,4 +154,54 @@ void Item::SetWeapon(std::string name, int strMod, int dexMod) {
 	SetName(name);
 	SetStrengthMod(strMod);
 	SetDexterityMod(dexMod);
+}
+
+void OpenFile(std::ifstream& file, std::string fileName) {
+	file.open(fileName);
+
+	if (!file.is_open()) {
+		system("pause");
+		exit(0);
+	}
+}
+
+void CheckEmpty(std::ifstream& file) {
+	if (file.fail()) {
+		file.close();
+		system("pause");
+		exit(0);
+	}
+}
+
+int GetLineCount(std::ifstream& file) {
+	int lines = 0;
+	std::string temp;
+	while (!file.eof()) {
+		std::getline(file, temp);
+		lines++;
+	}
+	file.close();
+	return lines;
+}
+
+void LoadItems(std::ifstream& file, std::string filePath, std::vector<Item>& item) {
+	file.open(filePath);
+
+	std::string name;
+	int type;
+	int speedMod;
+	int defMod;
+	int strMod;
+	int dexMod;
+
+	for (int i = 0; i < item.size(); i++) {
+		file >> name >> type >> speedMod >> defMod >> strMod >> dexMod;
+		for (int j = 0; j < name.length(); j++) {
+			if (name[j] == '_') {
+				name[j] = ' ';
+			}
+		}
+		item[i].SetItem(name, type, speedMod, defMod, strMod, dexMod);
+	}
+	file.close();
 }

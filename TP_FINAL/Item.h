@@ -8,6 +8,8 @@ Déclaration des méthodes de la classe Items
 
 #include <string>
 #include <cassert>
+#include <fstream>
+#include <vector>
 
 class Item
 {
@@ -48,7 +50,11 @@ class Item
 		void SetStrWeapon(std::string name, int strMod);
 		void SetDexWeapon(std::string name, int dexMod);
 		void SetWeapon(std::string name, int strMod, int dexMod);
-
-		// Miscellanious
+		friend void LoadItems(std::ifstream& file, std::string filePath, std::vector<Item>& item);
 };
+
+// Manipulations de fichier
+void OpenFile(std::ifstream& file, std::string fileName);
+void CheckEmpty(std::ifstream& file);
+int GetLineCount(std::ifstream& file);
 

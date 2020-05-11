@@ -1,6 +1,165 @@
-﻿  town.cpp
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(87,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(87,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(100,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(100,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-  TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe
+﻿  animation.cpp
+  attack.cpp
+  battleGround.cpp
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(35,80): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(35,51): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(36,80): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(36,51): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(37,80): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(37,51): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(78,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(78,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(85,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(103,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(103,22): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(111,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(111,22): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(120,32): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(120,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(129,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(129,23): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(139,23): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(139,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(175,61): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(175,37): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(275,88): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(275,71): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(276,99): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(276,96): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(276,81): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(276,52): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(277,99): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(277,96): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(277,81): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(277,52): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(278,99): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(278,96): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(278,81): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(278,52): warning C4244: 'argument' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(299,91): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(299,74): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Bouton.cpp
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(20,31): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(20,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(21,33): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(21,30): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(26,33): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(26,30): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(31,31): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(31,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\Bouton.cpp(48,33): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  game.cpp
+  hero.cpp
+  hpBar.cpp
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\hpBar.cpp(12,40): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\hpBar.cpp(12,35): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\hpBar.cpp(21,39): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\hpBar.cpp(21,34): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+  Item.cpp
+  MenuPrincipal.cpp
+  monstre.cpp
+  personnage.cpp
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\personnage.cpp(40,30): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\personnage.cpp(40,27): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\personnage.cpp(91,35): warning C4244: 'return' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\personnage.cpp(96,35): warning C4244: 'return' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\personnage.cpp(130,9): warning C4552: '-' : résultat de l'expression non utilisé
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\personnage.cpp(150,30): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\personnage.cpp(150,27): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Source.cpp
+  town.cpp
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\town.cpp(87,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\town.cpp(87,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\town.cpp(100,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\town.cpp(100,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Génération de code en cours...
+C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\TP_FINAL\battleGround.cpp(150): warning C4715: 'battleGrounds::generateMonster' : les chemins de contrôle ne retournent pas tous une valeur
+  TP_FINAL.vcxproj -> C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\x64\Debug\TP_FINAL.exe

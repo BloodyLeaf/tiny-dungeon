@@ -11,25 +11,27 @@ But du programme: Définition de l'objet personnage.
 //constructeur aucun parametre
 personnage::personnage()
 {
-    _str = _pv = _maxPv = _gold = 0;
+    _str = _pv = _maxPv = _gold =  _id = _mana = _speed = _dex = 0;
 }
 
 //Constructeur 2 parametre mais deviensdra a 5 parametre
 //ajout de rectangleShape [sophie]
-personnage::personnage(int str, int pv, int maxPv, int gold)
+personnage::personnage(int str, int pv, int maxPv, int gold, int mana, int speed, int dex)
 {
     _str = str;
     _pv = pv;
     _maxPv = maxPv;
     _gold = gold;
+    _mana = mana;
+    _speed = speed;
+    _dex = dex;
 }
 
 //destructeur
 //ajouter rectangleShape [sophie]
 personnage::~personnage()
 {
-    _str = 0;
-    _pv = 0;
+    _str = _pv = _maxPv = _gold = _id = _mana = _speed = _dex = 0;
 }
 
 void personnage::initPositionPersonnage(int x , int y)
@@ -61,6 +63,26 @@ int personnage::getMaxPv() const
 int personnage::getGold() const
 {
     return _gold;
+}
+
+int personnage::getMana() const
+{
+    return _mana;
+}
+
+int personnage::getSpeed() const
+{
+    return _speed;
+}
+
+int personnage::getDex() const
+{
+    return _dex;
+}
+
+int personnage::getId() const
+{
+    return _id;
 }
 
 //methode qui retourne le x de la position
@@ -103,6 +125,26 @@ void personnage::setGold(int gold)
     _gold = gold;
 }
 
+void personnage::setId(int id)
+{
+    _id - id;
+}
+
+void personnage::setMana(int mana)
+{
+    _mana = mana;
+}
+
+void personnage::setSpeed(int speed)
+{
+    _speed = speed;
+}
+
+void personnage::setDex(int dex)
+{
+    _dex = dex;
+}
+
 void personnage::setPosition(int x, int y)
 {
     _position.setPosition(x, y);
@@ -129,4 +171,41 @@ void personnage::recevoirDegat(int degat)
 void personnage::printChar(RenderWindow& window)
 {
     window.draw(_position);
+}
+
+void personnage::ouvrirFichier(ifstream& fichier)
+{
+    fichier.open("personnage.txt");
+    if (!fichier.is_open())
+    {
+        cout << "Le fichier n’a pas ete trouve." << endl;
+        exit(0);
+    }
+}
+
+void personnage::recherchePersonnage(ifstream& fichier, int personnage)
+{
+    int donnee;
+    ouvrirFichier(fichier);
+
+    while (!fichier.eof()) {
+        fichier >> donnee;
+
+        if (donnee == personnage) {
+
+            fichier >> donnee;
+            setStr(donnee);
+
+            fichier >> donnee;
+            setPv(donnee);
+
+            fichier >> donnee;
+            setMaxPv(donnee);
+
+            fichier >> donnee;
+            setGold(donnee);
+
+            break;
+        }
+    }
 }

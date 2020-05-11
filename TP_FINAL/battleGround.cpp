@@ -27,15 +27,19 @@ void battleGrounds::initTemporaire(hero& hero)
 	setText("A été attaqué", font, "ressources/arial.ttf", 800 / 2 - 100, 600 / 2 - 24, 16, Color::White, Text::Bold);
 
 
+
 	_monster[0].initPositionPersonnage(1600, 100);
 	_monster[1].initPositionPersonnage(1800, 300);
 	_monster[2].initPositionPersonnage(1700, 500);
 
 
+	//Get position must change
 	_heroHPBar.init(hero.getPositionX(),hero.getPositionY(),10,10);
+
 	_testBarMonster[0].init(_monster[0].getPositionX(), _monster[0].getPositionY(),10,10);
 	_testBarMonster[1].init(_monster[1].getPositionX(), _monster[1].getPositionY(), 10, 10);
 	_testBarMonster[2].init(_monster[2].getPositionX(), _monster[2].getPositionY(), 10, 10);
+
 
 
 	for (int i = 0; i < 3; i++) {
@@ -80,7 +84,7 @@ void battleGrounds::setText(const char* message, Font& font, const char* police,
 }
 
 
-
+//Doit return un monster + fix la generation dans init temporaire
 RectangleShape battleGrounds::generateMonster(int x , int y)
 {
 	srand(time(NULL));
@@ -201,7 +205,9 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	
 	Event event;
 
-
+	//Modifier PV et attack monstre
+	int monsterhp[3];
+	int monsterMaxHP = 2 + ( world/2) ;
 	bool playerAttacked = false;
 	bool heroAlive = true;
 	int aliveMonster = 3;

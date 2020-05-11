@@ -10,6 +10,7 @@ Déclaration des méthode de l'objet Game
 #include "battleGround.h"
 #include "town.h"
 #include "hero.h"
+#include "MenuPrincipal.h"
 
 using namespace sf;
 
@@ -17,6 +18,9 @@ using namespace sf;
 class game {
 
 private : 
+
+	menuPrincipal menu;
+
 	RenderWindow _window;
 	battleGrounds _currentBattleGround;
 	bool _heroAlive;
@@ -38,4 +42,6 @@ public:
 	void initNewBG(void);
 
 	void playGame(void);
+
+	void nouvelleAventure();
 };

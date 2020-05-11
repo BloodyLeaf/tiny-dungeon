@@ -13,14 +13,20 @@ class menuPrincipal {
 private:
 
 	RectangleShape _fondEcran;
-	bouton _boutonRace;
-	bouton _boutonClasse;
+	bouton poursuivre;
+	bouton credits;
+	bouton _boutonNouvelleAventure;
+	Text _textBoutonNouvelAventure;
+	Font _font;
 
 public:
 
 	void initMenuPrincipal();
-	void initBouton();
-
+	void printTitle(const char* title);
 	void print(RenderWindow& window);
+	void loadBoutons(bouton &nomBouton, const char* message, int posX, int posY, const Color& colorText,const Color& colorOutline, int style, const char* police, int w, int h, int taillePolice);
+	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 
+
+	bool optionMenu(RenderWindow& window);
 };

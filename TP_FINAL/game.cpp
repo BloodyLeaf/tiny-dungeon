@@ -36,7 +36,7 @@ void game::playGame(void)
 	initGame();
 
 	
-	int toBeat = 3 + (_world / 3);
+	int toBeat = 13 + (_world / 3);
 
 
 	while (_window.isOpen())

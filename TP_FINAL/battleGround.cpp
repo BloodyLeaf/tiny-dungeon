@@ -262,11 +262,11 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 				if (event.mouseButton.button == Mouse::Left) {
 					Vector2i mousePosition = Mouse::getPosition();
 
-					/*if (mousePosition.x > _monster[0].getPosition().x )/*&& 
-						mousePosition.x < _monster[0].getPosition().x + _monster[0].getSize().x &&
-						mousePosition.y > _monster[0].getPosition().y && 
-						mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y) 
-						attack(window,0);*/
+					if (mousePosition.x > _monster[0].getPosition().x &&
+						mousePosition.x < _monster[0].getPosition().x + _monster[0].getSize().x )//&&
+						//mousePosition.y > _monster[0].getPosition().y &&
+						//mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y)
+						attack(window, 0,hero);
 					
 					
 				}

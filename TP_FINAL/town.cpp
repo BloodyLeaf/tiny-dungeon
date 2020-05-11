@@ -184,7 +184,7 @@ void town::townEntrance(RenderWindow& window,hero & hero)
 void town::townExit(RenderWindow& window,hero & hero)
 {
 	for (int i = 0; i < 117; i++) {
-		_hero.setPosition(_hero.getPosition().x + 5, _hero.getPosition().y);
+		hero.setPosition(hero.getPositionX() , hero.getPositionY());
 		window.clear();
 		printTown(window,hero);
 		window.display();

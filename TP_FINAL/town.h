@@ -23,7 +23,6 @@ private :
 	RectangleShape _wallRight;
 	RectangleShape _wallTop;
 
-	RectangleShape _hero;
 
 	bouton _option1;
 	bouton _option2;

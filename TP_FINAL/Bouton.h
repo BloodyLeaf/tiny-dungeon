@@ -21,6 +21,7 @@ private:
 
 public:
 	void initialiserBouton(int posX, int posY, int w, int h, const char* nomBouton);
+	void initialiserFondBouton(int posX, int posY, int w, int h,Color color);
 
 	void setRectangleShape(int posX, int posY, int w, int h);
 	void setDimension(int w, int h);
@@ -29,6 +30,8 @@ public:
 	void setTexture(const char* nomSprite);
 	void setOutline(int thickness, Color color);
 	void setToTransparent(void);
+	void setText(const char* message, const char* police, int posX, int posY, int taille, const Color& color, int style);
+	void setFillColor(Color color);
 
 	void print(RenderWindow &window);
 };

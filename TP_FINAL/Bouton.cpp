@@ -10,8 +10,15 @@ Définition des méthode de l'objet bouton
 void bouton::initialiserBouton(int posX, int posY, int w, int h, const char* nomBouton)
 {
 	setRectangleShape(posX, posY, w, h);
-	//setIntRect(rectBouton);
-	setTexture(nomBouton);
+	//setTexture(nomBouton);
+
+
+}
+
+void bouton::initialiserFondBouton(int posX, int posY, int w, int h, Color color)
+{
+	setRectangleShape(posX, posY, w, h);
+	setFillColor(color);
 }
 
 
@@ -58,4 +65,20 @@ void bouton::setToTransparent(void)
 void bouton::print(RenderWindow& window)
 {
 	window.draw(_posBouton);
+}
+void bouton::setText(const char* message, const char* police, int posX, int posY, int taille, const Color& color, int style) {
+	Text text;
+	Font font;
+	font.loadFromFile(police);
+	text.setFont(font);
+	text.setString(message);
+	text.setCharacterSize(taille);
+	text.setFillColor(color);
+	text.setStyle(style);
+	text.setPosition(posX, posY);
+
+}
+void bouton::setFillColor(Color color) {
+	_posBouton.setFillColor(color);
+
 }

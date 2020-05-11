@@ -35,13 +35,12 @@ void game::playGame()
 
 	initGame();
 
-<<<<<<< HEAD
+
 	
 	int toBeat = 3 + (_world / 3);
-=======
+
 	Event event;
 	menu.initMenuPrincipal();
->>>>>>> 3bd41dd01e337a73f2a7bcbbd44f2f833eb6e175
 
 	Vector2i mousePosition = Mouse::getPosition();
 

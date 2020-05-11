@@ -201,7 +201,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	
 	Event event;
 
-
+	//Modifier PV et attack monstre
 	int monsterhp[3];
 	int monsterMaxHP = 2 + ( world/2) ;
 	bool playerAttacked = false;

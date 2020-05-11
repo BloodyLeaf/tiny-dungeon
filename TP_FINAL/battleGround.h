@@ -13,6 +13,7 @@ Déclaration des méthode de l'objet MenuPrincipal
 #include "hpBar.h"
 #include "Animation.h"
 #include "hero.h"
+#include "monstre.h"
 
 using namespace sf;
 
@@ -23,8 +24,7 @@ private:
 	RectangleShape _background;
 	std::vector<int> initiative;
 
-	RectangleShape _monster[3];
-	
+	monstre _monster[3];  //3 monstre du battleground [Sophie]
 
 	Text _text;
 

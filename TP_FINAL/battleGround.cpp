@@ -26,13 +26,14 @@ void battleGrounds::initTemporaire(hero& hero)
 
 	setText("A été attaqué", font, "ressources/arial.ttf", 800 / 2 - 100, 600 / 2 - 24, 16, Color::White, Text::Bold);
 
+	//Les monster doivent devenir des monsters dans battleground.h
 	_monster[0] = generateMonster(1600, 100);
 	_monster[1] = generateMonster(1800, 300);
 	_monster[2] = generateMonster(1700, 500);
 
-
+	//Get position must change
 	_heroHPBar.init(hero.getPositionX(),hero.getPositionY(),10,10);
-	_testBarMonster[0].init(_monster[0].getPosition().x, _monster[0].getPosition().y,10,10);
+	_testBarMonster[0].init(_monster[0].getPosition().x, _monster[0].getPosition().y,10,10);//_monster[id].getPositionX(), _monster[id].getPositionY()
 	_testBarMonster[1].init(_monster[1].getPosition().x, _monster[1].getPosition().y, 10, 10);
 	_testBarMonster[2].init(_monster[2].getPosition().x, _monster[2].getPosition().y, 10, 10);
 
@@ -79,7 +80,7 @@ void battleGrounds::setText(const char* message, Font& font, const char* police,
 }
 
 
-
+//Doit return un monster + fix la generation dans init temporaire
 RectangleShape battleGrounds::generateMonster(int x , int y)
 {
 	srand(time(NULL));

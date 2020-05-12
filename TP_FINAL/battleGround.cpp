@@ -26,20 +26,24 @@ void battleGrounds::initTemporaire(hero& hero)
 
 	setText("A été attaqué", font, "ressources/arial.ttf", 800 / 2 - 100, 600 / 2 - 24, 16, Color::White, Text::Bold);
 
-	//Les monster doivent devenir des monsters dans battleground.h
-	_monster[0] = generateMonster(1600, 100);
-	_monster[1] = generateMonster(1800, 300);
-	_monster[2] = generateMonster(1700, 500);
+
+
+	_monster[0].initPositionPersonnage(1600, 100);
+	_monster[1].initPositionPersonnage(1800, 300);
+	_monster[2].initPositionPersonnage(1700, 500);
+
 
 	//Get position must change
 	_heroHPBar.init(hero.getPositionX(),hero.getPositionY(),10,10);
-	_testBarMonster[0].init(_monster[0].getPosition().x, _monster[0].getPosition().y,10,10);//_monster[id].getPositionX(), _monster[id].getPositionY()
-	_testBarMonster[1].init(_monster[1].getPosition().x, _monster[1].getPosition().y, 10, 10);
-	_testBarMonster[2].init(_monster[2].getPosition().x, _monster[2].getPosition().y, 10, 10);
+
+	_testBarMonster[0].init(_monster[0].getPositionX(), _monster[0].getPositionY(),10,10);
+	_testBarMonster[1].init(_monster[1].getPositionX(), _monster[1].getPositionY(), 10, 10);
+	_testBarMonster[2].init(_monster[2].getPositionX(), _monster[2].getPositionY(), 10, 10);
+
 
 
 	for (int i = 0; i < 3; i++) {
-		_monsterColor[i] = _monster[i].getFillColor();
+		_monsterColor[i] = _monster[1].getCharacterColor();
 	}
 
 	initMenu();
@@ -152,18 +156,18 @@ RectangleShape battleGrounds::generateMonster(int x , int y)
 
 void battleGrounds::attack(RenderWindow& window,int idMonstre,hero& hero)
 {
-	_text.setPosition(_monster[0].getPosition().x,_monster[0].getPosition().y -30);
+	_text.setPosition(_monster[0].getPositionX(),_monster[0].getPositionY() -30);
 	
 	Time pause = seconds(0.25f);
 	for (int i = 0; i < 4; i++) {
 
-		_monster[idMonstre].setFillColor(Color::Transparent);
+		_monster[idMonstre].setCharColor(Color::Transparent);
 		window.clear();
 		printFull(window,hero);
 		window.display();
 		sleep(pause);
 
-		_monster[idMonstre].setFillColor(_monsterColor[idMonstre]);
+		_monster[idMonstre].setCharColor(_monsterColor[idMonstre]);
 		window.clear();
 		printFull(window, hero);
 		window.display();
@@ -207,9 +211,10 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	bool playerAttacked = false;
 	bool heroAlive = true;
 	int aliveMonster = 3;
-	int monsterAttack = 1 + (world / 4);
 	for (int i = 0; i < 3; i++) {
-		monsterhp[i] = monsterMaxHP;
+		_monster[i].setMaxPv(2 + (world / 3));
+		_monster[i].setPv(_monster[i].getMaxPv());
+		_monster[i].setStr(1 + (world / 4));
 		
 	}
 	
@@ -227,29 +232,29 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 					window.close();
 					break;
 				case Keyboard::Up:
-					if(monsterhp[0]>0){
-						monsterhp[0] -= hero.getStr();
+					if(_monster[0].getPv()>0){
+						_monster[0].setPv(_monster[0].getPv() - hero.getStr());
 						playerAttacked = true;
 						animationPlayerUpAttack(window,hero);
-						checkIfDead(0, monsterhp[0]);
+						checkIfDead(0, _monster[0].getPv());
 						
 					}
 					break;
 				case Keyboard::Right:
-					if (monsterhp[1] > 0) {
-						monsterhp[1] -= hero.getStr();
+					if (_monster[1].getPv() > 0) {
+						_monster[1].setPv(_monster[1].getPv() - hero.getStr());
 						playerAttacked = true;
 						animationPlayerMiddleAttack(window,hero);
-						checkIfDead(1, monsterhp[1]);
+						checkIfDead(1, _monster[1].getPv());
 						
 					}
 					break;
 				case Keyboard::Down:
-					if (monsterhp[2] > 0) {
-						monsterhp[2] -= hero.getStr();
+					if (_monster[2].getPv() > 0) {
+						_monster[2].setPv(_monster[2].getPv() - hero.getStr());
 						playerAttacked = true;
 						animationPlayerLowAttack(window,hero);
-						checkIfDead(2, monsterhp[2]);
+						checkIfDead(2, _monster[2].getPv());
 						
 					}
 				
@@ -263,8 +268,8 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 				if (event.mouseButton.button == Mouse::Left) {
 					Vector2i mousePosition = Mouse::getPosition();
 
-					if (mousePosition.x > _monster[0].getPosition().x &&
-						mousePosition.x < _monster[0].getPosition().x + _monster[0].getSize().x )//&&
+					if (mousePosition.x > _monster[0].getPositionX() &&
+						mousePosition.x < _monster[0].getPositionX() + _monster[0].getPositionX() )//&&
 						//mousePosition.y > _monster[0].getPosition().y &&
 						//mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y)
 						attack(window, 0,hero);
@@ -274,27 +279,27 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 			}
 		}
 		_heroHPBar.init(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
-		_testBarMonster[0].init(_monster[0].getPosition().x, _monster[0].getPosition().y, monsterhp[0], monsterMaxHP);
-		_testBarMonster[1].init(_monster[1].getPosition().x, _monster[1].getPosition().y, monsterhp[1], monsterMaxHP);
-		_testBarMonster[2].init(_monster[2].getPosition().x, _monster[2].getPosition().y, monsterhp[2], monsterMaxHP);
+		_testBarMonster[0].init(_monster[0].getPositionX(), _monster[0].getPositionY(), _monster[0].getPv(), _monster[0].getMaxPv());
+		_testBarMonster[1].init(_monster[1].getPositionX(), _monster[1].getPositionY(), _monster[1].getPv(), _monster[1].getMaxPv());
+		_testBarMonster[2].init(_monster[2].getPositionX(), _monster[2].getPositionY(), _monster[2].getPv(), _monster[2].getMaxPv());
 		window.clear();
 		printFull(window,hero);
 		window.display();
 
-		if (monsterhp[0] <= 0 && monsterhp[1] <= 0 && monsterhp[2] <= 0) {
+		if (_monster[0].getPv() <= 0 && _monster[1].getPv() <= 0 && _monster[2].getPv() <= 0) {
 			//animation sortir du level
 			aliveMonster = 0;
 			animationQuitLevel(window,hero);
 			return true;
 		}
 
-		//Les monstres qui atttaque [ P-A ] 
+		//Les monstres qui attaque [ P-A ] 
 
 		
 		if (playerAttacked == true){
 			for (int i = 0; i < 3; i++) {
-				if (monsterhp[i] > 0) {
-					hero.setPv(hero.getPv() - monsterAttack);
+				if (_monster[i].getPv() > 0) {
+					hero.setPv(hero.getPv() - _monster[i].getStr());
 					
 					animationMonsterAttack(window, i,hero);
 					_heroHPBar.init(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
@@ -313,12 +318,10 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 void battleGrounds::animationLevelStart(RenderWindow& window,hero& hero)
 {
 	for (int i = 0; i < 90; i++) {
-		_monster[0].setPosition(_monster[0].getPosition().x - 6, _monster[0].getPosition().y);
-		_monster[1].setPosition(_monster[1].getPosition().x - 6, _monster[1].getPosition().y);
-		_monster[2].setPosition(_monster[2].getPosition().x - 6, _monster[2].getPosition().y);
+		_monster[0].initPositionPersonnage(_monster[0].getPositionX() - 6, _monster[0].getPositionY());
+		_monster[1].initPositionPersonnage(_monster[1].getPositionX() - 6, _monster[1].getPositionY());
+		_monster[2].initPositionPersonnage(_monster[2].getPositionX() - 6, _monster[2].getPositionY());
 		hero.setPosition(hero.getPositionX() + 4, hero.getPositionY());
-
-
 
 		window.clear();
 		print(window, hero);
@@ -330,7 +333,7 @@ void battleGrounds::animationLevelStart(RenderWindow& window,hero& hero)
 void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& hero)
 {
 	for (int j = 0; j < 50; j++) {
-		_monster[id].setPosition(_monster[id].getPosition().x - 5, _monster[id].getPosition().y);
+		_monster[id].setPosition(_monster[id].getPositionX() - 5, _monster[id].getPositionY());
 		window.clear();
 		printFull(window,hero);
 		window.display();
@@ -339,7 +342,7 @@ void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& he
 
 	
 	for (int j = 0; j < 50; j++) {
-		_monster[id].setPosition(_monster[id].getPosition().x + 5, _monster[id].getPosition().y);
+		_monster[id].setPosition(_monster[id].getPositionX() + 5, _monster[id].getPositionY());
 		window.clear();
 		printFull(window,hero);
 		window.display();
@@ -438,7 +441,7 @@ void battleGrounds::animationQuitLevel(RenderWindow& window,hero& hero)
 void battleGrounds::checkIfDead(int id,int hp)
 {
 	if (hp == 0) {
-		_monster[id].setFillColor(Color::Transparent);
+		_monster[id].setCharColor(Color::Transparent);
 		_testBarMonster[id].setToTransparent();
 		_option[id].setToTransparent();
 	}
@@ -447,9 +450,9 @@ void battleGrounds::checkIfDead(int id,int hp)
 void battleGrounds::print(RenderWindow& window,hero hero)
 {
 	window.draw(_background);
-	window.draw(_monster[0]);
-	window.draw(_monster[1]);
-	window.draw(_monster[2]);
+	_monster[0].printChar(window);
+	_monster[1].printChar(window);
+	_monster[2].printChar(window);
 	hero.printChar(window);
 	//window.draw(_text);
 }
@@ -457,9 +460,9 @@ void battleGrounds::print(RenderWindow& window,hero hero)
 void battleGrounds::printFull(RenderWindow& window,hero hero)
 {
 	window.draw(_background);
-	window.draw(_monster[0]);
-	window.draw(_monster[1]);
-	window.draw(_monster[2]);
+	_monster[0].printChar(window);
+	_monster[1].printChar(window);
+	_monster[2].printChar(window);
 	hero.printChar(window);
 	_heroHPBar.printHPBar(window);
 	_testBarMonster[0].printHPBar(window);

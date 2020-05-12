@@ -30,3 +30,31 @@ void monstre::setAttackHasard(int hasard)
 {
     _attackHasard = hasard;
 }
+
+void monstre::rechercheMonstre(ifstream& fichier, int personnage)
+{
+    int donnee;
+    ouvrirFichier(fichier);
+
+    while (!fichier.eof()) {
+        fichier >> donnee;
+
+        if (donnee == personnage) {
+
+            fichier >> donnee;
+            setStr(donnee);
+
+            fichier >> donnee;
+            setPv(donnee);
+
+            fichier >> donnee;
+            setMaxPv(donnee);
+
+            fichier >> donnee;
+            setGold(donnee);
+
+            break;
+        }
+    }
+}
+

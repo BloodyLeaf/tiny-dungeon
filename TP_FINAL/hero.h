@@ -43,6 +43,6 @@ public:
     void setBoots(Item boots);
     void setArmur(Item armor);
 
-    
+    void rechercheHero(ifstream& fichier, int personnage);        //recherche dans un fichier texte a laide de id et attribution de donnee [sophie]
 
 };

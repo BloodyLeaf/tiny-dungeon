@@ -10,7 +10,7 @@ Définition des méthode de l'objet bouton
 void bouton::initialiserBouton(int posX, int posY, int w, int h, const char* nomBouton)
 {
 	setRectangleShape(posX, posY, w, h);
-	//setTexture(nomBouton);
+	setTexture(nomBouton);
 
 
 }

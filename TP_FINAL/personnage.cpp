@@ -152,6 +152,7 @@ void personnage::setPosition(int x, int y)
 //Temooraire Initialise un hero pour garder le jeu fonctionnel 
 void personnage::initPersonnage(void)
 {
+    _id = 1235;
     _str= 1 ;
     _pv = _maxPv = 25;
     _gold=0;
@@ -175,7 +176,7 @@ void personnage::printChar(RenderWindow& window)
 
 void personnage::ouvrirFichier(ifstream& fichier)
 {
-    fichier.open("personnage.txt");
+    fichier.open("ressources/hero.txt");
     if (!fichier.is_open())
     {
         cout << "Le fichier n’a pas ete trouve." << endl;

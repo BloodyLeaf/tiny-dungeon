@@ -60,6 +60,32 @@ void hero::setArmur(Item armor)
 {
     _armor = armor;
 }
+void hero::rechercheHero(ifstream& fichier, int personnage)
+{
+    int donnee;
+    ouvrirFichier(fichier);
+
+    while (!fichier.eof()) {
+        fichier >> donnee;
+
+        if (donnee == personnage) {
+
+            fichier >> donnee;
+            setStr(donnee);
+
+            fichier >> donnee;
+            setPv(donnee);
+
+            fichier >> donnee;
+            setMaxPv(donnee);
+
+            fichier >> donnee;
+            setGold(donnee);
+
+            break;
+        }
+    }
+}
 /*void hero::setEquipement(vector <int> equipement)
 {
     for (int i = 0; i < equipement.size(); i++) {

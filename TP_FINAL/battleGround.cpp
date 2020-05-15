@@ -328,7 +328,8 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 						{
 						case Keyboard::Num1:
 							if (hero.checkIfSkillCanBeUsed(0)) {
-
+								hero.setMana(hero.getMana() + hero.getInt());
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 1);
 								playerAttacked = true;
@@ -338,7 +339,8 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 							break;
 						case Keyboard::Num2:
 							if (hero.checkIfSkillCanBeUsed(1)) {
-
+								hero.setMana(hero.getMana() + hero.getInt());
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 2);
 								playerAttacked = true;
@@ -348,7 +350,8 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 							break;
 						case Keyboard::Num3:
 							if (hero.checkIfSkillCanBeUsed(2)) {
-
+								hero.setMana(hero.getMana() + hero.getInt());
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 3);
 								playerAttacked = true;
@@ -358,7 +361,8 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 							break;
 						case Keyboard::Num4:
 							if (hero.checkIfSkillCanBeUsed(3)) {
-
+								hero.setMana(hero.getMana() + hero.getInt());
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 4);
 								playerAttacked = true;

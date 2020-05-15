@@ -8,7 +8,6 @@ But du programme: Déclaration de l'objet personnage de Tiny Dungeon.
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <fstream>
-//#include <SFML/Window.hpp>
 
 
 using namespace std;
@@ -18,7 +17,7 @@ class personnage {
 
 private:
 
-    int _str, _pv, _maxPv, _gold, _id, _mana, _speed, _dex;
+    int _str, _pv, _maxPv, _gold, _id, _speed, _dex;
     RectangleShape _position;        //Ajouter rectangleShape [Sophie]
 
 public:
@@ -28,6 +27,7 @@ public:
     ~personnage();
 
     void initPositionPersonnage(int x , int y);
+    void initPersonnage(Color color, int w, int h);
 
     int getStr() const;                     //retourne valeur de strenght [Sophie]
     int getPv() const;                      //retourne valeur de point de vie [Sophie]
@@ -52,6 +52,7 @@ public:
     void setPosition(int x, int y);         //Set La position du personnage [ P-A ]
     void initPersonnage(void);              //Initialisation du personnage au début du jeu [P-A ] + parametre a ajouter si + de perso
     void setCharColor(Color color);         //Set la couleur du hero actuel [P-A]
+    
 
     void recevoirDegat(int degat);                                       //modifie les points de vie [Sophie]
     void printChar(RenderWindow & window);                               //Affiche un personnage [P-A]

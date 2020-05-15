@@ -20,6 +20,8 @@ private:
 
 public:
 
+    void initMonster(Color color, int w, int h, int x, int y);              //Initialise les monstre selon des parametre recu [ P-A ] temp en attendant read bloc note
+
     int getRating() const;                //retourne le rating du personnage monstre [sophie]
     int getAttackHasard() const;        //retourne la valeur de lattack par hasard du personnage monstre [sophie]
 

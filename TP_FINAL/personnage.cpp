@@ -11,7 +11,7 @@ But du programme: Définition de l'objet personnage.
 //constructeur aucun parametre
 personnage::personnage()
 {
-    _str = _pv = _maxPv = _gold =  _id = _mana = _speed = _dex = 0;
+    _str = _pv = _maxPv = _gold =  _id  = _speed = _dex = 0;
 }
 
 //Constructeur 2 parametre mais deviensdra a 5 parametre
@@ -22,7 +22,6 @@ personnage::personnage(int str, int pv, int maxPv, int gold, int mana, int speed
     _pv = pv;
     _maxPv = maxPv;
     _gold = gold;
-    _mana = mana;
     _speed = speed;
     _dex = dex;
 }
@@ -31,14 +30,20 @@ personnage::personnage(int str, int pv, int maxPv, int gold, int mana, int speed
 //ajouter rectangleShape [sophie]
 personnage::~personnage()
 {
-    _str = _pv = _maxPv = _gold = _id = _mana = _speed = _dex = 0;
+    _str = _pv = _maxPv = _gold = _id  = _speed = _dex = 0;
 }
 
 void personnage::initPositionPersonnage(int x , int y)
 {
-    _position.setSize(Vector2f(100, 100));
+    
     _position.setPosition(x, y);
-    _position.setFillColor(Color::Cyan);
+    
+}
+
+void personnage::initPersonnage(Color color, int w, int h)
+{
+    _position.setSize(Vector2f(w, h));
+    _position.setFillColor(color);
 }
 
 //methode qui retourne la valeur de str [Sophie]
@@ -65,10 +70,6 @@ int personnage::getGold() const
     return _gold;
 }
 
-int personnage::getMana() const
-{
-    return _mana;
-}
 
 int personnage::getSpeed() const
 {
@@ -130,10 +131,6 @@ void personnage::setId(int id)
     _id - id;
 }
 
-void personnage::setMana(int mana)
-{
-    _mana = mana;
-}
 
 void personnage::setSpeed(int speed)
 {

@@ -7,21 +7,23 @@ Définition des méthode de l'objet hpBar
 
 #include "attack.h"
 
-void attack::whichAttack(int attackID)
-{
 
-	int str=0;
-	switch (attackID)
-	{
-	case 1:
-		strAttack(str);
-		break;
-	default:
-		break;
-	}
+
+void attack::initAttack(int manacost, int modifier,string attackName)
+{
+	_manaCost = manacost;
+	_modifier = modifier;
+	_attackName = attackName;
 }
 
-void attack::strAttack(int str)
-{
 
+
+void attack::attackOnATarget(personnage& cible, int damageStats)
+{
+	cible.setPv(cible.getPv() - (damageStats * _modifier));
+}
+
+int attack::getManaCost(void)
+{
+	return _manaCost;
 }

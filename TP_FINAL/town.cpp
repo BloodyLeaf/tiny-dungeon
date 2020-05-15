@@ -45,6 +45,7 @@ void town::initBuilding(void)
 void town::initHero(hero & hero)
 {
 	hero.setPosition(-150, 600 );
+	
 }
 
 void town::initBackground(void)

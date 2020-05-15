@@ -7,6 +7,29 @@ But du programme: Définition de l'objet hero.
 
 #include "hero.h"
 
+void hero::initHero()
+{
+
+    initPersonnage(Color::Cyan, 100, 100);
+    initHeroAttack();
+    setPv(35);
+    setMaxPv(35);
+    setStr(1);
+    setDex(1);
+    setMana(12);
+    setMaxMana(12);
+    setInt(3);
+    setSpeed(5);
+}
+
+void hero::initHeroAttack()
+{
+    _attack[0].initAttack(0,1,"STR base attack");
+    _attack[1].initAttack(0,1,"DEX base attack");
+    _attack[2].initAttack(10,2,"STR base critical attack");
+    _attack[3].initAttack(10,2,"DEX base critical attack");
+}
+
 //methode qui retourne la race du personnage [sophie]
 string hero::getRace() const
 {
@@ -18,6 +41,23 @@ string hero::getClasse() const
 {
     return _classe;
 }
+
+//Retourne le mana du hero [P-A]
+int hero::getMana()
+{
+    return _mana;
+}
+//Retourne le mana max du hero [P-A]
+int hero::getMaxMana()
+{
+    return _maxMana;
+}
+//Retourne l'intel du hero [P-A]
+int hero::getInt()
+{
+    return _int;
+}
+
 //Retourne l'armes actuelle du hero[sophie]
 Item hero::getWeapon() const
 {
@@ -60,6 +100,26 @@ void hero::setArmur(Item armor)
 {
     _armor = armor;
 }
+
+//Set le mana du hero
+void hero::setMana(int mana)
+{
+    _mana = mana;
+}
+
+//Set le mana max du hero
+void hero::setMaxMana(int maxMana)
+{
+    _maxMana = maxMana;
+}
+
+//Set l'intel du hero
+void hero::setInt(int intel)
+{
+    _int = intel;
+}
+
+
 void hero::rechercheHero(ifstream& fichier, int personnage)
 {
     int donnee;
@@ -85,6 +145,25 @@ void hero::rechercheHero(ifstream& fichier, int personnage)
             break;
         }
     }
+}
+
+//permet au personnage d'utiliser un attaque
+void hero::useAnAttack(personnage & cible, int id)
+{
+    if (id == 1 || id == 3) {
+        _attack[id].attackOnATarget(cible, getStr() + _weapon.GetStrengthMod());
+        setMana(getMana() - _attack[id].getManaCost());
+    }
+    if (id == 2 || id == 4) {
+        _attack[id].attackOnATarget(cible, getDex() /* + _weapon.getDexMod()*/ );
+    }
+}
+bool hero::checkIfSkillCanBeUsed(int id)
+{
+    
+        if (_mana >= _attack[id].getManaCost()) return true;
+        else return false;
+    
 }
 /*void hero::setEquipement(vector <int> equipement)
 {

@@ -9,7 +9,7 @@ Définition des méthode de l'objet Game
 
 void game::initHero(void)
 {
-	_hero.initPersonnage();
+	_hero.initHero();
 	
 }
 
@@ -20,7 +20,7 @@ void game::initGame(){
 	_window.setFramerateLimit(60);
 	_level = 1;
 	_world = 0;
-
+	initHero();
 }
 
 void game::initNewBG(void)
@@ -49,7 +49,6 @@ void game::playGame()
 		while (_window.pollEvent(event)) {
 			if (event.type == Event::Closed)
 				_window.close();
-			initHero();
 			int toBeat = 3 + (_world / 3);
 			while (_heroAlive == true) {
 

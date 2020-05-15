@@ -10,7 +10,7 @@ Déclaration des méthode de l'objet hpBar
 
 using namespace sf;
 
-class hpBar {
+class RessourceBar {
 
 private:
 
@@ -18,10 +18,12 @@ private:
 	RectangleShape _remaining;
 
 	float _percent;
+	Color _ressourceType;				//Pour les hp le mana ou la barre de speed ( eventuellement ) 
 
 public:
 
-	void init(int x, int y,float hp, float maxHP);	
+	void initHpBar(int x, int y,float hp, float maxHP);	
+	void initManaBar(int x, int y, float mana, float maxMana);
 
 	//Manque un setposition [P-A]
 
@@ -31,6 +33,6 @@ public:
 
 	void setToTransparent(void);
 
-	void printHPBar(RenderWindow& window);
+	void printRessourceBar(RenderWindow& window);
 
 };

@@ -7,6 +7,12 @@ But du programme: Définition de l'objet monstre.
 
 #include "monstre.h"
 
+void monstre::initMonster(Color color, int w, int h, int x, int y)
+{
+    initPersonnage(color, w, h);
+    initPositionPersonnage(x, y);
+}
+
 //methode qui retourne le rating du personnage monstre [sophie]
 int monstre::getRating() const
 {

@@ -6,16 +6,27 @@ Déclaration des méthode de l'objet MenuPrincipal
 */
 #pragma once
 
+#include <SFML/Graphics.hpp>
+#include "personnage.h"
+
+using namespace sf;
+
 class attack {
 private:
+
+	int _manaCost;
+	int _modifier;
+	std::string _attackName;
 
 	
 
 public:
 
-	void whichAttack(int attackID);	// Va recevoir 2 personnage ( source et cible )  va recevoir
+	void initAttack(int manacost, int modifier,string attackName);
 
-	void strAttack(int str);			// Va recevoir un personnage et un armure 
+	
+	
+	void attackOnATarget(personnage& cible, int damageStats);
 
-
+	int getManaCost(void);
 };

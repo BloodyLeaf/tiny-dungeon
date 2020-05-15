@@ -7,6 +7,22 @@ Définition des méthode de l'objet hpBar
 
 #include "hpBar.h"
 
+void RessourceBar::initMonsterHpBar(int x, int y, float hp, float maxHP)
+{
+	_background.setPosition(Vector2f(x, y - 28));
+	_background.setFillColor(Color::White);
+	_background.setOutlineThickness(3);
+	_background.setOutlineColor(Color::Black);
+	_background.setSize(Vector2f(100, 15));
+
+
+	_percent = (hp / maxHP) * 100;
+
+	_remaining.setPosition(Vector2f(x, y - 28));
+	_remaining.setSize(Vector2f(_percent, 15));
+	_remaining.setFillColor(Color::Red);
+}
+
 void RessourceBar::initHpBar(int x, int y, float hp, float maxHP)
 {
 	_background.setPosition(Vector2f(x, y - 50));

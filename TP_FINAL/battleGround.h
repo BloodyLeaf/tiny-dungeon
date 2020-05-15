@@ -29,6 +29,7 @@ private:
 	Text _text;
 
 	RectangleShape _BackgroundMenu;
+	bouton _actionOption[2];
 	bouton _targetOption[3];
 	bouton _attackOption[4];
 	
@@ -37,10 +38,15 @@ private:
 	RessourceBar _heroManaBar;
 
 	RessourceBar _MonsterHPBar[3];
+
+	RectangleShape _speedTimer;
+	RectangleShape _speedIndicator[4];				//0 1 et 2 sont des monstres 3 et le héro
 	
 
 	Color _monsterColor[3]; //Temporairement pour replacer les bonnes couleur apres les animations
-	bool _targetIsChosen;
+	int _whereInMenu;
+	int _heroSpeedTimer;
+	int _monsterSpeedTimer[3];
 
 public:
 
@@ -48,15 +54,22 @@ public:
 
 	void initMenuTarget(void);
 	void initMenuAttack(void);
+	void initMenuAction(void);
 
 	//void setBackground(void);
 	//void setMonster(void);
 	void setInitiative(void);													//Trie le vecteur initiative en ordre décroissant pour les ordres d'attaque
 	void setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
-	void setTargetIsChosen(bool choice);
+	void setWhereInMenu(int choice);												//navigation du menu : 1 Choix attaque ou consumable
+																				//Choisir sa potion consommable ( a faire plus tard )[p-a]
+																				//						3 Choisir sa cible
+																				//						4 Choisir son attaque
+	void initSpeedBar(void);
+	void moveSpeedindicator(void);
+
 	void replaceRessourcesBar(hero hero);
 
-	bool TargetIsChosen(void);
+	int getWhereMenu(void);
 
 	monstre generateMonster(int x , int y);									//Genere au hasard un indice qui permet de choisir au 
 																					// hasard un monstre ( carré de couleur differente for now
@@ -84,7 +97,14 @@ public:
 	void printFull(RenderWindow& window,hero hero);
 	void printTargetMenu(RenderWindow& window);
 	void printAttackMenu(RenderWindow& window);
+	void printActionMenu(RenderWindow& window);
+	void printOnlyBackgroundMenu(RenderWindow& window);
 	void printRessourcesBar(RenderWindow& window, hero hero);
+	void printSpeedIndicator(RenderWindow& window);
+
+	void gestionAnimationAttaque(int target,RenderWindow& window, hero hero);
 	
+	/*void heroTurn(void);
+	void monsterTurn(void);*/
 	
 };

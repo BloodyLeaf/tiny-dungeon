@@ -28,19 +28,20 @@ void battleGrounds::initTemporaire(hero& hero)
 
 
 
-	_monster[0] = generateMonster(1600, 100);
-	_monster[1] = generateMonster(1800, 300);
-	_monster[2] = generateMonster(1700, 500);
+	_monster[0] = generateMonster(1600, 150);
+	_monster[1] = generateMonster(1800, 350);
+	_monster[2] = generateMonster(1700, 550);
 
 
-	//Get position must change
+	
+
 	_heroHPBar.initHpBar(hero.getPositionX(),hero.getPositionY(),10,10);
 	_heroManaBar.initManaBar(hero.getPositionX(), hero.getPositionY(), 10, 10);
 	
 
-	_MonsterHPBar[0].initHpBar(_monster[0].getPositionX(), _monster[0].getPositionY(),10,10);
-	_MonsterHPBar[1].initHpBar(_monster[1].getPositionX(), _monster[1].getPositionY(), 10, 10);
-	_MonsterHPBar[2].initHpBar(_monster[2].getPositionX(), _monster[2].getPositionY(), 10, 10);
+	_MonsterHPBar[0].initMonsterHpBar(_monster[0].getPositionX(), _monster[0].getPositionY(),10,10);
+	_MonsterHPBar[1].initMonsterHpBar(_monster[1].getPositionX(), _monster[1].getPositionY(), 10, 10);
+	_MonsterHPBar[2].initMonsterHpBar(_monster[2].getPositionX(), _monster[2].getPositionY(), 10, 10);
 
 
 
@@ -50,9 +51,14 @@ void battleGrounds::initTemporaire(hero& hero)
 
 	initMenuTarget();
 	initMenuAttack();
+	initMenuAction();
 
 
-	setTargetIsChosen(false);
+	setWhereInMenu(0);
+	_heroSpeedTimer = 0;
+	_monsterSpeedTimer[0] = 0;
+	_monsterSpeedTimer[1] = 0;
+	_monsterSpeedTimer[2] = 0;
 }
 
 void battleGrounds::initMenuTarget(void)
@@ -83,6 +89,16 @@ void battleGrounds::initMenuAttack(void)
 	_attackOption[3].initialiserBouton(1135, 675, 325, 100, "ressources/dexCriticalAttack.png");
 }
 
+void battleGrounds::initMenuAction(void)
+{
+	_BackgroundMenu.setPosition(0, 625);
+	_BackgroundMenu.setSize(Vector2f(1500, 200));
+	_BackgroundMenu.setFillColor(Color::Color(192, 192, 192));
+
+	_actionOption[0].initialiserBouton(283, 675, 325, 100, "ressources/optionPotion.png");
+	_actionOption[1].initialiserBouton(891, 675, 325, 100, "ressources/optionAttack.png");
+}
+
 
 void battleGrounds::setInitiative(void)
 {
@@ -100,23 +116,30 @@ void battleGrounds::setText(const char* message, Font& font, const char* police,
 	_text.setPosition(posX, posY);
 }
 
-void battleGrounds::setTargetIsChosen(bool choice)
+void battleGrounds::setWhereInMenu(int choice)
 {
-	_targetIsChosen = choice;
+	_whereInMenu = choice;
+}
+
+void battleGrounds::initSpeedBar(void)
+{
+	_speedTimer.setPosition(500, 0);
+	_speedTimer.setSize(Vector2f(1000, 100));
+	_speedTimer.setFillColor(Color::Color(192, 192, 192));
 }
 
 void battleGrounds::replaceRessourcesBar(hero hero)
 {
 	_heroHPBar.initHpBar(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
 	_heroManaBar.initManaBar(hero.getPositionX(), hero.getPositionY(), hero.getMana(), hero.getMaxMana());
-	_MonsterHPBar[0].initHpBar(_monster[0].getPositionX(), _monster[0].getPositionY(), _monster[0].getPv(), _monster[0].getMaxPv());
-	_MonsterHPBar[1].initHpBar(_monster[1].getPositionX(), _monster[1].getPositionY(), _monster[1].getPv(), _monster[1].getMaxPv());
-	_MonsterHPBar[2].initHpBar(_monster[2].getPositionX(), _monster[2].getPositionY(), _monster[2].getPv(), _monster[2].getMaxPv());
+	_MonsterHPBar[0].initMonsterHpBar(_monster[0].getPositionX(), _monster[0].getPositionY(), _monster[0].getPv(), _monster[0].getMaxPv());
+	_MonsterHPBar[1].initMonsterHpBar(_monster[1].getPositionX(), _monster[1].getPositionY(), _monster[1].getPv(), _monster[1].getMaxPv());
+	_MonsterHPBar[2].initMonsterHpBar(_monster[2].getPositionX(), _monster[2].getPositionY(), _monster[2].getPv(), _monster[2].getMaxPv());
 }
 
-bool battleGrounds::TargetIsChosen(void)
+int battleGrounds::getWhereMenu(void)
 {
-	return _targetIsChosen;
+	return _whereInMenu;
 }
 
 
@@ -132,8 +155,6 @@ monstre battleGrounds::generateMonster(int x , int y)
 
 	monstre monster;
 
-	
-
 	switch (indice)
 	{
 	case 1:
@@ -141,35 +162,21 @@ monstre battleGrounds::generateMonster(int x , int y)
 
 		return monster;
 		
-
 	case 2:
 		monster.initMonster(Color::Blue, 50, 50, x, y);
-		
-
 		return monster;
 
 	case 3:
 		monster.initMonster(Color::Red, 100, 100, x, y);
 		
-
-		return monster;
-		
+		return monster;	
 
 	case 4:
 		monster.initMonster(Color::Magenta, 100, 100, x, y);
-		
-
 		return monster;
-
-		
-
 	case 5:
 		monster.initMonster(Color::Yellow, 80, 80, x, y);
-
 		return monster;
-		
-
-
 	default:
 		break;
 	}
@@ -228,7 +235,6 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	Event event;
 
 	//Savoir si le joueur a choisi une attaque
-	bool _attackIsChosen = false;
 
 	//Modifier PV et attack monstre
 	int monsterhp[3];
@@ -240,120 +246,144 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		_monster[i].setMaxPv(2 + (world / 3));
 		_monster[i].setPv(_monster[i].getMaxPv());
 		_monster[i].setStr(1 + (world / 4));
-		_monster[i].setSpeed(4);
+		
 		
 	}
+	_monster[0].setSpeed(3 + (world / 3));
+	_monster[1].setSpeed(4 + (world / 2));
+	_monster[2].setSpeed(3 + (world / 2));
+
 	int target;
+
 	print(window,hero);
 	animationLevelStart(window,hero);
-				
+	setWhereInMenu(1);
 
 	while(true){
+		
 		while (window.pollEvent(event)) {
 			
+			
+			
+
 			if (event.type == Event::Closed) window.close();
 
 			else if (event.type == Event::KeyPressed) {
+					
+					if (getWhereMenu() == 1) {
 
-				
-				//Va devenir la méthode playerTurn pour le targeting de la cible
-				if(TargetIsChosen()==false){
-					
-					
-					switch (event.key.code) {
+						switch (event.key.code) {
+						case Keyboard::Escape:
+							window.close();
+							break;
+						case Keyboard::Num1:
+							//Not yet implemented 
+							break;
+						case Keyboard::Num2:
+							setWhereInMenu(3);
+							break;
+						default:
+
+							break;
+						}
+					}
+					//Va devenir la méthode playerTurn pour le targeting de la cible
+					if (getWhereMenu() == 3) {
+
+
+						switch (event.key.code) {
 						case Keyboard::Escape:
 							window.close();
 							break;
 						case Keyboard::Up:
-							if(_monster[0].getPv()>0){
+							if (_monster[0].getPv() > 0) {
 								target = 0;
-								setTargetIsChosen(true);
-						
+								setWhereInMenu(4);
+
 							}
 							break;
 						case Keyboard::Right:
 							if (_monster[1].getPv() > 0) {
 								target = 1;
-								setTargetIsChosen(true);
-						
+								setWhereInMenu(4);
+
 							}
 							break;
 						case Keyboard::Down:
 							if (_monster[2].getPv() > 0) {
 								target = 2;
-								setTargetIsChosen(true);
-						
+								setWhereInMenu(4);
+
 							}
-				
+
 							break;
-						default : 
-							_text.setFillColor(Color::White);
+						default:
+
 							break;
+						}
 					}
-				}
-				else {
-					switch (target)
-					{
-					case 0:
-						animationPlayerUpAttack(window, hero);
-						break;
-					case 1:
-						animationPlayerMiddleAttack(window, hero);
-						break;
-					case 2:
-						animationPlayerLowAttack(window, hero);
-						break;
-					default:
-						break;
-					}
-					switch (event.key.code)
-					{
-						case Keyboard::Num1 :
-							if(hero.checkIfSkillCanBeUsed(0)){
+					if (getWhereMenu() == 4) {
+
+						switch (event.key.code)
+						{
+						case Keyboard::Num1:
+							if (hero.checkIfSkillCanBeUsed(0)) {
+
+								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 1);
 								playerAttacked = true;
-								setTargetIsChosen(false);
+								setWhereInMenu(0);
+
 							}
 							break;
 						case Keyboard::Num2:
 							if (hero.checkIfSkillCanBeUsed(1)) {
+
+								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 2);
 								playerAttacked = true;
-								setTargetIsChosen(false);
+								setWhereInMenu(0);
+
 							}
 							break;
 						case Keyboard::Num3:
-								if (hero.checkIfSkillCanBeUsed(2)) {
+							if (hero.checkIfSkillCanBeUsed(2)) {
+
+								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 3);
 								playerAttacked = true;
-								setTargetIsChosen(false);
-								}
+								setWhereInMenu(0);
+
+							}
 							break;
 						case Keyboard::Num4:
-								if (hero.checkIfSkillCanBeUsed(3)) {
+							if (hero.checkIfSkillCanBeUsed(3)) {
+
+								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 4);
 								playerAttacked = true;
-								setTargetIsChosen(false);
-								}
-							break;
-					default:
-						break;
-					}
-				}
-			}
-			/*else if (event.type == Event::MouseButtonPressed) {
-				if (event.mouseButton.button == Mouse::Left) {
-					Vector2i mousePosition = Mouse::getPosition();
+								setWhereInMenu(0);
 
-					if (mousePosition.x > _monster[0].getPositionX() &&
-						mousePosition.x < _monster[0].getPositionX() + _monster[0].getPositionX() )//&&
-						//mousePosition.y > _monster[0].getPosition().y &&
-						//mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y)
-						attack(window, 0,hero);
-					
-					
+							}
+							break;
+						default:
+							break;
+						}
 				}
-			}*/
+				/*else if (event.type == Event::MouseButtonPressed) {
+					if (event.mouseButton.button == Mouse::Left) {
+						Vector2i mousePosition = Mouse::getPosition();
+
+						if (mousePosition.x > _monster[0].getPositionX() &&
+							mousePosition.x < _monster[0].getPositionX() + _monster[0].getPositionX() )//&&
+							//mousePosition.y > _monster[0].getPosition().y &&
+							//mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y)
+							attack(window, 0,hero);
+
+
+					}
+				}*/
+			} 
 		} 
 			//Fin de la méthode player Turn
 			//Va devenir la méthode choose an attack
@@ -374,9 +404,10 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		if (playerAttacked == true){
 			for (int i = 0; i < 3; i++) {
 				if (_monster[i].getPv() > 0) {
-					hero.setPv(hero.getPv() - _monster[i].getStr());
+					
 					
 					animationMonsterAttack(window, i,hero);
+					hero.setPv(hero.getPv() - _monster[i].getStr());
 					_heroHPBar.initHpBar(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
 
 					
@@ -386,6 +417,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 				}
 			}
 			playerAttacked = false;
+			setWhereInMenu(1);
 		}
 
 		if (_monster[0].getPv() <= 0 && _monster[1].getPv() <= 0 && _monster[2].getPv() <= 0) {
@@ -570,8 +602,11 @@ void battleGrounds::printFull(RenderWindow& window,hero hero)
 	_monster[2].printChar(window);
 	hero.printChar(window);
 	printRessourcesBar(window,hero);
-	if (TargetIsChosen() == false) printTargetMenu(window);
-	else printAttackMenu(window);
+	printSpeedIndicator(window);
+	if (getWhereMenu() == 0) printOnlyBackgroundMenu(window);
+	if (getWhereMenu() == 1) printActionMenu(window);
+	if (getWhereMenu() == 3) printTargetMenu(window);
+	if (getWhereMenu() == 4) printAttackMenu(window);
 	
 	
 }
@@ -593,6 +628,18 @@ void battleGrounds::printAttackMenu(RenderWindow& window)
 	_attackOption[3].print(window);
 }
 
+void battleGrounds::printActionMenu(RenderWindow& window)
+{
+	window.draw(_BackgroundMenu);
+	_actionOption[0].print(window);
+	_actionOption[1].print(window);
+}
+
+void battleGrounds::printOnlyBackgroundMenu(RenderWindow& window)
+{
+	window.draw(_BackgroundMenu);
+}
+
 void battleGrounds::printRessourcesBar(RenderWindow& window, hero hero)
 {
 	_heroHPBar.printRessourceBar(window);
@@ -601,3 +648,32 @@ void battleGrounds::printRessourcesBar(RenderWindow& window, hero hero)
 	_MonsterHPBar[1].printRessourceBar(window);
 	_MonsterHPBar[2].printRessourceBar(window);
 }
+
+void battleGrounds::printSpeedIndicator(RenderWindow& window)
+{
+	window.draw(_speedTimer);
+
+}
+
+void battleGrounds::gestionAnimationAttaque(int target, RenderWindow& window, hero hero)
+{
+	switch (target)
+	{
+	case 0:
+		animationPlayerUpAttack(window, hero);
+		break;
+	case 1:
+		animationPlayerMiddleAttack(window, hero);
+		break;
+	case 2:
+		animationPlayerLowAttack(window, hero);
+		break;
+	default:
+		break;
+	}
+}
+
+/*void battleGrounds::heroTurn(void)
+{
+
+}*/

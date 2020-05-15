@@ -22,6 +22,7 @@ private:
 
 public:
 
+	void initMonsterHpBar(int x, int y, float hp, float maxHP);
 	void initHpBar(int x, int y,float hp, float maxHP);	
 	void initManaBar(int x, int y, float mana, float maxMana);
 

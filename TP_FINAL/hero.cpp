@@ -155,7 +155,7 @@ void hero::useAnAttack(personnage & cible, int id)
         setMana(getMana() - _attack[id].getManaCost());
     }
     if (id == 2 || id == 4) {
-        _attack[id].attackOnATarget(cible, getDex() /* + _weapon.getDexMod()*/ );
+        _attack[id].attackOnATarget(cible, getDex() + _weapon.GetDexterityMod() );
     }
 }
 bool hero::checkIfSkillCanBeUsed(int id)

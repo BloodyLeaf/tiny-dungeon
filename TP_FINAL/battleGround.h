@@ -45,8 +45,8 @@ private:
 
 	Color _monsterColor[3]; //Temporairement pour replacer les bonnes couleur apres les animations
 	int _whereInMenu;
-	int _heroSpeedTimer;
-	int _monsterSpeedTimer[3];
+	int _heroSpeedTimer;							// si reach 50 c'est son tour
+	int _monsterSpeedTimer[3];					// si reach 50 c'est son tour
 
 public:
 
@@ -56,9 +56,7 @@ public:
 	void initMenuAttack(void);
 	void initMenuAction(void);
 
-	//void setBackground(void);
-	//void setMonster(void);
-	void setInitiative(void);													//Trie le vecteur initiative en ordre décroissant pour les ordres d'attaque
+	
 	void setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setWhereInMenu(int choice);												//navigation du menu : 1 Choix attaque ou consumable
 																				//Choisir sa potion consommable ( a faire plus tard )[p-a]
@@ -79,7 +77,7 @@ public:
 	void monsterAttack(RenderWindow& window, hero& hero);
 	
 
-	void tour(void);															//Switch Case selon l'action
+																//Switch Case selon l'action
 
 	bool game(RenderWindow& window,hero& hero, int world);
 

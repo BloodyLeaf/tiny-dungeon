@@ -9,7 +9,7 @@ Déclaration des méthode de l'objet MenuPrincipal
 
 
 //P-A
-//Init tout mes private temporairement
+//Init beaucoup de morceau de battleground
 //recois void
 //retourne void
 void battleGrounds::initTemporaire(hero& hero)
@@ -60,6 +60,10 @@ void battleGrounds::initTemporaire(hero& hero)
 	_monsterSpeedTimer[1] = 0;
 	_monsterSpeedTimer[2] = 0;
 }
+//P-A
+//Initialise le menu des cibles
+//recois void
+//retourne void
 
 void battleGrounds::initMenuTarget(void)
 {
@@ -77,6 +81,10 @@ void battleGrounds::initMenuTarget(void)
 	_targetOption[2].setOutline(5, Color::Black);
 }
 
+//P-A
+//Init tout menu des attaques
+//recois void
+//retourne void
 void battleGrounds::initMenuAttack(void)
 {
 	_BackgroundMenu.setPosition(0, 625);
@@ -88,7 +96,10 @@ void battleGrounds::initMenuAttack(void)
 	_attackOption[2].initialiserBouton(770, 675, 325, 100, "ressources/strCritAttack.png");
 	_attackOption[3].initialiserBouton(1135, 675, 325, 100, "ressources/dexCriticalAttack.png");
 }
-
+//P-A
+//Init tout menu des action
+//recois void
+//retourne void
 void battleGrounds::initMenuAction(void)
 {
 	_BackgroundMenu.setPosition(0, 625);
@@ -98,13 +109,10 @@ void battleGrounds::initMenuAction(void)
 	_actionOption[0].initialiserBouton(283, 675, 325, 100, "ressources/optionPotion.png");
 	_actionOption[1].initialiserBouton(891, 675, 325, 100, "ressources/optionAttack.png");
 }
-
-
-void battleGrounds::setInitiative(void)
-{
-	// Algorithme de tri + vecteur de ID de personnage
-}
-
+//P-A
+//Init du texte
+//recois beaucoup de parametre de texte
+//retourne void
 void battleGrounds::setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
 {
 	font.loadFromFile(police);
@@ -115,19 +123,25 @@ void battleGrounds::setText(const char* message, Font& font, const char* police,
 	_text.setStyle(style);
 	_text.setPosition(posX, posY);
 }
-
+//P-A
+//Me permet de naviguer dans les menu pour en afficher des different
+//recoid l'update du menu
 void battleGrounds::setWhereInMenu(int choice)
 {
 	_whereInMenu = choice;
 }
-
+//P-A
+//Initialise la bar que  je fais afficher dans le haut pour les vitesse
+//Void
 void battleGrounds::initSpeedBar(void)
 {
 	_speedTimer.setPosition(500, 0);
 	_speedTimer.setSize(Vector2f(1000, 100));
 	_speedTimer.setFillColor(Color::Color(192, 192, 192));
 }
-
+//P-A
+//reajuste les bar de ressources selon les deplacements du monstres<
+//Recois un hero
 void battleGrounds::replaceRessourcesBar(hero hero)
 {
 	_heroHPBar.initHpBar(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
@@ -136,7 +150,10 @@ void battleGrounds::replaceRessourcesBar(hero hero)
 	_MonsterHPBar[1].initMonsterHpBar(_monster[1].getPositionX(), _monster[1].getPositionY(), _monster[1].getPv(), _monster[1].getMaxPv());
 	_MonsterHPBar[2].initMonsterHpBar(_monster[2].getPositionX(), _monster[2].getPositionY(), _monster[2].getPv(), _monster[2].getMaxPv());
 }
-
+//p-a
+//Me permet de savoir je uis ou dans ce menu
+//void
+//void
 int battleGrounds::getWhereMenu(void)
 {
 	return _whereInMenu;
@@ -144,8 +161,10 @@ int battleGrounds::getWhereMenu(void)
 
 
 
-
-//Doit return un monster + fix la generation dans init temporaire
+//p-a et sophie
+//genere les monstres au hasard ( leur size et leur couleur ) 
+//recois une position x et y
+//Retourne un monstre
 monstre battleGrounds::generateMonster(int x , int y)
 {
 	srand(time(NULL));
@@ -182,7 +201,10 @@ monstre battleGrounds::generateMonster(int x , int y)
 	}
 
 }
-
+//P-A
+//Animation pour l'attaque du monstre
+//recois une RenderWindoe, une id de monstre et un hero
+//void
 void battleGrounds::attack(RenderWindow& window,int idMonstre,hero& hero)
 {
 	_text.setPosition(_monster[0].getPositionX(),_monster[0].getPositionY() -30);
@@ -203,7 +225,10 @@ void battleGrounds::attack(RenderWindow& window,int idMonstre,hero& hero)
 		sleep(pause);
 	}
 }
-
+//P-A
+//Animation du hero lorsqu'il se fait attaquer
+//recois une RenderWindoe et un hero
+//void
 void battleGrounds::monsterAttack(RenderWindow& window, hero& hero)
 {
 	_text.setPosition(hero.getPositionX(), hero.getPositionY() - 30);
@@ -223,12 +248,11 @@ void battleGrounds::monsterAttack(RenderWindow& window, hero& hero)
 	}
 
 }
-
-
-void battleGrounds::tour(void)
-{
-}
-
+//P-A
+//Objet principal de battleground
+//Gere beaucoup de parametre ainsi que les tour d'attaque de tout le monded
+//Recois une RenderWindoe, un hero et un world ( int ) 
+//retourne un bool pour savoir si le personnage est mort ou vivant
 bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 {
 	
@@ -242,6 +266,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	bool playerAttacked = false;
 	bool heroAlive = true;
 	int aliveMonster = 3;
+	
 	for (int i = 0; i < 3; i++) {
 		_monster[i].setMaxPv(2 + (world / 3));
 		_monster[i].setPv(_monster[i].getMaxPv());
@@ -261,12 +286,13 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 
 	while(true){
 		
+		
 		while (window.pollEvent(event)) {
 			
-			
-			
 
-			if (event.type == Event::Closed) window.close();
+			if (event.type == Event::Closed) 
+				window.close();
+
 
 			else if (event.type == Event::KeyPressed) {
 					
@@ -329,7 +355,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 						case Keyboard::Num1:
 							if (hero.checkIfSkillCanBeUsed(0)) {
 								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 1);
 								playerAttacked = true;
@@ -340,7 +366,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 						case Keyboard::Num2:
 							if (hero.checkIfSkillCanBeUsed(1)) {
 								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 2);
 								playerAttacked = true;
@@ -351,7 +377,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 						case Keyboard::Num3:
 							if (hero.checkIfSkillCanBeUsed(2)) {
 								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 3);
 								playerAttacked = true;
@@ -362,7 +388,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 						case Keyboard::Num4:
 							if (hero.checkIfSkillCanBeUsed(3)) {
 								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana);
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 4);
 								playerAttacked = true;
@@ -432,7 +458,10 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		}
 	}
 }
-
+//P-A
+//Animation pour le debut du level
+//recois une RenderWindoe  et un hero
+//void
 void battleGrounds::animationLevelStart(RenderWindow& window,hero& hero)
 {
 	for (int i = 0; i < 90; i++) {
@@ -447,7 +476,10 @@ void battleGrounds::animationLevelStart(RenderWindow& window,hero& hero)
 
 	}
 }
-
+//P-A
+//Animation pour le debut du level
+//recois une RenderWindoe  et un hero
+//void
 void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& hero)
 {
 	for (int j = 0; j < 50; j++) {

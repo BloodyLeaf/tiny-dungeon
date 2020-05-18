@@ -1,8 +1,8 @@
 /*
 Auteur.e.s :						Étienne Ménard
-Date de création du fichier :		2020-05-27
+Date de création du fichier :		2020-05-07
 Nom du fichier :					Item.h
-Déclaration des méthodes de la classe Items
+Déclaration des méthodes de la classe Item
 */
 #pragma once
 

@@ -1,8 +1,8 @@
 /*
 Auteur.e.s :						Étienne Ménard
-Date de création du fichier :		2020-05-06
+Date de création du fichier :		2020-05-07
 Nom du fichier :					Item.cpp
-Déclaration des méthodes de la classe Items
+Déclaration des méthodes de la classe Item
 */
 
 #include "Item.h"

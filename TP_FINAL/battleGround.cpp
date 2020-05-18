@@ -140,6 +140,135 @@ void battleGrounds::initSpeedBar(void)
 	_speedTimer.setFillColor(Color::Color(192, 192, 192));
 }
 //P-A
+//Vérifie si c'est le tour de quelquun
+//recois void
+//retourne void
+int battleGrounds::CheckIfTurn(void)
+{
+	
+	for (int i = 0; i < 3; i++) {
+		if (_monsterSpeedTimer[i] >= 100) {
+			_monsterSpeedTimer[i] = 0;
+			return i;
+		}
+	}
+	if (_heroSpeedTimer >= 100) {
+		_heroSpeedTimer = 0;
+		return 3;
+	}
+}
+
+//P-A
+//Incrémente les speed de tout le monde selon leur stats de speed
+//Recois un hero
+//Retourne void
+void battleGrounds::addSpeed(hero hero)
+{
+	_heroSpeedTimer += hero.getSpeed();
+	for (int i = 0; i < 3; i++) {
+		_monsterSpeedTimer[i] += _monster[i].getSpeed();
+	}
+}
+void battleGrounds::action(int choice, int & target,hero & hero,RenderWindow & window)
+{
+	switch (getWhereMenu())
+	{
+	case 1:
+		//menu attaque ou potion
+		switch (choice) {
+
+		case 1:
+			//Not yet implemented 
+			break;
+		case 2:
+			setWhereInMenu(3);
+			break;
+		default:
+
+			break;
+		}
+		break;
+
+	case 3:
+		switch (choice) {
+		case 1:
+			if (_monster[0].getPv() > 0) {
+				target = 0;
+				setWhereInMenu(4);
+
+			}
+			break;
+		case 2:
+			if (_monster[1].getPv() > 0) {
+				target = 1;
+				setWhereInMenu(4);
+
+			}
+			break;
+		case 3:
+			if (_monster[2].getPv() > 0) {
+				target = 2;
+				setWhereInMenu(4);
+
+			}
+
+			break;
+		default:
+
+			break;
+		}
+		break;
+	case 4:
+		switch(choice){
+		case 1:
+			if (hero.checkIfSkillCanBeUsed(0)) {
+				hero.setMana(hero.getMana() + hero.getInt());
+				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+				gestionAnimationAttaque(target, window, hero);
+				hero.useAnAttack(_monster[target], 1);			
+				setWhereInMenu(0);
+
+			}
+			break;
+		case 2:
+			if (hero.checkIfSkillCanBeUsed(1)) {
+				hero.setMana(hero.getMana() + hero.getInt());
+				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+				gestionAnimationAttaque(target, window, hero);
+				hero.useAnAttack(_monster[target], 2);
+				setWhereInMenu(0);
+
+			}
+			break;
+		case 3:
+			if (hero.checkIfSkillCanBeUsed(2)) {
+				hero.setMana(hero.getMana() + hero.getInt());
+				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+				gestionAnimationAttaque(target, window, hero);
+				hero.useAnAttack(_monster[target], 3);
+				setWhereInMenu(0);
+
+			}
+			break;
+		case 4:
+			if (hero.checkIfSkillCanBeUsed(3)) {
+				hero.setMana(hero.getMana() + hero.getInt());
+				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+				gestionAnimationAttaque(target, window, hero);
+				hero.useAnAttack(_monster[target], 4);
+				setWhereInMenu(0);
+
+			}
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+	
+	
+}
+//P-A
 //reajuste les bar de ressources selon les deplacements du monstres<
 //Recois un hero
 void battleGrounds::replaceRessourcesBar(hero hero)
@@ -201,11 +330,24 @@ monstre battleGrounds::generateMonster(int x , int y)
 	}
 
 }
+void battleGrounds::monsterAttack(int id,RenderWindow& window, hero& hero)
+{
+	if (_monster[id].getPv() > 0) {
+
+
+		animationMonsterAttack(window, id, hero);
+		hero.setPv(hero.getPv() - _monster[id].getStr());
+		_heroHPBar.initHpBar(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
+
+
+	}
+	
+}
 //P-A
 //Animation pour l'attaque du monstre
 //recois une RenderWindoe, une id de monstre et un hero
 //void
-void battleGrounds::attack(RenderWindow& window,int idMonstre,hero& hero)
+void battleGrounds::animationMonsterIsFlashing(RenderWindow& window,int idMonstre,hero& hero)
 {
 	_text.setPosition(_monster[0].getPositionX(),_monster[0].getPositionY() -30);
 	
@@ -229,7 +371,7 @@ void battleGrounds::attack(RenderWindow& window,int idMonstre,hero& hero)
 //Animation du hero lorsqu'il se fait attaquer
 //recois une RenderWindoe et un hero
 //void
-void battleGrounds::monsterAttack(RenderWindow& window, hero& hero)
+void battleGrounds::animationHeroIsFlashing(RenderWindow& window, hero& hero)
 {
 	_text.setPosition(hero.getPositionX(), hero.getPositionY() - 30);
 	Time pause = seconds(0.25f);
@@ -257,7 +399,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 {
 	
 	Event event;
-
+	int choice=0;
 	//Savoir si le joueur a choisi une attaque
 
 	//Modifier PV et attack monstre
@@ -289,13 +431,15 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		
 		while (window.pollEvent(event)) {
 			
-
+			addSpeed(hero);
 			if (event.type == Event::Closed) 
 				window.close();
 
-
+			
 			else if (event.type == Event::KeyPressed) {
 					
+				if(CheckIfTurn()==3){
+					setWhereInMenu(1);
 					if (getWhereMenu() == 1) {
 
 						switch (event.key.code) {
@@ -306,113 +450,76 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 							//Not yet implemented 
 							break;
 						case Keyboard::Num2:
-							setWhereInMenu(3);
+							choice = 2;
 							break;
 						default:
-
 							break;
 						}
 					}
 					//Va devenir la méthode playerTurn pour le targeting de la cible
 					if (getWhereMenu() == 3) {
-
-
 						switch (event.key.code) {
 						case Keyboard::Escape:
 							window.close();
 							break;
 						case Keyboard::Up:
-							if (_monster[0].getPv() > 0) {
-								target = 0;
-								setWhereInMenu(4);
-
-							}
+								choice = 1;
 							break;
-						case Keyboard::Right:
-							if (_monster[1].getPv() > 0) {
-								target = 1;
-								setWhereInMenu(4);
-
-							}
+						case Keyboard::Right:							
+								choice = 2;		
 							break;
-						case Keyboard::Down:
-							if (_monster[2].getPv() > 0) {
-								target = 2;
-								setWhereInMenu(4);
-
-							}
-
+						case Keyboard::Down:							
+							choice = 3;
 							break;
 						default:
-
 							break;
 						}
 					}
 					if (getWhereMenu() == 4) {
-
 						switch (event.key.code)
 						{
 						case Keyboard::Num1:
-							if (hero.checkIfSkillCanBeUsed(0)) {
-								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-								gestionAnimationAttaque(target, window, hero);
-								hero.useAnAttack(_monster[target], 1);
-								playerAttacked = true;
-								setWhereInMenu(0);
-
-							}
+							choice = 1;
 							break;
 						case Keyboard::Num2:
-							if (hero.checkIfSkillCanBeUsed(1)) {
-								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-								gestionAnimationAttaque(target, window, hero);
-								hero.useAnAttack(_monster[target], 2);
-								playerAttacked = true;
-								setWhereInMenu(0);
-
-							}
+							choice = 2;
 							break;
 						case Keyboard::Num3:
-							if (hero.checkIfSkillCanBeUsed(2)) {
-								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-								gestionAnimationAttaque(target, window, hero);
-								hero.useAnAttack(_monster[target], 3);
-								playerAttacked = true;
-								setWhereInMenu(0);
-
-							}
+							choice = 3;
 							break;
 						case Keyboard::Num4:
-							if (hero.checkIfSkillCanBeUsed(3)) {
-								hero.setMana(hero.getMana() + hero.getInt());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-								gestionAnimationAttaque(target, window, hero);
-								hero.useAnAttack(_monster[target], 4);
-								playerAttacked = true;
-								setWhereInMenu(0);
-
-							}
+							choice = 4;
 							break;
 						default:
 							break;
 						}
-				}
-				/*else if (event.type == Event::MouseButtonPressed) {
-					if (event.mouseButton.button == Mouse::Left) {
-						Vector2i mousePosition = Mouse::getPosition();
-
-						if (mousePosition.x > _monster[0].getPositionX() &&
-							mousePosition.x < _monster[0].getPositionX() + _monster[0].getPositionX() )//&&
-							//mousePosition.y > _monster[0].getPosition().y &&
-							//mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y)
-							attack(window, 0,hero);
-
-
 					}
-				}*/
+						/*else if (event.type == Event::MouseButtonPressed) {
+							if (event.mouseButton.button == Mouse::Left) {
+								Vector2i mousePosition = Mouse::getPosition();
+
+								if (mousePosition.x > _monster[0].getPositionX() &&
+									mousePosition.x < _monster[0].getPositionX() + _monster[0].getPositionX() )//&&
+									//mousePosition.y > _monster[0].getPosition().y &&
+									//mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y)
+									attack(window, 0,hero);
+
+
+							}
+						}*/
+					action(choice, target, hero, window);
+				}
+				else if (CheckIfTurn() == 0) {
+					monsterAttack(0, window, hero);
+					
+				}
+				else if (CheckIfTurn() == 1) {
+					monsterAttack(1, window, hero);
+				}
+				else if (CheckIfTurn() == 2) {
+					monsterAttack(2, window, hero);
+				}
+				if (hero.getPv() <= 0) return false;
 			} 
 		} 
 			//Fin de la méthode player Turn
@@ -420,6 +527,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		for (int i = 0; i < 3; i++) {
 			checkIfDead(i);
 		}
+		
 		updateMenu(hero);
 		replaceRessourcesBar(hero);
 		window.clear();
@@ -431,24 +539,6 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		//Les monstres qui attaque [ P-A ] 
 
 		
-		if (playerAttacked == true){
-			for (int i = 0; i < 3; i++) {
-				if (_monster[i].getPv() > 0) {
-					
-					
-					animationMonsterAttack(window, i,hero);
-					hero.setPv(hero.getPv() - _monster[i].getStr());
-					_heroHPBar.initHpBar(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
-
-					
-				}
-				if (hero.getPv() == 0) {
-					return false;
-				}
-			}
-			playerAttacked = false;
-			setWhereInMenu(1);
-		}
 
 		if (_monster[0].getPv() <= 0 && _monster[1].getPv() <= 0 && _monster[2].getPv() <= 0) {
 			//animation sortir du level
@@ -456,6 +546,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 			animationQuitLevel(window, hero);
 			return true;
 		}
+	
 	}
 }
 //P-A
@@ -489,7 +580,7 @@ void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& he
 		printFull(window,hero);
 		window.display();
 	}
-	monsterAttack(window,hero);
+	animationHeroIsFlashing(window,hero);
 
 	
 	for (int j = 0; j < 50; j++) {
@@ -519,7 +610,7 @@ void battleGrounds::animationPlayerUpAttack(RenderWindow& window,hero& hero)
 		printFull(window,hero);
 		window.display();
 	}
-	attack(window, 0,hero);
+	animationMonsterIsFlashing(window, 0,hero);
 	for (int i = 0; i < 50; i++) {
 		hero.setPosition(hero.getPositionX() - 5, hero.getPositionY());
 		replaceRessourcesBar(hero);
@@ -545,7 +636,7 @@ void battleGrounds::animationPlayerMiddleAttack(RenderWindow& window,hero& hero)
 		printFull(window,hero);
 		window.display();
 	}
-	attack(window, 1, hero);
+	animationMonsterIsFlashing(window, 1, hero);
 
 
 	for (int j = 0; j < 50; j++) {
@@ -573,7 +664,7 @@ void battleGrounds::animationPlayerLowAttack(RenderWindow& window,hero& hero)
 		printFull(window, hero);
 		window.display();
 	}
-	attack(window, 2, hero);
+	animationMonsterIsFlashing(window, 2, hero);
 	for (int i = 0; i < 50; i++) {
 		hero.setPosition(hero.getPositionX() - 5, hero.getPositionY());
 		replaceRessourcesBar(hero);

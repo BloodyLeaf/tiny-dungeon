@@ -45,7 +45,7 @@ private:
 
 	Color _monsterColor[3]; //Temporairement pour replacer les bonnes couleur apres les animations
 	int _whereInMenu;
-	int _heroSpeedTimer;							// si reach 50 c'est son tour
+	int _heroSpeedTimer;								// si reach 50 c'est son tour
 	int _monsterSpeedTimer[3];					// si reach 50 c'est son tour
 
 public:
@@ -64,6 +64,9 @@ public:
 																				//						4 Choisir son attaque
 	void initSpeedBar(void);
 	void moveSpeedindicator(void);
+	int CheckIfTurn(void);
+	void addSpeed(hero hero);
+	void action(int choice, int & target,hero & hero, RenderWindow& window);
 
 	void replaceRessourcesBar(hero hero);
 
@@ -72,9 +75,9 @@ public:
 	monstre generateMonster(int x , int y);									//Genere au hasard un indice qui permet de choisir au 
 																					// hasard un monstre ( carré de couleur differente for now
 													
-
-	void attack(RenderWindow& window, int idMonstre,hero& hero);
-	void monsterAttack(RenderWindow& window, hero& hero);
+	void monsterAttack(int id,RenderWindow& window,hero & hero);
+	void animationMonsterIsFlashing(RenderWindow& window, int idMonstre,hero& hero);
+	void animationHeroIsFlashing(RenderWindow& window, hero& hero);
 	
 
 																//Switch Case selon l'action

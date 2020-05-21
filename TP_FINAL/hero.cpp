@@ -10,7 +10,8 @@ But du programme: Définition de l'objet hero.
 void hero::initHero()
 {
 
-    initPersonnage(Color::Cyan, 100, 100);
+    //initPersonnage(Color::Cyan, 100, 100);
+    _position.setSize(Vector2f(100, 100));
     initHeroAttack();
     setPv(35);
     setMaxPv(35);
@@ -20,6 +21,12 @@ void hero::initHero()
     setMaxMana(12);
     setInt(3);
     setSpeed(5);
+
+    _texture.loadFromFile("ressources/hero.png");
+    _position.setTexture(&_texture);
+    _position.setTextureRect(IntRect(460, 236, 43, 43));
+
+    _idleShop.loadAnimationFromNotePad("ressources/animation.txt","idleShop");
 }
 
 void hero::initHeroAttack()
@@ -165,6 +172,13 @@ bool hero::checkIfSkillCanBeUsed(int id)
         else return false;
     
 }
+
+void hero::useAnimation(int whereInAnimation)
+{
+    _position.setTextureRect(_idleShop.getSprite(whereInAnimation));
+    _position.setPosition(_idleShop.getPosition(whereInAnimation));
+}
+
 /*void hero::setEquipement(vector <int> equipement)
 {
     for (int i = 0; i < equipement.size(); i++) {

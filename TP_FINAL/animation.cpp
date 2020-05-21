@@ -16,7 +16,7 @@ void animation::loadAnimationFromNotePad(std::string fileName,std::string animat
 	std::ifstream fichierL1(fileName.c_str());
 	int qqtyOfFrame;
 	if(fichierL1){
-		std::cout << "YES" << std::endl;
+		
 		while (!fichierL1.eof()) {
 			fichierL1 >> temp;
 			if (temp == animationName) {
@@ -39,7 +39,7 @@ void animation::loadAnimationFromNotePad(std::string fileName,std::string animat
 		}
 	}
 	else {
-		std::cout << "FUCK" << std::endl;
+		
 	}
 	
 

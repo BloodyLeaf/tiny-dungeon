@@ -71,6 +71,8 @@ int personnage::getGold() const
 }
 
 
+
+
 int personnage::getSpeed() const
 {
     return _speed;
@@ -158,6 +160,12 @@ void personnage::initPersonnage(void)
 void personnage::setCharColor(Color color)
 {
     _position.setFillColor(color);
+}
+
+void personnage::setIntRect(IntRect rect)
+{
+    _sprite = rect;
+    _position.setTextureRect(_sprite);
 }
 
 //methode qui prend un int et le soustrait a la valeur de pv [sophie]

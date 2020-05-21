@@ -392,12 +392,12 @@ void battleGrounds::animationHeroIsFlashing(RenderWindow& window, hero& hero)
 	Time pause = seconds(0.25f);
 	
 	for (int i = 0; i < 4; i++) {
-		hero.setCharColor(Color::Transparent);
+		hero.setIntRect(IntRect(123,235,43,43));
 		window.clear();
 		printFull(window,hero);
 		window.display();
 		sleep(pause);
-		hero.setCharColor(Color::Cyan);
+		hero.setIntRect(IntRect(460, 236, 43, 43));
 		window.clear();
 		printFull(window,hero);
 		window.display();

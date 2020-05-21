@@ -15,10 +15,12 @@ using namespace sf;
 
 class personnage {
 
-private:
+protected:
 
     int _str, _pv, _maxPv, _gold, _id, _speed, _dex;
     RectangleShape _position;        //Ajouter rectangleShape [Sophie]
+    Texture _texture;                   //Pour avoir la file des sprite du hero [P-A]
+    IntRect _sprite;
 
 public:
 
@@ -33,7 +35,7 @@ public:
     int getPv() const;                      //retourne valeur de point de vie [Sophie]
     int getMaxPv() const;                   //retourne valeur de max point de vie [sophie]
     int getGold() const;                    //retourne quantite dor [sophie]
-    int getMana() const;                    //retourne la valeur du mana [Sophie]
+    //int getMana() const;                    //retourne la valeur du mana [Sophie]
     int getSpeed() const;                   //retourne la vitesse du personnage [sophie]
     int getDex() const;                     //retourne le dexterite du personnage [sophie]
     int getId() const;                      //retourne Id de la race [sophie]
@@ -52,6 +54,7 @@ public:
     void setPosition(int x, int y);         //Set La position du personnage [ P-A ]
     void initPersonnage(void);              //Initialisation du personnage au début du jeu [P-A ] + parametre a ajouter si + de perso
     void setCharColor(Color color);         //Set la couleur du hero actuel [P-A]
+    void setIntRect(IntRect rect);           //Modifie le sprite du personnage[P-A]
     
 
     void recevoirDegat(int degat);                                       //modifie les points de vie [Sophie]

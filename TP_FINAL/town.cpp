@@ -111,7 +111,7 @@ bool town::townAction(RenderWindow& window, hero & hero)
 {
 
 	Event event;
-	
+	int whereInSprite = 0;
 	
 	townEntrance(window,hero);
 
@@ -165,10 +165,14 @@ bool town::townAction(RenderWindow& window, hero & hero)
 				}
 			}
 		}
-
+		whereInSprite++;
+		if (whereInSprite > 2)whereInSprite = 0;
+		
+		hero.useAnimation(whereInSprite);
 		window.clear();
 		printTown(window,hero);
 		window.display();
+		sleep(seconds(0.20f));
 	}
 }
 

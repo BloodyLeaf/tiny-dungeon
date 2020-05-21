@@ -1,4 +1,27 @@
-﻿  MenuPrincipal.cpp
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\MenuPrincipal.cpp(45,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\MenuPrincipal.cpp(45,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+﻿  personnage.cpp
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(39,30): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(39,27): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(45,35): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(45,32): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(94,35): warning C4244: 'return' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(99,35): warning C4244: 'return' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(133,9): warning C4552: '-' : résultat de l'expression non utilisé
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(149,30): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\personnage.cpp(149,27): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
   TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe

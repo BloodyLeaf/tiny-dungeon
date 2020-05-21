@@ -11,6 +11,7 @@ But du programme: Déclaration de l'objet hero.
 #include <string>
 #include <vector>
 #include "attack.h"
+#include "Animation.h"
 
 
 using namespace std;
@@ -30,6 +31,9 @@ private:
     Item _armor;
 
     attack _attack[4];
+
+    animation _idleShop;
+    animation _idleCombats;
 
 public:
 
@@ -64,4 +68,6 @@ public:
     void rechercheHero(ifstream& fichier, int personnage);        //recherche dans un fichier texte a laide de id et attribution de donnee [sophie]
     void useAnAttack(personnage& cible, int id);                     // Pour permettre au personnage d'utiliser des attaques[P-A]
     bool checkIfSkillCanBeUsed(int id);                     //Check if mana is high enought for cost
+
+    void useAnimation(int whereInAnimation);
 };

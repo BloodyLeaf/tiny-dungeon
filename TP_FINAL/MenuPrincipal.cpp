@@ -9,16 +9,19 @@ Déclaration des méthode de l'objet MenuPrincipal
 
 void menuPrincipal::initMenuPrincipal()
 {
+	//Texture texture;
+	//texture.loadFromFile("ressources/hero.png");
 	printTitle("Tiny Dungeon");
 	_fondEcran.setSize(Vector2f(1500, 800));
 	_fondEcran.setFillColor(Color::White);
 	_fondEcran.setPosition(0, 0);
 
+	//_logoAnimation.setSize(Vector2f(100, 100));
+	//_logoAnimation.setTexture(&texture);
+	//_animationIdle.loadAnimationFromNotePad("ressources/animation.txt", "idle");
 	
-
-	
-	_boutonNouvelleAventure.initialiserFondBouton(500, 100, 500, 100, Color::Black); // set un bouton position , dimension, couleur
-	setText(_textBoutonNouvelAventure, "1) Nouvelle Aventure", _font, "ressources/arial.ttf", 600, 145, 24, Color::White, Text::Bold);// set du text over un bouton 
+	_boutonNouvelleAventure.initialiserFondBouton(500, 150, 500, 100, Color::Black); // set un bouton position , dimension, couleur
+	setText(_textBoutonNouvelAventure, "1) Nouvelle Aventure", _font, "ressources/arial.ttf", 600, 195, 24, Color::White, Text::Bold);// set du text over un bouton 
 
 }
 void menuPrincipal::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
@@ -31,6 +34,17 @@ void menuPrincipal::setText(Text& text, const char* message, Font& font, const c
 	text.setStyle(style);
 	text.setPosition(posX, posY);
 }
+//[P-A]
+//Permet de changer les sprite en cours selon un indice
+//Recois un indice de ou l'animation est rendu
+//Retourne Void
+/*void menuPrincipal::changeAnimation(int whereInAnimation)
+{
+	
+	_logoAnimation.setPosition( _animationIdle.getPosition(whereInAnimation));
+	_logoAnimation.setTextureRect(_animationIdle.getSprite(whereInAnimation));
+	
+}*/
 
 void menuPrincipal::print(RenderWindow& window)
 {
@@ -53,6 +67,9 @@ void menuPrincipal::loadBoutons(bouton &nomBouton, const char *message, int posX
 bool menuPrincipal::optionMenu(RenderWindow& window) {
 	
 	Event event;
+	
+	//int whereInAnimation=0;
+
 	while (true) {
 		while (window.pollEvent(event)) {
 			if (event.type == Event::KeyPressed) {
@@ -77,9 +94,14 @@ bool menuPrincipal::optionMenu(RenderWindow& window) {
 					break;
 				}
 			}
-			window.clear();
-			print(window);
-			window.display();
+			
 		}
+		//whereInAnimation++;
+		//if (whereInAnimation > 2)whereInAnimation = 0;
+		//changeAnimation(whereInAnimation);
+		window.clear();
+		print(window);
+		window.display();
+		//sleep(seconds(0.01f));
 	}
 }

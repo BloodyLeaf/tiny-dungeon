@@ -8,16 +8,23 @@ Déclaration des méthode de l'objet Animation
 
 
 #include <SFML/Graphics.hpp>
+#include <fstream>
+#include <iostream>
 
 using namespace sf;
 
 class animation {
 
 private:
-
+	
+	std::vector<IntRect> _sprite;
+	std::vector<Vector2f> _position;
 
 public:
 
-	
+	void loadAnimationFromNotePad(std::string fileName, std::string animationName);
+
+	IntRect getSprite(int whereInAnimation);
+	Vector2f getPosition(int whereInAnimation);
 
 };

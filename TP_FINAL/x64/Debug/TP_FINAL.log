@@ -1,4 +1,4 @@
 ﻿  MenuPrincipal.cpp
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\MenuPrincipal.cpp(35,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\MenuPrincipal.cpp(35,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\MenuPrincipal.cpp(45,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\MenuPrincipal.cpp(45,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
   TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe

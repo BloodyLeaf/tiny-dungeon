@@ -9,19 +9,29 @@ Déclaration des méthode de l'objet MenuPrincipal
 
 void menuPrincipal::initMenuPrincipal()
 {
-	//Texture texture;
-	//texture.loadFromFile("ressources/hero.png");
+	
 	printTitle("Tiny Dungeon");
 	_fondEcran.setSize(Vector2f(1500, 800));
 	_fondEcran.setFillColor(Color::White);
 	_fondEcran.setPosition(0, 0);
 
-	//_logoAnimation.setSize(Vector2f(100, 100));
-	//_logoAnimation.setTexture(&texture);
-	//_animationIdle.loadAnimationFromNotePad("ressources/animation.txt", "idle");
 	
-	_boutonNouvelleAventure.initialiserFondBouton(500, 150, 500, 100, Color::Black); // set un bouton position , dimension, couleur
-	setText(_textBoutonNouvelAventure, "1) Nouvelle Aventure", _font, "ressources/arial.ttf", 600, 195, 24, Color::White, Text::Bold);// set du text over un bouton 
+	_fondEcranPersonnage.setSize(Vector2f(100, 100));
+	_fondEcranPersonnage.setFillColor(Color::White);
+	_fondEcranPersonnage.setPosition(700, 35);
+	_fondEcranPersonnage.setOutlineThickness(5);
+	_fondEcranPersonnage.setOutlineColor(Color::Color(153, 102, 51));
+	
+
+	
+	_logoAnimation.setSize(Vector2f(100, 100));
+	
+
+	//_logoAnimation.setFillColor(Color::Blue);
+	_animationIdle.loadAnimationFromNotePad("ressources/animation.txt", "idleMainMenu");
+	changeAnimation(0);
+	_boutonNouvelleAventure.initialiserFondBouton(500, 170, 500, 100, Color::Black); // set un bouton position , dimension, couleur
+	setText(_textBoutonNouvelAventure, "1) Nouvelle Aventure", _font, "ressources/arial.ttf", 600, 215, 24, Color::White, Text::Bold);// set du text over un bouton 
 
 }
 void menuPrincipal::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
@@ -38,19 +48,21 @@ void menuPrincipal::setText(Text& text, const char* message, Font& font, const c
 //Permet de changer les sprite en cours selon un indice
 //Recois un indice de ou l'animation est rendu
 //Retourne Void
-/*void menuPrincipal::changeAnimation(int whereInAnimation)
+void menuPrincipal::changeAnimation(int whereInAnimation)
 {
 	
-	_logoAnimation.setPosition( _animationIdle.getPosition(whereInAnimation));
+	_logoAnimation.setPosition(_animationIdle.getPosition(whereInAnimation));
 	_logoAnimation.setTextureRect(_animationIdle.getSprite(whereInAnimation));
 	
-}*/
+}
 
 void menuPrincipal::print(RenderWindow& window)
 {
 	window.draw(_fondEcran);
+	window.draw(_fondEcranPersonnage);
 	_boutonNouvelleAventure.print(window);
 	window.draw(_textBoutonNouvelAventure);
+	window.draw(_logoAnimation);
 	
 }
 
@@ -68,7 +80,11 @@ bool menuPrincipal::optionMenu(RenderWindow& window) {
 	
 	Event event;
 	
-	//int whereInAnimation=0;
+	int whereInAnimation=-1;
+
+	Texture texture;
+	texture.loadFromFile("ressources/hero.png");
+	_logoAnimation.setTexture(&texture);
 
 	while (true) {
 		while (window.pollEvent(event)) {
@@ -96,12 +112,12 @@ bool menuPrincipal::optionMenu(RenderWindow& window) {
 			}
 			
 		}
-		//whereInAnimation++;
-		//if (whereInAnimation > 2)whereInAnimation = 0;
-		//changeAnimation(whereInAnimation);
+		whereInAnimation++;
+		if (whereInAnimation > 2)whereInAnimation = 0;
+		changeAnimation(whereInAnimation);
 		window.clear();
 		print(window);
 		window.display();
-		//sleep(seconds(0.01f));
+		sleep(seconds(0.20f));
 	}
 }

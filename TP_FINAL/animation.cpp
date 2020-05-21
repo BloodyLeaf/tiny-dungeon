@@ -9,37 +9,33 @@ Définition des méthode de l'objet Animation
 
 void animation::loadAnimationFromNotePad(std::string fileName,std::string animationName)
 {
-	char delimiter(';');
+	
 	std::string temp;
-	int x, y, w, h;
-	float posX, posY;
+	int x=0, y=0, w=0, h=0;
+	float posX=0, posY=0;
 	std::ifstream fichierL1(fileName.c_str());
 	int qqtyOfFrame;
 	if(fichierL1){
 		std::cout << "YES" << std::endl;
 		while (!fichierL1.eof()) {
-			getline(fichierL1, temp,delimiter);
-			if (temp.compare(animationName)) {
-				getline(fichierL1, temp, delimiter);
-				qqtyOfFrame = std::stoi(temp);
-				for (int i = 0; i < 3; i++) {
-					getline(fichierL1, temp, delimiter);
-					x = std::stoi(temp);
-					getline(fichierL1, temp, delimiter);
-					y = std::stoi(temp);
-					getline(fichierL1, temp, delimiter);
-					w = std::stoi(temp);
-					getline(fichierL1, temp, delimiter);
-					h = std::stoi(temp);
-					getline(fichierL1, temp, delimiter);
-					posX = std::stof(temp);
-					getline(fichierL1, temp, delimiter);
-					posY = std::stof(temp);
-
+			fichierL1 >> temp;
+			if (temp == animationName) {
+				fichierL1 >> qqtyOfFrame;
+				for (int i = 0; i < qqtyOfFrame; i++) {
+					fichierL1 >> x;
+					fichierL1 >> y;
+					fichierL1 >> w;
+					fichierL1 >> h;
+					fichierL1 >> posX;
+					fichierL1 >> posY;
 					_sprite.push_back(IntRect(x, y, w, h));
 					_position.push_back(Vector2f(posX, posY));
 				}
 			}
+
+					
+				
+			
 		}
 	}
 	else {

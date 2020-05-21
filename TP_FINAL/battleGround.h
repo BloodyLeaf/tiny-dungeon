@@ -22,7 +22,7 @@ class battleGrounds {
 private: 
 
 	RectangleShape _background;
-	std::vector<int> initiative;
+	
 
 	monstre _monster[3];  //3 monstre du battleground [Sophie]
 
@@ -39,14 +39,13 @@ private:
 
 	RessourceBar _MonsterHPBar[3];
 
-	RectangleShape _speedTimer;
+	
 	RectangleShape _speedIndicator[4];				//0 1 et 2 sont des monstres 3 et le héro
 	
 
 	Color _monsterColor[3]; //Temporairement pour replacer les bonnes couleur apres les animations
 	int _whereInMenu;
-	int _heroSpeedTimer;								// si reach 50 c'est son tour
-	int _monsterSpeedTimer[3];					// si reach 50 c'est son tour
+	int _speedtimer[4];			//0 a 2 monstre 3 hero
 
 public:
 
@@ -64,9 +63,11 @@ public:
 																				//						4 Choisir son attaque
 	void initSpeedBar(void);
 	void moveSpeedindicator(void);
-	int CheckIfTurn(void);
+	
 	void addSpeed(hero hero);
-	void action(int choice, int & target,hero & hero, RenderWindow& window);
+
+	bool heroTurn(hero & hero, RenderWindow& window);
+	void monsterTurn(int id, RenderWindow& window, hero& hero);
 
 	void replaceRessourcesBar(hero hero);
 

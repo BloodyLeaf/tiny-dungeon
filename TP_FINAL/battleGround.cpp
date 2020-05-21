@@ -28,9 +28,9 @@ void battleGrounds::initTemporaire(hero& hero)
 
 
 
-	_monster[0] = generateMonster(1600, 150);
+	_monster[0] = generateMonster(1600, 100);
 	_monster[1] = generateMonster(1800, 350);
-	_monster[2] = generateMonster(1700, 550);
+	_monster[2] = generateMonster(1700, 500);
 
 
 	
@@ -55,10 +55,9 @@ void battleGrounds::initTemporaire(hero& hero)
 
 
 	setWhereInMenu(0);
-	_heroSpeedTimer = 0;
-	_monsterSpeedTimer[0] = 0;
-	_monsterSpeedTimer[1] = 0;
-	_monsterSpeedTimer[2] = 0;
+	for (int i = 0; i < 4; i++) {
+		_speedtimer[i] = 0;
+	}
 }
 //P-A
 //Initialise le menu des cibles
@@ -135,28 +134,11 @@ void battleGrounds::setWhereInMenu(int choice)
 //Void
 void battleGrounds::initSpeedBar(void)
 {
-	_speedTimer.setPosition(500, 0);
+	/*_speedTimer.setPosition(500, 0);
 	_speedTimer.setSize(Vector2f(1000, 100));
-	_speedTimer.setFillColor(Color::Color(192, 192, 192));
+	_speedTimer.setFillColor(Color::Color(192, 192, 192));*/
 }
-//P-A
-//Vérifie si c'est le tour de quelquun
-//recois void
-//retourne void
-int battleGrounds::CheckIfTurn(void)
-{
-	
-	for (int i = 0; i < 3; i++) {
-		if (_monsterSpeedTimer[i] >= 100) {
-			_monsterSpeedTimer[i] = 0;
-			return i;
-		}
-	}
-	if (_heroSpeedTimer >= 100) {
-		_heroSpeedTimer = 0;
-		return 3;
-	}
-}
+
 
 //P-A
 //Incrémente les speed de tout le monde selon leur stats de speed
@@ -164,110 +146,143 @@ int battleGrounds::CheckIfTurn(void)
 //Retourne void
 void battleGrounds::addSpeed(hero hero)
 {
-	_heroSpeedTimer += hero.getSpeed();
 	for (int i = 0; i < 3; i++) {
-		_monsterSpeedTimer[i] += _monster[i].getSpeed();
+		_speedtimer[i] += _monster[i].getSpeed();
 	}
+	_speedtimer[3] += hero.getSpeed();
 }
-void battleGrounds::action(int choice, int & target,hero & hero,RenderWindow & window)
+bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 {
-	switch (getWhereMenu())
-	{
-	case 1:
-		//menu attaque ou potion
-		switch (choice) {
+	Event event;
+	int target;
+	
+	setWhereInMenu(1);
+	updateMenu(hero);
+	window.clear();
+	printFull(window, hero);
+	window.display();
+	while(true){
+		while(window.pollEvent(event)) {
+			if (event.type == Event::Closed) {
+				window.close();
+			}
+			
+			else if (event.type == Event::KeyPressed) {
+				if (getWhereMenu() == 1) {
 
-		case 1:
-			//Not yet implemented 
-			break;
-		case 2:
-			setWhereInMenu(3);
-			break;
-		default:
+					switch (event.key.code) {
+					case Keyboard::Escape:
+						window.close();
+						break;
+					case Keyboard::Num1:
+						//Not yet implemented 
+						break;
+					case Keyboard::Num2:
+						setWhereInMenu(3);
+						break;
+					default:
+						break;
+					}
+				}
 
-			break;
+				if (getWhereMenu() == 3) {
+					switch (event.key.code) {
+					case Keyboard::Escape:
+						window.close();
+						break;
+					case Keyboard::Up:
+						if (_monster[0].getPv() > 0) {
+							target = 0;
+							setWhereInMenu(4);
+
+						}
+						break;
+					case Keyboard::Right:
+						if (_monster[1].getPv() > 0) {
+							target = 1;
+							setWhereInMenu(4);
+
+						}
+				
+						break;
+					case Keyboard::Down:
+						if (_monster[2].getPv() > 0) {
+							target = 2;
+							setWhereInMenu(4);
+
+						}
+						break;
+					default:
+						break;
+					}
+				}
+				if (getWhereMenu() == 4) {
+					switch (event.key.code)
+					{
+					case Keyboard::Num1:
+						if (hero.checkIfSkillCanBeUsed(0)) {
+							hero.setMana(hero.getMana() + hero.getInt());
+							if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+							gestionAnimationAttaque(target, window, hero);
+							hero.useAnAttack(_monster[target], 1);
+							setWhereInMenu(0);
+							return true;
+						}
+						break;
+					case Keyboard::Num2:
+						if (hero.checkIfSkillCanBeUsed(1)) {
+							hero.setMana(hero.getMana() + hero.getInt());
+							if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+							gestionAnimationAttaque(target, window, hero);
+							hero.useAnAttack(_monster[target], 2);
+							setWhereInMenu(0);
+							return true;
+						}
+						break;
+					case Keyboard::Num3:
+						if (hero.checkIfSkillCanBeUsed(2)) {
+							hero.setMana(hero.getMana() + hero.getInt());
+							if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+							gestionAnimationAttaque(target, window, hero);
+							hero.useAnAttack(_monster[target], 3);
+							setWhereInMenu(0);
+							return true;
+						}
+						break;
+					case Keyboard::Num4:
+						if (hero.checkIfSkillCanBeUsed(3)) {
+							hero.setMana(hero.getMana() + hero.getInt());
+							if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+							gestionAnimationAttaque(target, window, hero);
+							hero.useAnAttack(_monster[target], 4);
+							setWhereInMenu(0);
+							return true;
+						}
+						break;
+					default:
+						break;
+					}
+				}
+			}
+
+			updateMenu(hero);
+			replaceRessourcesBar(hero);
+			window.clear();
+			printFull(window, hero);
+			window.display();
+			
 		}
-		break;
-
-	case 3:
-		switch (choice) {
-		case 1:
-			if (_monster[0].getPv() > 0) {
-				target = 0;
-				setWhereInMenu(4);
-
-			}
-			break;
-		case 2:
-			if (_monster[1].getPv() > 0) {
-				target = 1;
-				setWhereInMenu(4);
-
-			}
-			break;
-		case 3:
-			if (_monster[2].getPv() > 0) {
-				target = 2;
-				setWhereInMenu(4);
-
-			}
-
-			break;
-		default:
-
-			break;
-		}
-		break;
-	case 4:
-		switch(choice){
-		case 1:
-			if (hero.checkIfSkillCanBeUsed(0)) {
-				hero.setMana(hero.getMana() + hero.getInt());
-				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-				gestionAnimationAttaque(target, window, hero);
-				hero.useAnAttack(_monster[target], 1);			
-				setWhereInMenu(0);
-
-			}
-			break;
-		case 2:
-			if (hero.checkIfSkillCanBeUsed(1)) {
-				hero.setMana(hero.getMana() + hero.getInt());
-				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-				gestionAnimationAttaque(target, window, hero);
-				hero.useAnAttack(_monster[target], 2);
-				setWhereInMenu(0);
-
-			}
-			break;
-		case 3:
-			if (hero.checkIfSkillCanBeUsed(2)) {
-				hero.setMana(hero.getMana() + hero.getInt());
-				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-				gestionAnimationAttaque(target, window, hero);
-				hero.useAnAttack(_monster[target], 3);
-				setWhereInMenu(0);
-
-			}
-			break;
-		case 4:
-			if (hero.checkIfSkillCanBeUsed(3)) {
-				hero.setMana(hero.getMana() + hero.getInt());
-				if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
-				gestionAnimationAttaque(target, window, hero);
-				hero.useAnAttack(_monster[target], 4);
-				setWhereInMenu(0);
-
-			}
-			break;
-		}
-		break;
-	default:
-		break;
 	}
 	
-	
 }
+
+void battleGrounds::monsterTurn(int id, RenderWindow& window, hero& hero)
+{
+	monsterAttack(id, window, hero);
+
+}
+	
+	
 //P-A
 //reajuste les bar de ressources selon les deplacements du monstres<
 //Recois un hero
@@ -424,110 +439,41 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 
 	print(window,hero);
 	animationLevelStart(window,hero);
-	setWhereInMenu(1);
+	setWhereInMenu(0);
+	Clock clock;
+	Time time;
 
 	while(true){
 		
 		
 		while (window.pollEvent(event)) {
-			
-			addSpeed(hero);
-			if (event.type == Event::Closed) 
+			if (event.type == Event::Closed)
 				window.close();
-
-			
 			else if (event.type == Event::KeyPressed) {
-					
-				if(CheckIfTurn()==3){
-					setWhereInMenu(1);
-					if (getWhereMenu() == 1) {
-
-						switch (event.key.code) {
-						case Keyboard::Escape:
-							window.close();
-							break;
-						case Keyboard::Num1:
-							//Not yet implemented 
-							break;
-						case Keyboard::Num2:
-							choice = 2;
-							break;
-						default:
-							break;
-						}
-					}
-					//Va devenir la méthode playerTurn pour le targeting de la cible
-					if (getWhereMenu() == 3) {
-						switch (event.key.code) {
-						case Keyboard::Escape:
-							window.close();
-							break;
-						case Keyboard::Up:
-								choice = 1;
-							break;
-						case Keyboard::Right:							
-								choice = 2;		
-							break;
-						case Keyboard::Down:							
-							choice = 3;
-							break;
-						default:
-							break;
-						}
-					}
-					if (getWhereMenu() == 4) {
-						switch (event.key.code)
-						{
-						case Keyboard::Num1:
-							choice = 1;
-							break;
-						case Keyboard::Num2:
-							choice = 2;
-							break;
-						case Keyboard::Num3:
-							choice = 3;
-							break;
-						case Keyboard::Num4:
-							choice = 4;
-							break;
-						default:
-							break;
-						}
-					}
-						/*else if (event.type == Event::MouseButtonPressed) {
-							if (event.mouseButton.button == Mouse::Left) {
-								Vector2i mousePosition = Mouse::getPosition();
-
-								if (mousePosition.x > _monster[0].getPositionX() &&
-									mousePosition.x < _monster[0].getPositionX() + _monster[0].getPositionX() )//&&
-									//mousePosition.y > _monster[0].getPosition().y &&
-									//mousePosition.y < _monster[0].getPosition().y + _monster[0].getSize().y)
-									attack(window, 0,hero);
-
-
-							}
-						}*/
-					action(choice, target, hero, window);
-				}
-				else if (CheckIfTurn() == 0) {
-					monsterAttack(0, window, hero);
-					
-				}
-				else if (CheckIfTurn() == 1) {
-					monsterAttack(1, window, hero);
-				}
-				else if (CheckIfTurn() == 2) {
-					monsterAttack(2, window, hero);
-				}
-				if (hero.getPv() <= 0) return false;
-			} 
+				
+			}
+			
 		} 
+		
+		addSpeed(hero);
+		for (int i = 0; i < 4; i++) {
+			if(_speedtimer[i]>=50){
+				_speedtimer[i] = 0;
+				if (i == 3) {
+					
+					
+					heroTurn(hero, window);
+				}
+				else if (i == 0 || i == 1 || i == 2) monsterTurn(i, window, hero);
+			}
+		}
+
+		
 			//Fin de la méthode player Turn
 			//Va devenir la méthode choose an attack
 		for (int i = 0; i < 3; i++) {
 			checkIfDead(i);
 		}
-		
 		updateMenu(hero);
 		replaceRessourcesBar(hero);
 		window.clear();
@@ -778,7 +724,7 @@ void battleGrounds::printRessourcesBar(RenderWindow& window, hero hero)
 
 void battleGrounds::printSpeedIndicator(RenderWindow& window)
 {
-	window.draw(_speedTimer);
+	/*window.draw(_speedTimer);*/
 
 }
 

@@ -20,7 +20,7 @@ using namespace sf;
 class battleGrounds {
 
 private: 
-
+	int _whereInSprite;
 	RectangleShape _background;
 	
 
@@ -39,7 +39,7 @@ private:
 
 	RessourceBar _MonsterHPBar[3];
 
-	
+	RectangleShape _backgroundSpeedTimer;
 	RectangleShape _speedIndicator[4];				//0 1 et 2 sont des monstres 3 et le héro
 	
 

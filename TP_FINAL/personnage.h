@@ -35,7 +35,7 @@ public:
     int getPv() const;                      //retourne valeur de point de vie [Sophie]
     int getMaxPv() const;                   //retourne valeur de max point de vie [sophie]
     int getGold() const;                    //retourne quantite dor [sophie]
-    //int getMana() const;                    //retourne la valeur du mana [Sophie]
+    //int getMana() const;                  //retourne la valeur du mana [Sophie]
     int getSpeed() const;                   //retourne la vitesse du personnage [sophie]
     int getDex() const;                     //retourne le dexterite du personnage [sophie]
     int getId() const;                      //retourne Id de la race [sophie]

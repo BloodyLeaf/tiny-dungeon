@@ -32,8 +32,8 @@ private:
 
     attack _attack[4];
 
-    animation _idleShop;
-    animation _idleCombats;
+    animation _idle[2];
+    //animation _idleCombats;
 
 public:
 
@@ -69,5 +69,6 @@ public:
     void useAnAttack(personnage& cible, int id);                     // Pour permettre au personnage d'utiliser des attaques[P-A]
     bool checkIfSkillCanBeUsed(int id);                     //Check if mana is high enought for cost
 
-    void useAnimation(int whereInAnimation);
+    void useAnimation(int whereInAnimation,int animationID);        //0 idleShop 1 idleBattleGround
+
 };

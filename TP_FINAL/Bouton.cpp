@@ -58,7 +58,7 @@ void bouton::setOutline(int thickness, Color color)
 
 void bouton::setToTransparent(void)
 {
-	setOutline(0, Color::Transparent);
+	//setOutline(0, Color::Transparent);
 	setDimension(0, 0);
 }
 

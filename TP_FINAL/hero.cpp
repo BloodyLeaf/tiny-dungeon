@@ -26,7 +26,8 @@ void hero::initHero()
     _position.setTexture(&_texture);
     _position.setTextureRect(IntRect(460, 236, 43, 43));
 
-    _idleShop.loadAnimationFromNotePad("ressources/animation.txt","idleShop");
+    _idle[0].loadAnimationFromNotePad("ressources/animation.txt","idleShop");
+    _idle[1].loadAnimationFromNotePad("ressources/animation.txt", "idleBattleGround");
 }
 
 void hero::initHeroAttack()
@@ -157,12 +158,13 @@ void hero::rechercheHero(ifstream& fichier, int personnage)
 //permet au personnage d'utiliser un attaque
 void hero::useAnAttack(personnage & cible, int id)
 {
-    if (id == 1 || id == 3) {
+    if (id ==0  || id == 2) {
         _attack[id].attackOnATarget(cible, getStr() + _weapon.GetStrengthMod());
         setMana(getMana() - _attack[id].getManaCost());
     }
-    if (id == 2 || id == 4) {
-        _attack[id].attackOnATarget(cible, getDex() + _weapon.GetDexterityMod() );
+    if (id == 1 || id == 3) {
+        _attack[id].attackOnATarget(cible, getDex() + _weapon.GetDexterityMod());
+        setMana(getMana() - _attack[id].getManaCost());
     }
 }
 bool hero::checkIfSkillCanBeUsed(int id)
@@ -173,10 +175,10 @@ bool hero::checkIfSkillCanBeUsed(int id)
     
 }
 
-void hero::useAnimation(int whereInAnimation)
+void hero::useAnimation(int whereInAnimation,int animationID)
 {
-    _position.setTextureRect(_idleShop.getSprite(whereInAnimation));
-    _position.setPosition(_idleShop.getPosition(whereInAnimation));
+    _position.setTextureRect(_idle[animationID].getSprite(whereInAnimation));
+    _position.setPosition(_idle[animationID].getPosition(whereInAnimation));
 }
 
 /*void hero::setEquipement(vector <int> equipement)

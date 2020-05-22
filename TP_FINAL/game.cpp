@@ -49,7 +49,7 @@ void game::playGame()
 		while (_window.pollEvent(event)) {
 			if (event.type == Event::Closed)
 				_window.close();
-			int toBeat = 3 + (_world / 3);
+			int toBeat = 3 + (_world / 2);
 			while (_heroAlive == true) {
 
 				if (_level == toBeat) {

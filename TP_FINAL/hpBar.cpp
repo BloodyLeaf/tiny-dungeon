@@ -17,7 +17,7 @@ void RessourceBar::initMonsterHpBar(int x, int y, float hp, float maxHP)
 
 
 	_percent = (hp / maxHP) * 100;
-
+	if (_percent < 0) _percent = 0;
 	_remaining.setPosition(Vector2f(x, y - 28));
 	_remaining.setSize(Vector2f(_percent, 15));
 	_remaining.setFillColor(Color::Red);

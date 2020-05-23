@@ -33,5 +33,7 @@ public:
 	void setText(const char* message, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setFillColor(Color color);
 
+	bool contain(Vector2i mousePosition);
+
 	void print(RenderWindow &window);
 };

@@ -24,12 +24,12 @@ private :
 	RectangleShape _wallTop;
 
 
-	bouton _option1;
-	bouton _option2;
-	bouton _option3;
-	bouton _option4;
+	bouton _optionUpgrade[7];
+
+	bouton _boutonfreeUpgrade[2];
 
 	RectangleShape _backgroundMenu;
+	RectangleShape _backGroundFreeUpgrade;
 
 	Font _font;
 
@@ -43,6 +43,19 @@ private :
 
 	Text _textDmg;
 	Text _textDmgCurrent;
+
+	Text _mana;
+	Text _currentMana;
+	Text _manaDivider;
+	Text _maxMana;
+
+	Text _faithText;
+	Text _faith;
+
+	Text _speedText;
+	Text _speed;
+
+	bool _freeUpgrade;
 
 public:
 
@@ -58,6 +71,7 @@ public:
 
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setTextIntegerStats(Text& text, int stats, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
+	void updateChar(int choice, hero & hero);
 	void updateIntegerStats(Text& text,int newStats);
 
 	bool townAction(RenderWindow& window, hero & hero);

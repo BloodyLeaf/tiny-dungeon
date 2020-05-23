@@ -114,6 +114,7 @@ void personnage::setStr(int str)
 void personnage::setPv(int pv)
 {
     _pv = pv;
+    if (_pv > _maxPv)_pv = _maxPv;
 }
 
 //methode qui modifie la valeur de point de vie maximum du personnage [sophie]

@@ -9,10 +9,11 @@ Définition des méthode de l'objet hpBar
 
 
 
-void attack::initAttack(int manacost, int modifier,string attackName)
+void attack::initAttack(int manacost, int modifier, int requiredStats,string attackName)
 {
 	_manaCost = manacost;
 	_modifier = modifier;
+	_requiredStats = requiredStats;
 	_attackName = attackName;
 }
 
@@ -26,4 +27,9 @@ void attack::attackOnATarget(personnage& cible, int damageStats)
 int attack::getManaCost(void)
 {
 	return _manaCost;
+}
+
+int attack::getRequiredStats(void)
+{
+	return _requiredStats;
 }

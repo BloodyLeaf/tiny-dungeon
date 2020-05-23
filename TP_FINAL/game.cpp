@@ -25,7 +25,7 @@ void game::initGame(){
 
 void game::initNewBG(void)
 {
-	_currentBattleGround.initTemporaire(_hero);
+	_currentBattleGround.initBG(_hero);
 }
 
 //Boucle du jeu
@@ -37,7 +37,7 @@ void game::playGame()
 
 
 	
-	int toBeat = 3 + (_world / 3);
+	
 
 	Event event;
 	menu.initMenuPrincipal();
@@ -63,14 +63,14 @@ void game::playGame()
 
 				}
 				else {
-					_currentBattleGround.initTemporaire(_hero);
+					_currentBattleGround.initBG(_hero);
 					_heroAlive = _currentBattleGround.game(_window, _hero, _world);
 					_level++;
 					_hero.setGold(_hero.getGold() + 15);
 
 				}
 			}
-
+			
 		}
 
 	}

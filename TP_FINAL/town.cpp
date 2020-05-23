@@ -114,49 +114,49 @@ void town::updateChar(int choice,hero & hero)
 	switch (choice)
 	{
 	case 0:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 			hero.setMaxPv(hero.getMaxPv() + 5);
 		}
 		break;
 	case 1:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 			hero.setMaxMana(hero.getMaxMana() + 5);
 		}
 		break;
 	case 2:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 			hero.setStr(hero.getStr() + 1);
 		}
 		break;
 	case 3:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 			hero.setFaith(hero.getFaith() + 1);
 		}
 		break;
 	case 4:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 			hero.setSpeed(hero.getSpeed() + 1);
 		}
 		break;
 	case 5:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 			hero.setPv(hero.getMaxPv());
 			hero.setMana(hero.getMaxMana());
 		}
 		break;
 	case 6:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 		}
 		break;
 	case 7:
-		if (hero.getGold >= 25) {
+		if (hero.getGold() >= 25) {
 			hero.setGold(hero.getGold() - 25);
 		}
 		break;

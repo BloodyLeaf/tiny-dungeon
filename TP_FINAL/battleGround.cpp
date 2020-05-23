@@ -223,7 +223,10 @@ void battleGrounds::moveSpeedindicator(void)
 void battleGrounds::addSpeed(hero hero)
 {
 	for (int i = 0; i < 3; i++) {
-		_speedtimer[i] += _monster[i].getSpeed();
+		if (_monster[i].getPv() > 0) {
+			_speedtimer[i] += _monster[i].getSpeed();
+		}
+		
 	}
 	_speedtimer[3] += hero.getSpeed();
 }
@@ -304,19 +307,21 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_attackOption[0].contain(mousePosition)) {
 
 							if (hero.checkIfSkillCanBeUsed(0)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 0);
 								setWhereInMenu(0);
+								hero.setMana(hero.getMana() + hero.getFaith());
+								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								return true;
 							}
 						}
 						if (_attackOption[1].contain(mousePosition)) {
 
 							if (hero.checkIfSkillCanBeUsed(1)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 1);
 								setWhereInMenu(0);
@@ -326,8 +331,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_attackOption[2].contain(mousePosition)) {
 
 							if (hero.checkIfSkillCanBeUsed(2)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 2);
 								setWhereInMenu(0);
@@ -337,8 +342,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_attackOption[3].contain(mousePosition)) {
 
 							if (hero.checkIfSkillCanBeUsed(3)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 3);
 								setWhereInMenu(0);
@@ -348,8 +353,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_attackOption[4].contain(mousePosition)) {
 
 							if (hero.checkIfSkillCanBeUsed(4)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								gestionAnimationAttaque(target, window, hero);
 								hero.useAnAttack(_monster[target], 4);
 								setWhereInMenu(0);
@@ -362,8 +367,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_spellOption[0].contain(mousePosition)) {
 
 							if (hero.checkIfSpellCanBeUsed(0)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+							
 								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,0);
 								hero.useASpell(_monster[target], 0);
@@ -374,8 +379,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_spellOption[1].contain(mousePosition)) {
 
 							if (hero.checkIfSpellCanBeUsed(1)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,1);
 								hero.useASpell(_monster[target], 1);
@@ -386,8 +391,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_spellOption[2].contain(mousePosition)) {
 
 							if (hero.checkIfSpellCanBeUsed(2)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,2);
 								hero.useASpell(_monster[target], 2);
@@ -398,8 +403,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_spellOption[3].contain(mousePosition)) {
 
 							if (hero.checkIfSpellCanBeUsed(3)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,3);
 								hero.useASpell(_monster[target], 3);
@@ -410,8 +415,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						if (_spellOption[4].contain(mousePosition)) {
 
 							if (hero.checkIfSpellCanBeUsed(4)) {
-								hero.setMana(hero.getMana() + hero.getFaith());
-								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								
+								
 								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,4);
 								hero.useASpell(_monster[target], 4);
@@ -724,8 +729,8 @@ void battleGrounds::animationLevelStart(RenderWindow& window,hero& hero)
 //void
 void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& hero)
 {
-	for (int j = 0; j < 25; j++) {
-		_monster[id].setPosition(_monster[id].getPositionX() - 10, _monster[id].getPositionY());
+	for (int j = 0; j < 15; j++) {
+		_monster[id].setPosition(_monster[id].getPositionX() - 14, _monster[id].getPositionY());
 
 		_whereInSprite++;
 		if (_whereInSprite > 2)_whereInSprite = 0;
@@ -734,13 +739,13 @@ void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& he
 		window.clear();
 		printFull(window,hero);
 		window.display();
-		sf::sleep(seconds(0.05f));
+		sf::sleep(seconds(0.1f));
 	}
 	animationHeroIsFlashing(window,hero);
 
 	
-	for (int j = 0; j < 25; j++) {
-		_monster[id].setPosition(_monster[id].getPositionX() + 10, _monster[id].getPositionY());
+	for (int j = 0; j < 15; j++) {
+		_monster[id].setPosition(_monster[id].getPositionX() + 14, _monster[id].getPositionY());
 
 		_whereInSprite++;
 		if (_whereInSprite > 2)_whereInSprite = 0;
@@ -749,7 +754,7 @@ void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& he
 		window.clear();
 		printFull(window,hero);
 		window.display();
-		sf::sleep(seconds(0.05f));
+		sf::sleep(seconds(0.1f));
 	}
 	
 
@@ -858,7 +863,9 @@ void battleGrounds::checkIfDead(int id)
 	if(_monster[id].getPv()<=0){
 		_monster[id].setCharColor(Color::Transparent);
 		_MonsterHPBar[id].setToTransparent();
+		
 		_targetOption[id].setToTransparent();
+		_speedtimer[id] = 0;
 	}
 }
 
@@ -960,9 +967,12 @@ void battleGrounds::printRessourcesBar(RenderWindow& window, hero hero)
 {
 	_heroHPBar.printRessourceBar(window);
 	_heroManaBar.printRessourceBar(window);
-	_MonsterHPBar[0].printRessourceBar(window);
-	_MonsterHPBar[1].printRessourceBar(window);
-	_MonsterHPBar[2].printRessourceBar(window);
+	for(int i = 0 ; i < 3 ; i ++ ){
+		if (_monster[i].getPv() > 0) {
+			_MonsterHPBar[i].printRessourceBar(window);
+		}
+	}
+	
 }
 
 void battleGrounds::printSpeedIndicator(RenderWindow& window)

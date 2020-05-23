@@ -14,6 +14,7 @@ Déclaration des méthode de l'objet MenuPrincipal
 #include "Animation.h"
 #include "hero.h"
 #include "monstre.h"
+#include "Animation.h"
 
 using namespace sf;
 
@@ -48,6 +49,9 @@ private:
 	int _whereInMenu;			//0 no menu 1 menu des action 3 menu de target 4 menu d'attaque 5 menu des sorts 6 menu de target pour les sorts
 	int _speedtimer[4];			//0 a 2 monstre 3 hero
 
+	RectangleShape _projectile;
+	animation _spell[15];
+
 public:
 
 	void initBG(hero& hero);													//Initialise la couleur du monstre et du héro
@@ -56,7 +60,7 @@ public:
 	void initMenuAttack(void);
 	void initMenuAction(void);
 	void initMenuSpell(void);
-
+	void initanimationSpell(void);
 	
 	void setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setWhereInMenu(int choice);												//navigation du menu : 1 Choix attaque ou consumable
@@ -108,9 +112,11 @@ public:
 	void printOnlyBackgroundMenu(RenderWindow& window);
 	void printRessourcesBar(RenderWindow& window, hero hero);
 	void printSpeedIndicator(RenderWindow& window);
+	void printSpell(RenderWindow& window,hero hero);
 
 	void gestionAnimationAttaque(int target,RenderWindow& window, hero hero);
 	void gestionAnimationSpell(int target, RenderWindow& window, hero hero,int spellId);
+	
 	
 	/*void heroTurn(void);
 	void monsterTurn(void);*/

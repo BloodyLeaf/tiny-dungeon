@@ -57,6 +57,7 @@ void battleGrounds::initBG(hero& hero)
 	initMenuAttack();
 	initMenuAction();
 	initMenuSpell();
+	initanimationSpell();
 
 	initSpeedBar();
 
@@ -134,6 +135,30 @@ void battleGrounds::initMenuSpell(void)
 	_spellOption[3].initialiserBouton(940, 675, 180, 100, "ressources/spell4.png");
 	_spellOption[4].initialiserBouton(1220, 675, 180, 100, "ressources/spell5.png");
 
+}
+
+void battleGrounds::initanimationSpell(void)
+{
+
+	_spell[0].loadAnimationFromNotePad("ressources/animationSpell.txt", "windScytheUp");
+	_spell[1].loadAnimationFromNotePad("ressources/animationSpell.txt", "windScytheMid");
+	_spell[2].loadAnimationFromNotePad("ressources/animationSpell.txt", "windScytheDown");
+
+	_spell[3].loadAnimationFromNotePad("ressources/animationSpell.txt", "fireInvocationUp");
+	_spell[4].loadAnimationFromNotePad("ressources/animationSpell.txt", "fireInvocationMid");
+	_spell[5].loadAnimationFromNotePad("ressources/animationSpell.txt", "fireInvocationDown");
+
+	_spell[6].loadAnimationFromNotePad("ressources/animationSpell.txt", "thunderUp");
+	_spell[7].loadAnimationFromNotePad("ressources/animationSpell.txt", "thunderMid");
+	_spell[8].loadAnimationFromNotePad("ressources/animationSpell.txt", "thunderDown");
+
+	_spell[9].loadAnimationFromNotePad("ressources/animationSpell.txt", "divineFireUp");
+	_spell[10].loadAnimationFromNotePad("ressources/animationSpell.txt", "divineFireMid");
+	_spell[11].loadAnimationFromNotePad("ressources/animationSpell.txt", "divineFireDown");
+
+	_spell[12].loadAnimationFromNotePad("ressources/animationSpell.txt", "divinePresenceUp");
+	_spell[13].loadAnimationFromNotePad("ressources/animationSpell.txt", "divinePresenceMid");
+	_spell[14].loadAnimationFromNotePad("ressources/animationSpell.txt", "divinePresenceDown");
 }
 //P-A
 //Init du texte
@@ -237,7 +262,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							mousePosition = Vector2i(0, 0);
 						}
 						if (_actionOption[2].contain(mousePosition)) {
-							hero.setPv(hero.getPv() + 2 * ( hero.getFaith()));
+							hero.setPv(hero.getPv() +  ( hero.getFaith()));
 							hero.setMana(hero.getMana() + 2 * (hero.getFaith()));
 							mousePosition = Vector2i(0, 0);
 							return true;
@@ -339,9 +364,10 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSpellCanBeUsed(0)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,0);
 								hero.useASpell(_monster[target], 0);
-								setWhereInMenu(0);
+								
 								return true;
 							}
 						}
@@ -350,9 +376,10 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSpellCanBeUsed(1)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,1);
 								hero.useASpell(_monster[target], 1);
-								setWhereInMenu(0);
+								
 								return true;
 							}
 						}
@@ -361,9 +388,10 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSpellCanBeUsed(2)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,2);
 								hero.useASpell(_monster[target], 2);
-								setWhereInMenu(0);
+								
 								return true;
 							}
 						}
@@ -372,9 +400,10 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSpellCanBeUsed(3)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,3);
 								hero.useASpell(_monster[target], 3);
-								setWhereInMenu(0);
+								
 								return true;
 							}
 						}
@@ -383,9 +412,10 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSpellCanBeUsed(4)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
+								setWhereInMenu(0);
 								gestionAnimationSpell(target, window, hero,4);
 								hero.useASpell(_monster[target], 4);
-								setWhereInMenu(0);
+								
 								return true;
 							}
 						}
@@ -583,16 +613,23 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	bool heroAlive = true;
 	int aliveMonster = 3;
 	
-	for (int i = 0; i < 3; i++) {
-		_monster[i].setMaxPv(2 + (world / 3));
-		_monster[i].setPv(_monster[i].getMaxPv());
-		_monster[i].setStr(1 + (world / 4));
-		
-		
-	}
 	_monster[0].setSpeed(3 + (world / 3));
 	_monster[1].setSpeed(4 + (world / 2));
 	_monster[2].setSpeed(3 + (world / 2));
+	_monster[0].setMaxPv(2 + (world / 2));
+	_monster[1].setMaxPv(3 + (world / 3));
+	_monster[2].setMaxPv(4 + (world / 4));
+	_monster[0].setStr(1 + (world / 2));
+	_monster[1].setStr(2 + (world / 2));
+	_monster[2].setStr(2 + (world / 3));
+	for (int i = 0; i < 3; i++) {
+		
+		_monster[i].setPv(_monster[i].getMaxPv());
+		
+		
+		
+	}
+	
 
 	int target;
 
@@ -936,6 +973,12 @@ void battleGrounds::printSpeedIndicator(RenderWindow& window)
 	}
 }
 
+void battleGrounds::printSpell(RenderWindow& window,hero hero)
+{
+	printFull(window, hero);
+	window.draw(_projectile);
+}
+
 void battleGrounds::gestionAnimationAttaque(int target, RenderWindow& window, hero hero)
 {
 	switch (target)
@@ -956,58 +999,45 @@ void battleGrounds::gestionAnimationAttaque(int target, RenderWindow& window, he
 
 void battleGrounds::gestionAnimationSpell(int target, RenderWindow& window, hero hero,int spellId)
 {
-	for (int j = 0; j < 2; j++) {
-
-		for (int i = 0; i < 2; i++)
-		{
-			_monster[target].setPosition(_monster[target].getPositionX() - 6, _monster[target].getPositionY());
-			replaceRessourcesBar(hero);
-			window.clear();
-			printFull(window, hero);
-			window.display();
-			sleep(seconds(0.1f));
-		}
-		for (int i = 0; i < 4; i++)
-		{
-			_monster[target].setPosition(_monster[target].getPositionX() + 6, _monster[target].getPositionY());
-			replaceRessourcesBar(hero);
-			window.clear();
-			printFull(window, hero);
-			window.display();
-			
-		}
-		for (int i = 0; i < 4; i++)
-		{
-			_monster[target].setPosition(_monster[target].getPositionX() - 6, _monster[target].getPositionY());
-			replaceRessourcesBar(hero);
-			window.clear();
-			printFull(window, hero);
-			window.display();
-			
-		}
-		for (int i = 0; i < 4; i++)
-		{
-			_monster[target].setPosition(_monster[target].getPositionX() + 6, _monster[target].getPositionY());
-			replaceRessourcesBar(hero);
-			window.clear();
-			printFull(window, hero);
-			window.display();
-			
-		}
-		for (int i = 0; i < 2; i++)
-		{
-			_monster[target].setPosition(_monster[target].getPositionX() - 6, _monster[target].getPositionY());
-			replaceRessourcesBar(hero);
-			window.clear();
-			printFull(window, hero);
-			window.display();
-			
-		}
-
+	int indiceSpellToCast = (spellId * 3) + target;
+	int nbFrame = _spell[indiceSpellToCast].getNbFrame();
+	Texture texture;
+	switch (spellId)
+	{
+	case 0:
+		texture.loadFromFile("ressources/windScythe.png");
+		break;
+	case 1:
+		texture.loadFromFile("ressources/fireInvocation.png");
+		break;
+	case 2:
+		texture.loadFromFile("ressources/thunderSummon.png");
+		break;
+	case 3:
+		texture.loadFromFile("ressources/divineFire.png");
+		break;
+	case 4:
+		texture.loadFromFile("ressources/divinePresence.png");
+		break;
+	default:
+		break;
 	}
-	
-	
+	_projectile.setTexture(&texture);
+
+	for (int i = 0; i < nbFrame; i++) {
+		window.clear();
+		_projectile.setSize(_spell[indiceSpellToCast].getSize(i));
+		_projectile.setPosition(_spell[indiceSpellToCast].getPosition(i));
+		_projectile.setPosition(_projectile.getPosition().x+ 100, _projectile.getPosition().y);
+		_projectile.setTextureRect(_spell[indiceSpellToCast].getSprite(i));
+		printSpell(window, hero);
+		window.display();
+		sf::sleep(seconds(0.1f));
+	}
+	_projectile.setSize(Vector2f(0, 0));
 }
+
+
 
 /*void battleGrounds::heroTurn(void)
 {

@@ -150,16 +150,6 @@ void town::updateChar(int choice,hero & hero)
 			hero.setMana(hero.getMaxMana());
 		}
 		break;
-	case 6:
-		if (hero.getGold() >= 25) {
-			hero.setGold(hero.getGold() - 25);
-		}
-		break;
-	case 7:
-		if (hero.getGold() >= 25) {
-			hero.setGold(hero.getGold() - 25);
-		}
-		break;
 	default:
 		break;
 	}
@@ -247,7 +237,7 @@ bool town::townAction(RenderWindow& window, hero & hero)
 		}
 		whereInSprite++;
 		if (whereInSprite > 2)whereInSprite = 0;
-		
+		updateText(hero);
 		hero.useAnimation(whereInSprite,0);
 		window.clear();
 		printTown(window,hero);

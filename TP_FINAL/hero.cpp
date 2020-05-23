@@ -37,18 +37,18 @@ void hero::initHeroAttack()
 {
     _attack[0].initAttack(0,1,1,"STR base attack");
     _attack[1].initAttack(5,2,1,"STR critical attack");
-    _attack[2].initAttack(10, 2, 5, "STR bigHit");
-    _attack[3].initAttack(15, 2, 10, "STR big big hit");
-    _attack[4].initAttack(20, 2, 20, "STR giant hit");
+    _attack[2].initAttack(10, 3, 5, "STR bigHit");
+    _attack[3].initAttack(15, 6, 10, "STR big big hit");
+    _attack[4].initAttack(20, 10, 20, "STR giant hit");
 }
 
 void hero::initHeroSpell()
 {
     _spell[0].initAttack(5, 1, 1, "basic Spell");
-    _spell[1].initAttack(10, 1, 1, "Second Spell");
-    _spell[2].initAttack(20, 1, 5, "third Spell");
-    _spell[3].initAttack(30, 1, 10, "fourth Spell");
-    _spell[4].initAttack(40, 1, 20, "big bang Spell");
+    _spell[1].initAttack(10, 2, 1, "Second Spell");
+    _spell[2].initAttack(20, 3, 5, "third Spell");
+    _spell[3].initAttack(30, 6, 10, "fourth Spell");
+    _spell[4].initAttack(40, 10, 20, "big bang Spell");
 }
 
 //methode qui retourne la race du personnage [sophie]

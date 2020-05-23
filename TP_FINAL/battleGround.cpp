@@ -347,7 +347,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						}
 						if (_spellOption[1].contain(mousePosition)) {
 
-							if (hero.checkIfSpellCanBeUsed(2)) {
+							if (hero.checkIfSpellCanBeUsed(1)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationSpell(target, window, hero,1);
@@ -358,7 +358,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						}
 						if (_spellOption[2].contain(mousePosition)) {
 
-							if (hero.checkIfSpellCanBeUsed(3)) {
+							if (hero.checkIfSpellCanBeUsed(2)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationSpell(target, window, hero,2);

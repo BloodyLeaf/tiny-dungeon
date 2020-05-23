@@ -336,7 +336,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 
 						if (_spellOption[0].contain(mousePosition)) {
 
-							if (hero.checkIfSkillCanBeUsed(0)) {
+							if (hero.checkIfSpellCanBeUsed(0)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationSpell(target, window, hero,0);
@@ -347,7 +347,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						}
 						if (_spellOption[1].contain(mousePosition)) {
 
-							if (hero.checkIfSkillCanBeUsed(2)) {
+							if (hero.checkIfSpellCanBeUsed(2)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationSpell(target, window, hero,1);
@@ -358,7 +358,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						}
 						if (_spellOption[2].contain(mousePosition)) {
 
-							if (hero.checkIfSkillCanBeUsed(3)) {
+							if (hero.checkIfSpellCanBeUsed(3)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationSpell(target, window, hero,2);
@@ -369,7 +369,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						}
 						if (_spellOption[3].contain(mousePosition)) {
 
-							if (hero.checkIfSkillCanBeUsed(3)) {
+							if (hero.checkIfSpellCanBeUsed(3)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationSpell(target, window, hero,3);
@@ -380,7 +380,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 						}
 						if (_spellOption[4].contain(mousePosition)) {
 
-							if (hero.checkIfSkillCanBeUsed(4)) {
+							if (hero.checkIfSpellCanBeUsed(4)) {
 								hero.setMana(hero.getMana() + hero.getFaith());
 								if (hero.getMana() > hero.getMaxMana()) hero.setMana(hero.getMaxMana());
 								gestionAnimationSpell(target, window, hero,4);

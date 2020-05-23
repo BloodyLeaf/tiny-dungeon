@@ -72,7 +72,7 @@ public:
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setTextIntegerStats(Text& text, int stats, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void updateChar(int choice, hero & hero);
-	void updateIntegerStats(Text& text,int newStats);
+	void updateText(hero & hero);
 
 	bool townAction(RenderWindow& window, hero & hero);
 

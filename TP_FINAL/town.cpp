@@ -13,33 +13,8 @@ void town::init(hero & hero)
 	initHero(hero);
 	initBackground();
 	initMenu();
-	//Pour le gold
-	setText(_textGold, "Gold :", _font, "ressources/arial.ttf", 300, 15, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textGoldQty, hero.getGold(), _font, "ressources/arial.ttf", 380, 15, 24, Color::White, Text::Bold);
-
-	//Pour les HP
-	setText(_textHP, "Points de vie :", _font, "ressources/arial.ttf", 300, 50, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textCurrentHP, hero.getPv(), _font, "ressources/arial.ttf", 500, 50, 24, Color::White, Text::Bold);
-	setText(_textHPDivider, " / ", _font, "ressources/arial.ttf", 525, 50, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textMaxHP, hero.getMaxPv(), _font, "ressources/arial.ttf", 550, 50, 24, Color::White, Text::Bold);
-
-	//Pour le damage
-	setText(_textDmg, "Attaque : ", _font, "ressources/arial.ttf", 300, 85, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_textDmgCurrent, hero.getStr() , _font, "ressources/arial.ttf", 420, 85, 24, Color::White, Text::Bold);
-
-	//Pour le mana
-	setText(_mana, "Réserve de mana : ", _font, "ressources/arial.ttf", 300, 120, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_currentMana, hero.getMana(), _font, "ressources/arial.ttf", 550, 120, 24, Color::White, Text::Bold);
-	setText(_manaDivider, " / ", _font, "ressources/arial.ttf", 580, 120, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_maxMana, hero.getMaxMana(), _font, "ressources/arial.ttf", 600, 120, 24, Color::White, Text::Bold);
-
-	//Pour la faith
-
-	setText(_faithText, "Foi : ", _font, "ressources/arial.ttf", 300, 155, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_faith, hero.getFaith(), _font, "ressources/arial.ttf", 420, 155, 24, Color::White, Text::Bold);
-	//Pour le speed
-	setText(_speedText, "Vitesse : ", _font, "ressources/arial.ttf", 300, 190, 24, Color::White, Text::Bold);
-	setTextIntegerStats(_speed, hero.getSpeed(), _font, "ressources/arial.ttf", 420, 190, 24, Color::White, Text::Bold);
+	
+	updateText(hero);
 
 	_freeUpgrade = false;
 }
@@ -139,30 +114,86 @@ void town::updateChar(int choice,hero & hero)
 	switch (choice)
 	{
 	case 0:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+			hero.setMaxPv(hero.getMaxPv() + 5);
+		}
 		break;
 	case 1:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+			hero.setMaxMana(hero.getMaxMana() + 5);
+		}
 		break;
 	case 2:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+			hero.setStr(hero.getStr() + 1);
+		}
 		break;
 	case 3:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+			hero.setFaith(hero.getFaith() + 1);
+		}
 		break;
 	case 4:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+			hero.setSpeed(hero.getSpeed() + 1);
+		}
 		break;
 	case 5:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+			hero.setPv(hero.getMaxPv());
+			hero.setMana(hero.getMaxMana());
+		}
 		break;
 	case 6:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+		}
 		break;
 	case 7:
+		if (hero.getGold >= 25) {
+			hero.setGold(hero.getGold() - 25);
+		}
 		break;
 	default:
 		break;
 	}
 }
 
-void town::updateIntegerStats(Text& text,int newStats)
+void town::updateText(hero & hero)
 {
-	std::string message = std::to_string(newStats);
-	text.setString(message);
+	//Pour le gold
+	setText(_textGold, "Gold :", _font, "ressources/arial.ttf", 300, 15, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textGoldQty, hero.getGold(), _font, "ressources/arial.ttf", 380, 15, 24, Color::White, Text::Bold);
+
+	//Pour les HP
+	setText(_textHP, "Points de vie :", _font, "ressources/arial.ttf", 300, 50, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textCurrentHP, hero.getPv(), _font, "ressources/arial.ttf", 500, 50, 24, Color::White, Text::Bold);
+	setText(_textHPDivider, " / ", _font, "ressources/arial.ttf", 525, 50, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textMaxHP, hero.getMaxPv(), _font, "ressources/arial.ttf", 550, 50, 24, Color::White, Text::Bold);
+
+	//Pour le damage
+	setText(_textDmg, "Attaque : ", _font, "ressources/arial.ttf", 300, 85, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_textDmgCurrent, hero.getStr(), _font, "ressources/arial.ttf", 420, 85, 24, Color::White, Text::Bold);
+
+	//Pour le mana
+	setText(_mana, "Réserve de mana : ", _font, "ressources/arial.ttf", 300, 120, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_currentMana, hero.getMana(), _font, "ressources/arial.ttf", 550, 120, 24, Color::White, Text::Bold);
+	setText(_manaDivider, " / ", _font, "ressources/arial.ttf", 580, 120, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_maxMana, hero.getMaxMana(), _font, "ressources/arial.ttf", 600, 120, 24, Color::White, Text::Bold);
+
+	//Pour la faith
+
+	setText(_faithText, "Foi : ", _font, "ressources/arial.ttf", 300, 155, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_faith, hero.getFaith(), _font, "ressources/arial.ttf", 420, 155, 24, Color::White, Text::Bold);
+	//Pour le speed
+	setText(_speedText, "Vitesse : ", _font, "ressources/arial.ttf", 300, 190, 24, Color::White, Text::Bold);
+	setTextIntegerStats(_speed, hero.getSpeed(), _font, "ressources/arial.ttf", 420, 190, 24, Color::White, Text::Bold);
 }
 
 bool town::townAction(RenderWindow& window, hero & hero)

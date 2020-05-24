@@ -31,8 +31,8 @@ private:
     Item _armor;
 
     attack _attack[5];
-    attack _spell[5];
-
+    
+    animation _attackAnimation[9];
     animation _idle[2];
     //animation _idleCombats;
 

@@ -1,0 +1,223 @@
+//Animation Personnageidle
+/*
+//Size
+_size.push_back(Vector2f(100, 100));
+_size.push_back(Vector2f(100, 100));
+_size.push_back(Vector2f(100, 100));
+
+//Int Rect
+_sprite.push_back(IntRect(261, 229, 43, 43));
+_sprite.push_back(IntRect(215, 228, 43, 43));
+_sprite.push_back(IntRect(164, 229, 43, 43));
+
+//Vector2f de modif de position
+position.push_back(Vector2f(50, 250));
+position.push_back(Vector2f(57, 250));
+position.push_back(Vector2f(53, 250));
+*/
+
+/*
+animation hero attack reguliere
+
+//size
+
+	_size.push_back(Vector2f(100, 100));
+	_size.push_back(Vector2f(123, 90));
+	_size.push_back(Vector2f(123, 76));
+	_size.push_back(Vector2f(123, 76));
+	_size.push_back(Vector2f(123, 81));
+	_size.push_back(Vector2f(123, 76));
+	_size.push_back(Vector2f(123, 76));
+	_size.push_back(Vector2f(123, 76));
+
+	_size.push_back(Vector2f(172, 79));
+	_size.push_back(Vector2f(172, 79));
+	_size.push_back(Vector2f(172, 79));
+	_size.push_back(Vector2f(172, 74));
+	_size.push_back(Vector2f(172, 69));
+	_size.push_back(Vector2f(172, 69));
+
+	_size.push_back(Vector2f(162, 70));
+	_size.push_back(Vector2f(88, 84));
+	_size.push_back(Vector2f(104, 112));
+	_size.push_back(Vector2f(72, 102));
+	_size.push_back(Vector2f(72, 102));
+	_size.push_back(Vector2f(84, 95));
+	_size.push_back(Vector2f(86, 95));
+	_size.push_back(Vector2f(90, 95));
+
+//int rect
+
+	_sprite.push_back(IntRect(537, 145, 43, 43));
+	_sprite.push_back(IntRect(484, 144, 53, 39));
+	_sprite.push_back(IntRect(426, 149, 53, 33));
+	_sprite.push_back(IntRect(366, 149, 53, 33));
+	_sprite.push_back(IntRect(310, 149, 53, 35));
+	_sprite.push_back(IntRect(250, 149, 53, 33));
+	_sprite.push_back(IntRect(188, 149, 53, 33));
+	_sprite.push_back(IntRect(129, 149, 53, 33));
+
+	_sprite.push_back(IntRect(516, 194, 74, 34));
+	_sprite.push_back(IntRect(441, 194, 74, 34));
+	_sprite.push_back(IntRect(359, 191, 74, 34));
+	_sprite.push_back(IntRect(280, 191, 74, 32));
+	_sprite.push_back(IntRect(207, 191, 74, 30));
+	_sprite.push_back(IntRect(129, 190, 74, 30));
+
+	_sprite.push_back(IntRect(517, 238, 70, 30));
+	_sprite.push_back(IntRect(463, 240, 38, 36));
+	_sprite.push_back(IntRect(406, 238, 45, 44));
+	_sprite.push_back(IntRect(364, 231, 31, 44));
+	_sprite.push_back(IntRect(314, 229, 31, 44));
+	_sprite.push_back(IntRect(265, 229, 36, 41));
+	_sprite.push_back(IntRect(216, 229, 37, 41));
+	_sprite.push_back(IntRect(165, 229, 39, 41));
+
+
+//Vector 2f position
+
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 260));
+	_position.push_back(Vector2f(25, 260));
+	_position.push_back(Vector2f(25, 256));
+	_position.push_back(Vector2f(25, 260));
+	_position.push_back(Vector2f(25, 260));
+	_position.push_back(Vector2f(25, 260));
+
+	_position.push_back(Vector2f(35, 260));
+	_position.push_back(Vector2f(35, 262));
+	_position.push_back(Vector2f(35, 260));
+	_position.push_back(Vector2f(35, 265));
+	_position.push_back(Vector2f(35, 270));
+	_position.push_back(Vector2f(35, 270));
+
+	_position.push_back(Vector2f(35, 270));
+	_position.push_back(Vector2f(35, 255));
+	_position.push_back(Vector2f(35, 255));
+	_position.push_back(Vector2f(35, 245));
+	_position.push_back(Vector2f(35, 245));
+	_position.push_back(Vector2f(35, 245));
+	_position.push_back(Vector2f(35, 245));
+	_position.push_back(Vector2f(35, 245));
+
+*/
+
+/*
+Animation hero attack critic
+
+//size
+
+
+_size.push_back(Vector2f(98, 88));
+	_size.push_back(Vector2f(100, 93));
+	_size.push_back(Vector2f(86, 125));
+	_size.push_back(Vector2f(77, 88));
+	_size.push_back(Vector2f(79, 107));
+	_size.push_back(Vector2f(104, 90));
+	_size.push_back(Vector2f(90, 104));
+	_size.push_back(Vector2f(109, 90));
+	_size.push_back(Vector2f(93, 106));
+
+	_size.push_back(Vector2f(111, 107));
+	_size.push_back(Vector2f(104, 111));
+	_size.push_back(Vector2f(116, 107));
+	_size.push_back(Vector2f(102, 118));
+	_size.push_back(Vector2f(107, 123));
+	_size.push_back(Vector2f(95, 134));
+	_size.push_back(Vector2f(109, 128));
+	_size.push_back(Vector2f(95, 144));
+	_size.push_back(Vector2f(97, 121));
+
+	_size.push_back(Vector2f(86, 132));
+	_size.push_back(Vector2f(111, 97));
+	_size.push_back(Vector2f(104, 109));
+	_size.push_back(Vector2f(118, 95));
+	_size.push_back(Vector2f(107, 104));
+	_size.push_back(Vector2f(363, 84));
+
+	_size.push_back(Vector2f(88, 84));
+	_size.push_back(Vector2f(102, 81));
+	_size.push_back(Vector2f(70, 100));
+	_size.push_back(Vector2f(70, 102));
+	_size.push_back(Vector2f(84, 95));
+	_size.push_back(Vector2f(88, 93));
+	_size.push_back(Vector2f(90, 95));
+
+//int rect
+
+	_sprite.push_back(IntRect(546, 320, 42, 38));
+	_sprite.push_back(IntRect(494, 317, 43, 40));
+	_sprite.push_back(IntRect(446, 321, 37, 54));
+	_sprite.push_back(IntRect(402, 337, 33, 38));
+	_sprite.push_back(IntRect(351, 327, 34, 46));
+	_sprite.push_back(IntRect(295, 320, 45, 39));
+	_sprite.push_back(IntRect(241, 314, 39, 45));
+	_sprite.push_back(IntRect(187, 315, 47, 39));
+	_sprite.push_back(IntRect(124, 309, 40, 46));
+
+	_sprite.push_back(IntRect(535, 379, 48, 46));
+	_sprite.push_back(IntRect(480, 376, 45, 48));
+	_sprite.push_back(IntRect(425, 384, 50, 46));
+	_sprite.push_back(IntRect(367, 380, 44, 51));
+	_sprite.push_back(IntRect(310, 378, 46, 53));
+	_sprite.push_back(IntRect(255, 373, 41, 58));
+	_sprite.push_back(IntRect(204, 374, 47, 55));
+	_sprite.push_back(IntRect(157, 367, 41, 62));
+	_sprite.push_back(IntRect(99, 375, 42, 52));
+
+	_sprite.push_back(IntRect(545, 436, 37, 57));
+	_sprite.push_back(IntRect(454, 449, 48, 42));
+	_sprite.push_back(IntRect(397, 443, 45, 47));
+	_sprite.push_back(IntRect(333, 448, 51, 41));
+	_sprite.push_back(IntRect(279, 445, 46, 45));
+	_sprite.push_back(IntRect(111, 452, 156, 36));
+
+	_sprite.push_back(IntRect(548, 512, 38, 36));
+	_sprite.push_back(IntRect(491, 510, 44, 35));
+	_sprite.push_back(IntRect(449, 504, 30, 43));
+	_sprite.push_back(IntRect(399, 501, 30, 44));
+	_sprite.push_back(IntRect(350, 501, 36, 41));
+	_sprite.push_back(IntRect(299, 501, 38, 40));
+	_sprite.push_back(IntRect(249, 502, 39, 41));
+
+
+
+//vector 2f position
+
+_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(30, 245));
+	_position.push_back(Vector2f(34, 215));
+	_position.push_back(Vector2f(27, 250));
+	_position.push_back(Vector2f(25, 232));
+	_position.push_back(Vector2f(27, 250));
+	_position.push_back(Vector2f(29, 247));
+	_position.push_back(Vector2f(27, 250));
+	_position.push_back(Vector2f(12, 237));
+
+	_position.push_back(Vector2f(30, 240));
+	_position.push_back(Vector2f(35, 235));
+	_position.push_back(Vector2f(34, 235));
+	_position.push_back(Vector2f(27, 227));
+	_position.push_back(Vector2f(25, 219));
+	_position.push_back(Vector2f(27, 215));
+	_position.push_back(Vector2f(29, 217));
+	_position.push_back(Vector2f(27, 205));
+	_position.push_back(Vector2f(12, 217));
+
+	_position.push_back(Vector2f(27, 214));
+	_position.push_back(Vector2f(12, 242));
+	_position.push_back(Vector2f(16, 229));
+	_position.push_back(Vector2f(9, 241));
+	_position.push_back(Vector2f(17, 232));
+	_position.push_back(Vector2f(35, 250));
+
+	_position.push_back(Vector2f(34, 250));
+	_position.push_back(Vector2f(27, 253));
+	_position.push_back(Vector2f(30, 237));
+	_position.push_back(Vector2f(30, 250));
+	_position.push_back(Vector2f(31, 247));
+	_position.push_back(Vector2f(30, 250));
+	_position.push_back(Vector2f(22, 242));
+
+*/

@@ -57,16 +57,6 @@ void hero::initHeroPoursuivre(int maxPv, int Str, int maxMana, int Faith, int Sp
     _idle[0].loadAnimationFromNotePad("ressources/animation.txt", "idleShop");
     _idle[1].loadAnimationFromNotePad("ressources/animation.txt", "idleBattleGround");
 
-    _attackAnimation[0].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackUp");
-    _attackAnimation[1].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackMid");
-    _attackAnimation[2].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackTop");
-    _attackAnimation[3].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[4].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[5].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[6].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[7].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[8].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-
 
 }
 

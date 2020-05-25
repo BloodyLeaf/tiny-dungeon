@@ -1,17 +1,2 @@
-<<<<<<< HEAD
-PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.25.28610:TargetPlatformVersion=10.0.18362.0:
-Debug|x64|C:\Users\piera\Desktop\TP_FINAL\|
-=======
-<<<<<<< HEAD
 PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.25.28610:TargetPlatformVersion=10.0.18362.0:
 Debug|x64|C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\|
-=======
-<<<<<<< HEAD
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v142:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0
-Debug|x64|C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\|
-=======
-PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.25.28610:TargetPlatformVersion=10.0.18362.0:
-Debug|x64|C:\Users\piera\Desktop\TP_FINAL\|
->>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313
->>>>>>> 68faf490caccc104bad95b466a16cce164c7ceb7
->>>>>>> be8a879ea03b49ee29f0cdc224fe5c0c7e540d0f

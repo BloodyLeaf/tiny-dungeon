@@ -39,13 +39,12 @@ void game::playGame()
 
 	Event event;
 	
-	
+	menu.initMenuPrincipal();
 
 	while (_window.isOpen()) {
 		int option= menu.optionMenu(_window);
 		switch (option) {
 		case 1: //si click sur bouton Nouvelle aventure, retourne 1 
-			menu.initMenuPrincipal();
 		  //si click sur bouton Nouvelle aventure, retourne true
 			initHero();
 			_heroAlive = true;

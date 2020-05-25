@@ -1,31 +1,26 @@
-<<<<<<< HEAD
 ﻿  battleGround.cpp
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(175,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(175,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(199,41): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(212,9): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(490,92): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(490,75): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(491,100): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(491,81): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(492,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(492,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(493,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(493,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(494,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(494,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(513,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(554,93): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(554,76): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(566,74): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(566,44): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(590,61): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(590,37): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(620,6): warning C4101: 'monsterhp' : variable locale non référencée
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(644,6): warning C4101: 'target' : variable locale non référencée
-C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(546): warning C4715: 'battleGrounds::generateMonster' : les chemins de contrôle ne retournent pas tous une valeur
-  TP_FINAL.vcxproj -> C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\x64\Debug\TP_FINAL.exe
-=======
-﻿  game.cpp
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(188,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(188,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(212,41): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(225,9): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(503,92): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(503,75): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(504,100): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(504,81): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(505,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(505,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(506,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(506,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(507,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(507,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(526,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(567,93): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(567,76): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(579,74): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(579,44): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(603,61): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(603,37): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(633,6): warning C4101: 'monsterhp' : variable locale non référencée
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(657,6): warning C4101: 'target' : variable locale non référencée
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(559): warning C4715: 'battleGrounds::generateMonster' : les chemins de contrôle ne retournent pas tous une valeur
   TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe
->>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313

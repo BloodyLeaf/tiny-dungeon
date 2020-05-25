@@ -82,11 +82,11 @@ public:
     bool checkIfSkillCanBeUsed(int id);                     //Check if mana + str is high enought for cost
     bool checkIfSpellCanBeUsed(int id);                     //Check if mana + faith is high enought for cost
 
-<<<<<<< HEAD
+
     void useAnimation(int whereInAnimation,int animationID);        //0 idleShop 1 idleBattleGround
-=======
+
     void useAnimationIdle(int whereInAnimation,int animationID);        //0 idleShop 1 idleBattleGround
     
 
->>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313
+
 };

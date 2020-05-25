@@ -58,6 +58,7 @@ void battleGrounds::initBG(hero& hero)
 	initMenuAction();
 	initMenuSpell();
 	initanimationSpell();
+	initAnimationHeroAttack();
 
 	initSpeedBar();
 
@@ -1021,6 +1022,7 @@ void battleGrounds::gestionAnimationAttaque(int target, RenderWindow& window, he
 		hero.setPositionWithVector2f(_heroAttackAnimation[indiceSkillTouse].getPosition(i));
 		hero.setSize(_heroAttackAnimation[indiceSkillTouse].getSize(i));
 		hero.setIntRect(_heroAttackAnimation[indiceSkillTouse].getSprite(i));
+		window.clear();
 		printFull(window, hero);
 		window.display();
 		sf::sleep(seconds(0.1f));

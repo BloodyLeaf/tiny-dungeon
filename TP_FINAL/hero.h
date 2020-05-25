@@ -42,6 +42,7 @@ public:
     void initHero();                                      //initialise le hero en attendant qu'on finise la lecture du blocNote [P-A temp]
     void initHeroAttack();                                  //Initialise les attaques du hero [ P-A ]
     void initHeroSpell();                                   //Initialise la liste des sort possible du hero [P-A]
+    void initHeroPoursuivre(int maxPv, int Str, int maxMana, int Faith, int Speed); //initialiser hero d'une aventure précédente [Emily]
 
     string getRace() const;                                //retourne la race du personnage [sophie]
     string getClasse() const;                            //retourne la race du personnage [sophie]

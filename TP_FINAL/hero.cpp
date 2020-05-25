@@ -43,6 +43,41 @@ void hero::initHero()
     _attackAnimation[8].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
 }
 
+void hero::initHeroPoursuivre(int maxPv, int Str, int maxMana, int Faith, int Speed) {  //initialiser hero d'une aventure précédente [Emily]
+
+    _position.setSize(Vector2f(100, 100));
+    initHeroAttack();
+    initHeroSpell();
+    setMaxPv(maxPv);
+    setPv(25);
+
+    setStr(Str);
+    setMaxMana(maxMana);
+    setMana(10);
+
+    setFaith(Faith);
+    setSpeed(Speed);
+
+    _texture.loadFromFile("ressources/hero.png");
+    _position.setTexture(&_texture);
+    _position.setTextureRect(IntRect(460, 236, 43, 43));
+
+    _idle[0].loadAnimationFromNotePad("ressources/animation.txt", "idleShop");
+    _idle[1].loadAnimationFromNotePad("ressources/animation.txt", "idleBattleGround");
+
+    _attackAnimation[0].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackUp");
+    _attackAnimation[1].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackMid");
+    _attackAnimation[2].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackTop");
+    _attackAnimation[3].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[4].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[5].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[6].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[7].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[8].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+
+
+}
+
 void hero::initHeroAttack()
 {
     _attack[0].initAttack(0,1,1,"STR base attack");

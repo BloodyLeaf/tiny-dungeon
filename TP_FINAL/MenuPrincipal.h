@@ -8,6 +8,8 @@ Déclaration des méthode de l'objet MenuPrincipal
 
 #include "Bouton.h"
 #include "Animation.h"
+#include <fstream>
+using namespace std;
 
 class menuPrincipal {
 
@@ -15,9 +17,13 @@ private:
 
 	RectangleShape _fondEcran;
 	RectangleShape _fondEcranPersonnage;
+
 	Text _textTitle;
-	bouton poursuivre;
+	bouton _poursuivre;
+	Text _poursuivreText;
+
 	bouton credits;
+
 	bouton _boutonNouvelleAventure;
 	Text _textBoutonNouvelAventure;
 	Font _font;
@@ -30,11 +36,13 @@ private:
 public:
 
 	void initMenuPrincipal();
-	void printTitle(const char* title, RenderWindow &window);
 	void print(RenderWindow& window);
 	void loadBoutons(bouton &nomBouton, const char* message, int posX, int posY, const Color& colorText,const Color& colorOutline, int style, const char* police, int w, int h, int taillePolice);
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void changeAnimation(int whereInAnimation);
 
-	bool optionMenu(RenderWindow& window);
+	void writeInSauvegarde(int maxPv, int Str, int maxMana, int Faith, int Speed);
+	void readInSauvegarde();
+
+	int optionMenu(RenderWindow& window);
 };

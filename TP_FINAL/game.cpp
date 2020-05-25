@@ -41,9 +41,18 @@ void game::playGame()
 
 
 	while (_window.isOpen()) {
-		if (menu.optionMenu(_window) == true) {  //si click sur bouton Nouvelle aventure, retourne true
+		int option= menu.optionMenu(_window);
+		switch (option) {
+		case 1: //si click sur bouton Nouvelle aventure, retourne 1 
 			initHero();
 			_heroAlive = true;
+			break;
+		case 2:
+			//read in sauvegarde
+			//_hero.initHeroPoursuivre();
+			_heroAlive = true;
+			break;
+
 		}
 		while (_window.pollEvent(event)) {
 			if (event.type == Event::Closed)
@@ -56,8 +65,8 @@ void game::playGame()
 					_level = 0;
 					_world++;
 
-					_town.init(_hero);										//Refaire les méthode de town avec un hero
-					_heroAlive = _town.townAction(_window, _hero);			// et non un int
+					_town.init(_hero);										
+					_heroAlive = _town.townAction(_window, _hero);			
 
 
 				}
@@ -69,7 +78,8 @@ void game::playGame()
 
 				}
 			}
-			
+			//write dans le fichier de sauvegarde
+			//menu.writeInSauvegarde(_hero.getMaxPv, _hero.getStr, _hero.getMaxMana, _hero.getFaith, _hero.getSpeed);
 		}
 
 	}

@@ -52,6 +52,8 @@ private:
 	RectangleShape _projectile;
 	animation _spell[15];
 
+	animation _heroAttackAnimation[9];
+
 public:
 
 	void initBG(hero& hero);													//Initialise la couleur du monstre et du héro
@@ -61,6 +63,7 @@ public:
 	void initMenuAction(void);
 	void initMenuSpell(void);
 	void initanimationSpell(void);
+	void initAnimationHeroAttack(void);
 	
 	void setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setWhereInMenu(int choice);												//navigation du menu : 1 Choix attaque ou consumable
@@ -114,7 +117,7 @@ public:
 	void printSpeedIndicator(RenderWindow& window);
 	void printSpell(RenderWindow& window,hero hero);
 
-	void gestionAnimationAttaque(int target,RenderWindow& window, hero hero);
+	void gestionAnimationAttaque(int target,RenderWindow& window, hero hero, int skillId);
 	void gestionAnimationSpell(int target, RenderWindow& window, hero hero,int spellId);
 	
 	

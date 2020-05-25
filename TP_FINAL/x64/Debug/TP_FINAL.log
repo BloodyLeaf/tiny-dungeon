@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  battleGround.cpp
 C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(175,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(175,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
@@ -24,3 +25,7 @@ C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté obj
 C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(644,6): warning C4101: 'target' : variable locale non référencée
 C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\TP_FINAL\battleGround.cpp(546): warning C4715: 'battleGrounds::generateMonster' : les chemins de contrôle ne retournent pas tous une valeur
   TP_FINAL.vcxproj -> C:\Users\Etienne\Documents\École\Cégep - Hiver 2020\Programmation orienté objet\tiny-dungeon\x64\Debug\TP_FINAL.exe
+=======
+﻿  game.cpp
+  TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe
+>>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313

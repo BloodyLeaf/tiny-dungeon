@@ -43,5 +43,4 @@ public:
 
 	void playGame(void);
 
-	void nouvelleAventure();
 };

@@ -19,7 +19,6 @@ Item::Item() {
 	_speedMod = 0;
 	_defMod = 0;
 	_strMod = 0;
-	_dexMod = 0;
 }
 
 // Author:		Étienne Ménard
@@ -29,20 +28,18 @@ Item::Item() {
 //				speedMod, defMod, strMod, dexMod - Item's stat modifiers.
 // Return:		none
 // Description:	Creates an empty debug object.
-Item::Item(int id,  std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
+Item::Item(int id,  std::string name, int type, int speedMod, int defMod, int strMod) {
 	assert(id <= INT_MAX && id >= INT_MIN);
 	assert(type <= 4 && type >= 0);
 	assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
 	assert(defMod <= INT_MAX && defMod >= INT_MIN);
 	assert(strMod <= INT_MAX && strMod >= INT_MIN);
-	assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
 	_id = id;
 	_name = name;
 	_type = type;
 	_speedMod = speedMod;
 	_defMod = defMod;
 	_strMod = strMod;
-	_dexMod = dexMod;
 }
 
 // Author:		Étienne Ménard
@@ -56,7 +53,6 @@ Item::~Item() {
 	_speedMod = 0;
 	_defMod = 0;
 	_strMod = 0;
-	_dexMod = 0;
 }
 
 // Getteurs
@@ -84,25 +80,19 @@ const int Item::GetStrengthMod() {
 	return _strMod;
 }
 
-const int Item::GetDexterityMod() {
-	return _dexMod;
-}
-
 // Setteurs
-void Item::SetItem(int id, std::string name, int type, int speedMod, int defMod, int strMod, int dexMod) {
+void Item::SetItem(int id, std::string name, int type, int speedMod, int defMod, int strMod) {
 	assert(id <= INT_MAX && id >= INT_MIN);
 	assert(type <= 4 && type >= 0);
 	assert(speedMod <= INT_MAX && speedMod >= INT_MIN);
 	assert(defMod <= INT_MAX && defMod >= INT_MIN);
 	assert(strMod <= INT_MAX && strMod >= INT_MIN);
-	assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
 	_id = id;
 	_name = name;
 	_type = type;
 	_speedMod = speedMod;
 	_defMod = defMod;
 	_strMod = strMod;
-	_dexMod = dexMod;
 }
 
 void Item::SetID(int id) {
@@ -134,11 +124,6 @@ void Item::SetStrengthMod(int strMod) {
 	_strMod = strMod;
 }
 
-void Item::SetDexterityMod(int dexMod) {
-	assert(dexMod <= INT_MAX && dexMod >= INT_MIN);
-	_dexMod = dexMod;
-}
-
 // Custom Setteurs
 void Item::SetBoots(std::string name, int speedMod) {
 	_type = 1;
@@ -152,23 +137,10 @@ void Item::SetArmor(std::string name, int defMod) {
 	SetDefenseMod(defMod);
 }
 
-void Item::SetStrWeapon(std::string name, int strMod) {
+void Item::SetWeapon(std::string name, int strMod) {
 	_type = 3;
 	SetName(name);
 	SetStrengthMod(strMod);
-}
-
-void Item::SetDexWeapon(std::string name, int dexMod) {
-	_type = 3;
-	SetName(name);
-	SetDexterityMod(dexMod);
-}
-
-void Item::SetWeapon(std::string name, int strMod, int dexMod) {
-	_type = 3;
-	SetName(name);
-	SetStrengthMod(strMod);
-	SetDexterityMod(dexMod);
 }
 
 void OpenFile(std::ifstream& file, std::string fileName) {
@@ -209,16 +181,15 @@ void LoadItems(std::ifstream& file, std::string filePath, std::vector<Item>& ite
 	int speedMod;
 	int defMod;
 	int strMod;
-	int dexMod;
 
 	for (int i = 0; i < item.size(); i++) {
-		file >> id >> name >> type >> speedMod >> defMod >> strMod >> dexMod;
+		file >> id >> name >> type >> speedMod >> defMod >> strMod;
 		for (int j = 0; j < name.length(); j++) {
 			if (name[j] == '_') {
 				name[j] = ' ';
 			}
 		}
-		item[i].SetItem(id, name, type, speedMod, defMod, strMod, dexMod);
+		item[i].SetItem(id, name, type, speedMod, defMod, strMod);
 	}
 	file.close();
 }

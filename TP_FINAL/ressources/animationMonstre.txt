@@ -1,0 +1,151 @@
+/*
+monstre attack oeil.
+
+//size
+
+	_size.push_back(Vector2f(67, 109));
+	_size.push_back(Vector2f(79, 102));
+	_size.push_back(Vector2f(65, 100));
+	_size.push_back(Vector2f(65, 102));
+	_size.push_back(Vector2f(70, 104));
+	_size.push_back(Vector2f(70, 106));
+	_size.push_back(Vector2f(65, 106));
+	_size.push_back(Vector2f(74, 104));
+	_size.push_back(Vector2f(93, 102));
+
+	_size.push_back(Vector2f(90, 106));
+	_size.push_back(Vector2f(93, 106));
+	_size.push_back(Vector2f(93, 106));
+	_size.push_back(Vector2f(102, 106));
+	_size.push_back(Vector2f(104, 109));
+	_size.push_back(Vector2f(104, 100));
+
+	_size.push_back(Vector2f(104, 102));
+	_size.push_back(Vector2f(102, 102));
+	_size.push_back(Vector2f(95, 106));
+	_size.push_back(Vector2f(86, 106));
+	_size.push_back(Vector2f(83, 106));
+	_size.push_back(Vector2f(83, 106));
+	_size.push_back(Vector2f(60, 106));
+	_size.push_back(Vector2f(62, 102));
+	_size.push_back(Vector2f(62, 104));
+
+
+//int rect
+
+	_sprite.push_back(IntRect(4, 196, 29, 47));
+	_sprite.push_back(IntRect(41, 199, 34, 44));
+	_sprite.push_back(IntRect(80, 200, 28, 43));
+	_sprite.push_back(IntRect(113, 199, 28, 44));
+	_sprite.push_back(IntRect(148, 198, 30, 45));
+	_sprite.push_back(IntRect(185, 197, 30, 46));
+	_sprite.push_back(IntRect(220, 197, 28, 46));
+	_sprite.push_back(IntRect(253, 198, 32, 45));
+	_sprite.push_back(IntRect(290, 199, 40, 44));
+
+	_sprite.push_back(IntRect(5, 250, 39, 46));
+	_sprite.push_back(IntRect(53, 250, 40, 46));
+	_sprite.push_back(IntRect(107, 250, 40, 46));
+	_sprite.push_back(IntRect(153, 250, 44, 46));
+	_sprite.push_back(IntRect(209, 249, 45, 47));
+	_sprite.push_back(IntRect(269, 250, 45, 43));
+
+	_sprite.push_back(IntRect(3, 304, 45, 44));
+	_sprite.push_back(IntRect(56, 304, 44, 44));
+	_sprite.push_back(IntRect(110, 302, 41, 46));
+	_sprite.push_back(IntRect(158, 302, 37, 46));
+	_sprite.push_back(IntRect(208, 302, 36, 46));
+	_sprite.push_back(IntRect(251, 302, 36, 46));
+	_sprite.push_back(IntRect(294, 302, 26, 46));
+	_sprite.push_back(IntRect(8, 353, 27, 44));
+	_sprite.push_back(IntRect(54, 352, 27, 45));
+
+//vector 2f position
+
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 250));
+
+*/
+
+/*
+animation chien attack
+
+//size
+
+	_size.push_back(Vector2f(116, 88));
+	_size.push_back(Vector2f(116, 81));
+	_size.push_back(Vector2f(118, 81));
+	_size.push_back(Vector2f(118, 98));
+	_size.push_back(Vector2f(116, 100));
+
+	_size.push_back(Vector2f(172, 65));
+	_size.push_back(Vector2f(153, 95));
+	_size.push_back(Vector2f(116, 121));
+	_size.push_back(Vector2f(107, 128));
+	_size.push_back(Vector2f(109, 130));
+	_size.push_back(Vector2f(130, 135));
+	_size.push_back(Vector2f(104, 132));
+	_size.push_back(Vector2f(104, 128));
+	_size.push_back(Vector2f(125, 100));
+
+//int rect
+
+	_sprite.push_back(IntRect(2, 19, 50,38));
+	_sprite.push_back(IntRect(62, 22, 50, 35));
+	_sprite.push_back(IntRect(123, 22, 51, 35));
+	_sprite.push_back(IntRect(179, 15, 51, 42));
+	_sprite.push_back(IntRect(242, 14, 50, 43));
+
+	_sprite.push_back(IntRect(3, 89, 74, 28));
+	_sprite.push_back(IntRect(86, 76, 66, 41));
+	_sprite.push_back(IntRect(163, 65, 50, 52));
+	_sprite.push_back(IntRect(218, 62, 46, 55));
+	_sprite.push_back(IntRect(268, 61, 47, 56));
+	_sprite.push_back(IntRect(3, 120, 56, 58));
+	_sprite.push_back(IntRect(70, 121, 45, 57));
+	_sprite.push_back(IntRect(126, 123, 45, 55));
+	_sprite.push_back(IntRect(180, 135, 54, 43));
+
+//vector 2f position
+
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 255));
+	_position.push_back(Vector2f(25, 253));
+	_position.push_back(Vector2f(25, 240));
+	_position.push_back(Vector2f(25, 240));
+
+	_position.push_back(Vector2f(25, 250));
+	_position.push_back(Vector2f(25, 240));
+	_position.push_back(Vector2f(25, 210));
+	_position.push_back(Vector2f(25, 210));
+	_position.push_back(Vector2f(25, 210));
+	_position.push_back(Vector2f(25, 214));
+	_position.push_back(Vector2f(25, 218));
+	_position.push_back(Vector2f(30, 218));
+	_position.push_back(Vector2f(25, 245));
+
+*/

@@ -30,9 +30,13 @@ void menuPrincipal::initMenuPrincipal()
 	_animationIdle.loadAnimationFromNotePad("ressources/animation.txt", "idleMainMenu");
 	changeAnimation(0);
 
+	setText(_textTitle, "Tiny Dungeon", _font, "ressources/ShadowsIntoLight-Regular.ttf", 570, 170, 65, Color::Black, Text::Bold);
 
 	_boutonNouvelleAventure.initialiserFondBouton(500, 300, 500, 100, Color::Black);  
 	setText(_textBoutonNouvelAventure, "Nouvelle Aventure", _font, "ressources/ShadowsIntoLight-Regular.ttf", 640, 330, 30, Color::White, Text::Bold);
+
+	_poursuivre.initialiserFondBouton(500, 440, 500, 100, Color::Black);
+	setText(_poursuivreText, "Poursuivre une aventure", _font, "ressources/ShadowsIntoLight-Regular.ttf", 600, 470, 30, Color::White, Text::Bold);
 
 }
 void menuPrincipal::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
@@ -64,14 +68,12 @@ void menuPrincipal::print(RenderWindow& window)
 	_boutonNouvelleAventure.print(window);
 	window.draw(_textTitle);
 	window.draw(_textBoutonNouvelAventure);
+	_poursuivre.print(window);
+	window.draw(_poursuivreText);
 	window.draw(_logoAnimation);
 	
 }
 
-void menuPrincipal::printTitle(const char *title, RenderWindow& window) {
-	setText(_textTitle, title, _font, "ressources/ShadowsIntoLight-Regular.ttf", 570, 170, 65, Color::Black, Text::Bold);
-
-}
 void menuPrincipal::loadBoutons(bouton &nomBouton, const char *message, int posX, int posY,const Color &colorText,const Color &colorOutline, int style, const char *police, int w, int h, int taillePolice) {
 	nomBouton.initialiserBouton(posX, posY, w, h, message);
 	nomBouton.setText(message, police, posX + 10, posY + 10, taillePolice, colorText, style);
@@ -80,7 +82,7 @@ void menuPrincipal::loadBoutons(bouton &nomBouton, const char *message, int posX
 
 }
 // boutons du menu (nouvelle aventure, poursuivre, credits, etc..) [emily] + animation de P-A
-bool menuPrincipal::optionMenu(RenderWindow& window) {
+int menuPrincipal::optionMenu(RenderWindow& window) {
 	
 	Event event;
 	
@@ -90,35 +92,18 @@ bool menuPrincipal::optionMenu(RenderWindow& window) {
 	texture.loadFromFile("ressources/hero.png");
 	_logoAnimation.setTexture(&texture);
 
-	printTitle("Tiny Dungeon", window);
-
 	while (true) {
 		while (window.pollEvent(event)) {
 			if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
 				Vector2i mousePosition = Mouse::getPosition(window);
+				//Nouvelle Aventure (1)
 				if (_boutonNouvelleAventure.contain(mousePosition)) {
-					return true;
-					//nouvelleAventure();
+					return 1;
 				}
-
-				/*switch (event.key.code)
-				{
-				case Keyboard::Escape:
-					window.close();
-					break;
-				case Keyboard::Num1:
-					return true;
-					break;
-				case Keyboard::Num2:
-					//ContinuerAventure()
-					break;
-				case Keyboard::Num3:
-
-					break;
-				default:
-					break;
+				//Poursuivre
+				if (_poursuivre.contain(mousePosition)) {
+					return 2;
 				}
-				*/
 			}
 		}
 			
@@ -132,4 +117,31 @@ bool menuPrincipal::optionMenu(RenderWindow& window) {
 		sleep(seconds(0.20f));
 
 	}
+}
+//Met stats du personnage dans fichier Sauvegarde [Emily]
+void menuPrincipal::writeInSauvegarde(int maxPv, int Str, int maxMana, int Faith, int Speed) {
+
+	ofstream sauvegarde;
+	sauvegarde.open("sauvegarde.txt");
+
+
+	sauvegarde << maxPv << endl;
+	sauvegarde << Str << endl;
+	sauvegarde << maxMana << endl;
+	sauvegarde << Faith << endl;
+	sauvegarde << Speed << endl;
+
+	sauvegarde.close();
+
+}
+void menuPrincipal::readInSauvegarde() {
+	ifstream sauvegarde;
+	sauvegarde.open("sauvegarde.txt");
+
+	sauvegarde.seekg(0, ios::end);
+	if (sauvegarde.tellg() == 0) { //si fichier vide
+		
+	}
+
+
 }

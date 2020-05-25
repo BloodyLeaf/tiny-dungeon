@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+﻿  game.cpp
+  TP_FINAL.vcxproj -> C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\x64\Debug\TP_FINAL.exe
+=======
+<<<<<<< HEAD
+>>>>>>> be8a879ea03b49ee29f0cdc224fe5c0c7e540d0f
 ﻿  battleGround.cpp
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(188,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(188,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
@@ -24,3 +32,8 @@ C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(633,6): warning C4101:
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(657,6): warning C4101: 'target' : variable locale non référencée
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(559): warning C4715: 'battleGrounds::generateMonster' : les chemins de contrôle ne retournent pas tous une valeur
   TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe
+<<<<<<< HEAD
+=======
+>>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313
+>>>>>>> 68faf490caccc104bad95b466a16cce164c7ceb7
+>>>>>>> be8a879ea03b49ee29f0cdc224fe5c0c7e540d0f

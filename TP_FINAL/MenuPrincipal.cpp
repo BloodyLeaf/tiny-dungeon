@@ -1,5 +1,5 @@
 /*
-Auteur(e)s :						Pier-Alexandre Caron
+Auteur(e)s :						Pier-Alexandre Caron, Emily Bernier
 Date de création du fichier :		2020-04-27
 Nom du fichier :					MenuPrincipal.cpp
 Déclaration des méthode de l'objet MenuPrincipal
@@ -10,7 +10,6 @@ Déclaration des méthode de l'objet MenuPrincipal
 void menuPrincipal::initMenuPrincipal()
 {
 	
-	printTitle("Tiny Dungeon");
 	_fondEcran.setSize(Vector2f(1500, 800));
 	_fondEcran.setFillColor(Color::White);
 	_fondEcran.setPosition(0, 0);
@@ -30,8 +29,10 @@ void menuPrincipal::initMenuPrincipal()
 	//_logoAnimation.setFillColor(Color::Blue);
 	_animationIdle.loadAnimationFromNotePad("ressources/animation.txt", "idleMainMenu");
 	changeAnimation(0);
-	_boutonNouvelleAventure.initialiserFondBouton(500, 170, 500, 100, Color::Black); // set un bouton position , dimension, couleur
-	setText(_textBoutonNouvelAventure, "1) Nouvelle Aventure", _font, "ressources/arial.ttf", 600, 215, 24, Color::White, Text::Bold);// set du text over un bouton 
+
+
+	_boutonNouvelleAventure.initialiserFondBouton(500, 300, 500, 100, Color::Black);  
+	setText(_textBoutonNouvelAventure, "Nouvelle Aventure", _font, "ressources/ShadowsIntoLight-Regular.ttf", 640, 330, 30, Color::White, Text::Bold);
 
 }
 void menuPrincipal::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
@@ -61,12 +62,14 @@ void menuPrincipal::print(RenderWindow& window)
 	window.draw(_fondEcran);
 	window.draw(_fondEcranPersonnage);
 	_boutonNouvelleAventure.print(window);
+	window.draw(_textTitle);
 	window.draw(_textBoutonNouvelAventure);
 	window.draw(_logoAnimation);
 	
 }
 
-void menuPrincipal::printTitle(const char *title) {
+void menuPrincipal::printTitle(const char *title, RenderWindow& window) {
+	setText(_textTitle, title, _font, "ressources/ShadowsIntoLight-Regular.ttf", 570, 170, 65, Color::Black, Text::Bold);
 
 }
 void menuPrincipal::loadBoutons(bouton &nomBouton, const char *message, int posX, int posY,const Color &colorText,const Color &colorOutline, int style, const char *police, int w, int h, int taillePolice) {
@@ -76,6 +79,7 @@ void menuPrincipal::loadBoutons(bouton &nomBouton, const char *message, int posX
 	nomBouton.setFillColor(Color::White);
 
 }
+// boutons du menu (nouvelle aventure, poursuivre, credits, etc..) [emily] + animation de P-A
 bool menuPrincipal::optionMenu(RenderWindow& window) {
 	
 	Event event;
@@ -86,32 +90,39 @@ bool menuPrincipal::optionMenu(RenderWindow& window) {
 	texture.loadFromFile("ressources/hero.png");
 	_logoAnimation.setTexture(&texture);
 
+	printTitle("Tiny Dungeon", window);
+
 	while (true) {
 		while (window.pollEvent(event)) {
-			if (event.type == Event::KeyPressed) {
-				/*if (event.type == Event::MouseButtonPressed) {
-				//if (event.mouseButton.button == Mouse::Left){
-					//if (mousePosition.x) {}
-					nouvelleAventure();
-				//}
-			}*/
-				switch (event.key.code)
+			if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+				Vector2i mousePosition = Mouse::getPosition(window);
+				if (_boutonNouvelleAventure.contain(mousePosition)) {
+					return true;
+					//nouvelleAventure();
+				}
+
+				/*switch (event.key.code)
 				{
 				case Keyboard::Escape:
 					window.close();
 					break;
 				case Keyboard::Num1:
-						return true;
+					return true;
 					break;
 				case Keyboard::Num2:
-					//OuvrirCredits()
+					//ContinuerAventure()
+					break;
+				case Keyboard::Num3:
+
 					break;
 				default:
 					break;
 				}
+				*/
 			}
-			
 		}
+			
+		
 		whereInAnimation++;
 		if (whereInAnimation > 2)whereInAnimation = 0;
 		changeAnimation(whereInAnimation);
@@ -119,5 +130,6 @@ bool menuPrincipal::optionMenu(RenderWindow& window) {
 		print(window);
 		window.display();
 		sleep(seconds(0.20f));
+
 	}
 }

@@ -11,6 +11,7 @@ Déclaration des méthode de l'objet bouton
 using namespace sf;
 
 //Faire des images pour chacun des boutons [ P-A ]
+// + setText et print pour le text de chaque bouton [Emily]
 
 class bouton {
 

@@ -38,6 +38,7 @@ void bouton::setPosition(int posX, int posY)
 	_posBouton.setPosition(posX, posY);
 }
 
+
 void bouton::setIntRect(IntRect intRect)
 {
 	_rectBouton = intRect;
@@ -85,11 +86,15 @@ void bouton::setFillColor(Color color) {
 
 bool bouton::contain(Vector2i mousePosition)
 {
+
 	if (mousePosition.x > _posBouton.getPosition().x &&
 		mousePosition.x < (_posBouton.getPosition().x + _posBouton.getSize().x) &&
 		mousePosition.y > _posBouton.getPosition().y &&
-		mousePosition.y < (_posBouton.getPosition().y + _posBouton.getSize().y)) return true;
-	else return false;
+		mousePosition.y < (_posBouton.getPosition().y + _posBouton.getSize().y)) {
+			return true;
+	}
+	else
+		return false;
 }
 
 

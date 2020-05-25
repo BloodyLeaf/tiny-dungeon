@@ -34,18 +34,17 @@ void game::playGame()
 	
 
 	initGame();
-
-
-	
 	
 
 	Event event;
 	menu.initMenuPrincipal();
 
-	Vector2i mousePosition = Mouse::getPosition();
 
 	while (_window.isOpen()) {
-		_heroAlive = menu.optionMenu(_window);
+		if (menu.optionMenu(_window) == true) {  //si click sur bouton Nouvelle aventure, retourne true
+			initHero();
+			_heroAlive = true;
+		}
 		while (_window.pollEvent(event)) {
 			if (event.type == Event::Closed)
 				_window.close();
@@ -74,9 +73,4 @@ void game::playGame()
 		}
 
 	}
-}
-//Débuter une nouvelle aventure
-void game::nouvelleAventure() {
-
-
 }

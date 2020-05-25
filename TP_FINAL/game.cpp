@@ -37,10 +37,11 @@ void game::playGame()
 	
 
 	Event event;
-	menu.initMenuPrincipal();
+	
 
 
 	while (_window.isOpen()) {
+		menu.initMenuPrincipal();
 		if (menu.optionMenu(_window) == true) {  //si click sur bouton Nouvelle aventure, retourne true
 			initHero();
 			_heroAlive = true;

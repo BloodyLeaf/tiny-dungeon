@@ -1,4 +1,5 @@
-﻿  battleGround.cpp
+﻿  Source.cpp
+  battleGround.cpp
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(175,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(175,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(199,41): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
@@ -22,5 +23,13 @@ C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(585,61): warning C4244
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(585,37): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(615,6): warning C4101: 'monsterhp' : variable locale non référencée
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(639,6): warning C4101: 'target' : variable locale non référencée
+  game.cpp
+  hero.cpp
+  town.cpp
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(96,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(96,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(109,25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\town.cpp(109,19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Génération de code en cours...
 C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(541): warning C4715: 'battleGrounds::generateMonster' : les chemins de contrôle ne retournent pas tous une valeur
   TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe

@@ -269,17 +269,12 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 
 						//Option pour choisir son type d'action
 						if (_actionOption[0].contain(mousePosition)) {
-<<<<<<< HEAD
 							if (hero.potionIsUsable()) {
 								hero.setPv(hero.getPv() + 20);
 								if (hero.getPv() > hero.getMaxPv()) hero.setPv(hero.getMaxPv()); // Empêche le héro d'overflow la vie
 								hero.setPotion(hero.getPotion() - 1);
 								return true;
 							}
-=======
-							
-							
->>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313
 						}
 						
 						if (_actionOption[1].contain(mousePosition)) {

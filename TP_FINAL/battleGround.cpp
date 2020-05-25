@@ -257,7 +257,12 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 
 						//Option pour choisir son type d'action
 						if (_actionOption[0].contain(mousePosition)) {
-							// no in yet
+							if (hero.potionIsUsable()) {
+								hero.setPv(hero.getPv() + 20);
+								if (hero.getPv() > hero.getMaxPv()) hero.setPv(hero.getMaxPv()); // Empêche le héro d'overflow la vie
+								hero.setPotion(hero.getPotion() - 1);
+								return true;
+							}
 						}
 						
 						if (_actionOption[1].contain(mousePosition)) {
@@ -871,6 +876,10 @@ void battleGrounds::checkIfDead(int id)
 
 void battleGrounds::updateMenu(hero& hero)
 {
+	if (!hero.potionIsUsable())
+		_attackOption[0].setToTransparent();
+	else _attackOption[0].setDimension(180, 100);
+
 	for(int i = 0 ; i<5 ; i ++){
 		if (!hero.checkIfSkillCanBeUsed(i)) {
 			_attackOption[i].setToTransparent();

@@ -67,6 +67,7 @@ void game::playGame()
 					_level++;
 					_hero.setGold(_hero.getGold() + 15);
 
+
 				}
 			}
 			

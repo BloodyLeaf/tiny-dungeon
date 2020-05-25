@@ -23,9 +23,9 @@ class Item
 
 	public:
 		// Constructeurs
-		Item();																						// Builds an empty debug object
-		Item(int id, std::string name, int type, int speedMod, int defMod, int strMod);	// Builds an item with set values
-		~Item();																					// Destroys the object
+		Item();																				// Builds an empty debug object
+		Item(int id, std::string name, int type, int speedMod, int defMod, int strMod);		// Builds an item with set values
+		~Item();																			// Destroys the object
 
 		// Getteurs
 		const int GetID();

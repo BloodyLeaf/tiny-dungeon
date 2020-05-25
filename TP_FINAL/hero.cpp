@@ -217,3 +217,26 @@ void hero::useAnimation(int whereInAnimation,int animationID)
         _equipement.at(i) = (equipement.at(i));
     }
 }*/
+
+// Author:		Étienne Ménard
+// Date:		2020-05-25
+// Parameters:	none
+// Return:		bool
+// Description:	Returns true if there are usable potions.
+bool hero::potionIsUsable() const {
+    if (_potions > 0)
+        return true;
+    else return false;
+}
+
+int hero::getPotion() const {
+    return _potions;
+}
+
+void hero::setPotion(int nbPotion) {
+    _potions = nbPotion;
+}
+
+void hero::usePotion() {
+    setPv(getPv() + 20);
+}

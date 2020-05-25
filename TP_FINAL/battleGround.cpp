@@ -160,6 +160,18 @@ void battleGrounds::initanimationSpell(void)
 	_spell[13].loadAnimationFromNotePad("ressources/animationSpell.txt", "divinePresenceMid");
 	_spell[14].loadAnimationFromNotePad("ressources/animationSpell.txt", "divinePresenceDown");
 }
+void battleGrounds::initAnimationHeroAttack(void)
+{
+	_heroAttackAnimation[0].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackUp");
+	_heroAttackAnimation[1].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackMid");
+	_heroAttackAnimation[2].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackTop");
+	_heroAttackAnimation[3].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+	_heroAttackAnimation[4].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+	_heroAttackAnimation[5].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+	_heroAttackAnimation[6].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+	_heroAttackAnimation[7].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+	_heroAttackAnimation[8].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+}
 //P-A
 //Init du texte
 //recois beaucoup de parametre de texte
@@ -257,7 +269,12 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 
 						//Option pour choisir son type d'action
 						if (_actionOption[0].contain(mousePosition)) {
-							// no in yet
+							if (hero.potionIsUsable()) {
+								hero.setPv(hero.getPv() + 20);
+								if (hero.getPv() > hero.getMaxPv()) hero.setPv(hero.getMaxPv()); // Empêche le héro d'overflow la vie
+								hero.setPotion(hero.getPotion() - 1);
+								return true;
+							}
 						}
 						
 						if (_actionOption[1].contain(mousePosition)) {
@@ -309,7 +326,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSkillCanBeUsed(0)) {
 								
 								
-								gestionAnimationAttaque(target, window, hero);
+								gestionAnimationAttaque(target, window, hero,0);
 								hero.useAnAttack(_monster[target], 0);
 								setWhereInMenu(0);
 								hero.setMana(hero.getMana() + hero.getFaith());
@@ -322,7 +339,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSkillCanBeUsed(1)) {
 								
 								
-								gestionAnimationAttaque(target, window, hero);
+								gestionAnimationAttaque(target, window, hero,1);
 								hero.useAnAttack(_monster[target], 1);
 								setWhereInMenu(0);
 								return true;
@@ -333,7 +350,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSkillCanBeUsed(2)) {
 								
 								
-								gestionAnimationAttaque(target, window, hero);
+								gestionAnimationAttaque(target, window, hero,2);
 								hero.useAnAttack(_monster[target], 2);
 								setWhereInMenu(0);
 								return true;
@@ -344,7 +361,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSkillCanBeUsed(3)) {
 								
 								
-								gestionAnimationAttaque(target, window, hero);
+								gestionAnimationAttaque(target, window, hero,1);
 								hero.useAnAttack(_monster[target], 3);
 								setWhereInMenu(0);
 								return true;
@@ -355,7 +372,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							if (hero.checkIfSkillCanBeUsed(4)) {
 								
 								
-								gestionAnimationAttaque(target, window, hero);
+								gestionAnimationAttaque(target, window, hero,2);
 								hero.useAnAttack(_monster[target], 4);
 								setWhereInMenu(0);
 								return true;
@@ -457,7 +474,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 
 		_whereInSprite++;
 		if (_whereInSprite > 2)_whereInSprite = 0;
-		hero.useAnimation(_whereInSprite, 1);
+		hero.useAnimationIdle(_whereInSprite, 1);
 		moveSpeedindicator();
 		updateMenu(hero);
 		replaceRessourcesBar(hero);
@@ -681,7 +698,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		addSpeed(hero);
 		_whereInSprite++;
 		if (_whereInSprite > 2)_whereInSprite = 0;
-		hero.useAnimation(_whereInSprite, 1);
+		hero.useAnimationIdle(_whereInSprite, 1);
 		moveSpeedindicator();
 		updateMenu(hero);
 		replaceRessourcesBar(hero);
@@ -697,6 +714,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		if (_monster[0].getPv() <= 0 && _monster[1].getPv() <= 0 && _monster[2].getPv() <= 0) {
 			//animation sortir du level
 			aliveMonster = 0;
+			
 			animationQuitLevel(window, hero);
 			return true;
 		}
@@ -734,7 +752,7 @@ void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& he
 
 		_whereInSprite++;
 		if (_whereInSprite > 2)_whereInSprite = 0;
-		hero.useAnimation(_whereInSprite, 1);
+		hero.useAnimationIdle(_whereInSprite, 1);
 		replaceRessourcesBar(hero);
 		window.clear();
 		printFull(window,hero);
@@ -749,7 +767,7 @@ void battleGrounds::animationMonsterAttack(RenderWindow& window, int id,hero& he
 
 		_whereInSprite++;
 		if (_whereInSprite > 2)_whereInSprite = 0;
-		hero.useAnimation(_whereInSprite, 1);
+		hero.useAnimationIdle(_whereInSprite, 1);
 		replaceRessourcesBar(hero);
 		window.clear();
 		printFull(window,hero);
@@ -871,6 +889,10 @@ void battleGrounds::checkIfDead(int id)
 
 void battleGrounds::updateMenu(hero& hero)
 {
+	if (!hero.potionIsUsable())
+		_attackOption[0].setToTransparent();
+	else _attackOption[0].setDimension(180, 100);
+
 	for(int i = 0 ; i<5 ; i ++){
 		if (!hero.checkIfSkillCanBeUsed(i)) {
 			_attackOption[i].setToTransparent();
@@ -989,21 +1011,19 @@ void battleGrounds::printSpell(RenderWindow& window,hero hero)
 	window.draw(_projectile);
 }
 
-void battleGrounds::gestionAnimationAttaque(int target, RenderWindow& window, hero hero)
+void battleGrounds::gestionAnimationAttaque(int target, RenderWindow& window, hero hero,int skillID)
 {
-	switch (target)
-	{
-	case 0:
-		animationPlayerUpAttack(window, hero);
-		break;
-	case 1:
-		animationPlayerMiddleAttack(window, hero);
-		break;
-	case 2:
-		animationPlayerLowAttack(window, hero);
-		break;
-	default:
-		break;
+	int indiceSkillTouse = (skillID * 3) + target;
+	int nbFrame = _heroAttackAnimation[indiceSkillTouse].getNbFrame();
+
+	for (int i = 0; i < nbFrame; i++) {
+		window.clear();
+		hero.setPositionWithVector2f(_heroAttackAnimation[indiceSkillTouse].getPosition(i));
+		hero.setSize(_heroAttackAnimation[indiceSkillTouse].getSize(i));
+		hero.setIntRect(_heroAttackAnimation[indiceSkillTouse].getSprite(i));
+		printFull(window, hero);
+		window.display();
+		sf::sleep(seconds(0.1f));
 	}
 }
 

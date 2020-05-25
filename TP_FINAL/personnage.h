@@ -52,9 +52,11 @@ public:
     void setSpeed(int speed);               //modifie le vitesse du personnage [sophie]
     void setDex(int dex);                   //modifie la dexterite du personnage [sophie]
     void setPosition(int x, int y);         //Set La position du personnage [ P-A ]
+    void setPositionWithVector2f(Vector2f position);    //set la position selon un vector2f [p-a]
     void initPersonnage(void);              //Initialisation du personnage au début du jeu [P-A ] + parametre a ajouter si + de perso
     void setCharColor(Color color);         //Set la couleur du hero actuel [P-A]
     void setIntRect(IntRect rect);           //Modifie le sprite du personnage[P-A]
+    void setSize(Vector2f Size);               //Modifie la size du personnage [ p-a]
     
 
     void recevoirDegat(int degat);                                       //modifie les points de vie [Sophie]

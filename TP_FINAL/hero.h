@@ -24,6 +24,7 @@ private:
     int _mana;                                              //Stats pour des meilleurs attaque [P-A ]
     int _maxMana;
     int _faith;
+    int _potions;
 
     string _race, _classe;                                //modificateur de stats [sophie]
     Item _weapon;
@@ -33,7 +34,7 @@ private:
     attack _attack[5];
     attack _spell[5];
     
-    animation _attackAnimation[9];
+   
     animation _idle[2];
     //animation _idleCombats;
 
@@ -54,6 +55,12 @@ public:
     Item getWeapon() const;
     Item getBoots() const;
     Item getArmor() const;
+
+    int getPotion() const;                              // Retourne le nombre de potions du héros [Étienne]
+    void setPotion(int nbPotion);                       // Set le nombre de potions du héros [Étienne]
+    void usePotion();                                   // Utilise une potion et la soustrait au nombre de potions du héros [Étienne]
+    bool potionIsUsable() const;                        // Retourne vrai si il y a des potions à utliser [Étienne]
+
     //getteur de vector <int> equipement a faire[sophie]
 
     void setRace(string race);                            //modificateur de la race du personnage [sophie]
@@ -76,6 +83,11 @@ public:
     bool checkIfSkillCanBeUsed(int id);                     //Check if mana + str is high enought for cost
     bool checkIfSpellCanBeUsed(int id);                     //Check if mana + faith is high enought for cost
 
+<<<<<<< HEAD
     void useAnimation(int whereInAnimation,int animationID);        //0 idleShop 1 idleBattleGround
+=======
+    void useAnimationIdle(int whereInAnimation,int animationID);        //0 idleShop 1 idleBattleGround
+    
 
+>>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313
 };

@@ -32,15 +32,7 @@ void hero::initHero()
     _idle[0].loadAnimationFromNotePad("ressources/animation.txt","idleShop");
     _idle[1].loadAnimationFromNotePad("ressources/animation.txt", "idleBattleGround");
 
-    _attackAnimation[0].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackUp");
-    _attackAnimation[1].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackMid");
-    _attackAnimation[2].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackTop");
-    _attackAnimation[3].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[4].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[5].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[6].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[7].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[8].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    
 }
 
 void hero::initHeroPoursuivre(int maxPv, int Str, int maxMana, int Faith, int Speed) {  //initialiser hero d'une aventure précédente [Emily]
@@ -225,7 +217,7 @@ void hero::useAnAttack(personnage & cible, int id)
 
 void hero::useASpell(personnage& cible, int id)
 {
-    _spell[id].attackOnATarget(cible, getFaith() + _weapon.GetStrengthMod());
+    _spell[id].attackOnATarget(cible, getFaith());
     setMana(getMana()-_spell[id].getManaCost());
 }
 bool hero::checkIfSkillCanBeUsed(int id)
@@ -240,7 +232,7 @@ bool hero::checkIfSpellCanBeUsed(int id)
     else return false;
 }
 
-void hero::useAnimation(int whereInAnimation,int animationID)
+void hero::useAnimationIdle(int whereInAnimation,int animationID)
 {
     _position.setTextureRect(_idle[animationID].getSprite(whereInAnimation));
     _position.setPosition(_idle[animationID].getPosition(whereInAnimation));
@@ -252,3 +244,26 @@ void hero::useAnimation(int whereInAnimation,int animationID)
         _equipement.at(i) = (equipement.at(i));
     }
 }*/
+
+// Author:		Étienne Ménard
+// Date:		2020-05-25
+// Parameters:	none
+// Return:		bool
+// Description:	Returns true if there are usable potions.
+bool hero::potionIsUsable() const {
+    if (_potions > 0)
+        return true;
+    else return false;
+}
+
+int hero::getPotion() const {
+    return _potions;
+}
+
+void hero::setPotion(int nbPotion) {
+    _potions = nbPotion;
+}
+
+void hero::usePotion() {
+    setPv(getPv() + 20);
+}

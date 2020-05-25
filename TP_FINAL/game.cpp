@@ -7,6 +7,7 @@ Définition des méthode de l'objet Game
 
 #include "game.h"
 
+
 void game::initHero(void)
 {
 	_hero.initHero();
@@ -37,13 +38,15 @@ void game::playGame()
 	
 
 	Event event;
-	menu.initMenuPrincipal();
-
+	
+	
 
 	while (_window.isOpen()) {
 		int option= menu.optionMenu(_window);
 		switch (option) {
 		case 1: //si click sur bouton Nouvelle aventure, retourne 1 
+			menu.initMenuPrincipal();
+		  //si click sur bouton Nouvelle aventure, retourne true
 			initHero();
 			_heroAlive = true;
 			break;
@@ -75,7 +78,12 @@ void game::playGame()
 					_heroAlive = _currentBattleGround.game(_window, _hero, _world);
 					_level++;
 					_hero.setGold(_hero.getGold() + 15);
+<<<<<<< HEAD
 
+
+=======
+					
+>>>>>>> bda73f5e1963483e2302cc4199c0c26e5518f313
 				}
 			}
 			//write dans le fichier de sauvegarde

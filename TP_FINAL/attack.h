@@ -16,17 +16,19 @@ private:
 
 	int _manaCost;
 	int _modifier;
+	int _requiredStats;
 	std::string _attackName;
 
 	
 
 public:
 
-	void initAttack(int manacost, int modifier,string attackName);
+	void initAttack(int manacost, int modifier,int requiredStats,string attackName);
 
 	
 	
 	void attackOnATarget(personnage& cible, int damageStats);
 
 	int getManaCost(void);
+	int getRequiredStats(void);
 };

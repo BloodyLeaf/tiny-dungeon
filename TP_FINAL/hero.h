@@ -23,15 +23,16 @@ private:
 
     int _mana;                                              //Stats pour des meilleurs attaque [P-A ]
     int _maxMana;
-    int _int;
+    int _faith;
 
     string _race, _classe;                                //modificateur de stats [sophie]
     Item _weapon;
     Item _boots;
     Item _armor;
 
-    attack _attack[4];
-
+    attack _attack[5];
+    
+    animation _attackAnimation[9];
     animation _idle[2];
     //animation _idleCombats;
 
@@ -39,13 +40,14 @@ public:
 
     void initHero();                                      //initialise le hero en attendant qu'on finise la lecture du blocNote [P-A temp]
     void initHeroAttack();                                  //Initialise les attaques du hero [ P-A ]
+    void initHeroSpell();                                   //Initialise la liste des sort possible du hero [P-A]
 
     string getRace() const;                                //retourne la race du personnage [sophie]
     string getClasse() const;                            //retourne la race du personnage [sophie]
 
     int getMana();                                      //Retoure le mana actuel [ P-A ] 
     int getMaxMana();                                   //Retourne le mana Max [P-A ]
-    int getInt();                                       //Retourne le int du personnage [P-A]
+    int getFaith();                                       //Retourne le int du personnage [P-A]
 
     Item getWeapon() const;
     Item getBoots() const;
@@ -63,11 +65,14 @@ public:
 
     void setMana(int mana);                     //Set Le mana actuel du hero
     void setMaxMana(int maxMana);               //Set le mana max du hero
-    void setInt(int intel);                     //set la stats d'inteligence du hero
+    void setFaith(int intel);                     //set la stats d'inteligence du hero
 
     void rechercheHero(ifstream& fichier, int personnage);        //recherche dans un fichier texte a laide de id et attribution de donnee [sophie]
     void useAnAttack(personnage& cible, int id);                     // Pour permettre au personnage d'utiliser des attaques[P-A]
-    bool checkIfSkillCanBeUsed(int id);                     //Check if mana is high enought for cost
+    void useASpell(personnage& cible, int id);                      //pour permettre au hero de lancer des sorts[P-A]
+
+    bool checkIfSkillCanBeUsed(int id);                     //Check if mana + str is high enought for cost
+    bool checkIfSpellCanBeUsed(int id);                     //Check if mana + faith is high enought for cost
 
     void useAnimation(int whereInAnimation,int animationID);        //0 idleShop 1 idleBattleGround
 

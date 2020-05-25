@@ -14,6 +14,7 @@ Déclaration des méthode de l'objet MenuPrincipal
 #include "Animation.h"
 #include "hero.h"
 #include "monstre.h"
+#include "Animation.h"
 
 using namespace sf;
 
@@ -29,9 +30,10 @@ private:
 	Text _text;
 
 	RectangleShape _BackgroundMenu;
-	bouton _actionOption[2];
+	bouton _actionOption[4];
 	bouton _targetOption[3];
-	bouton _attackOption[4];
+	bouton _attackOption[5];
+	bouton _spellOption[5];
 	
 
 	RessourceBar _heroHPBar;
@@ -44,23 +46,29 @@ private:
 	
 
 	Color _monsterColor[3]; //Temporairement pour replacer les bonnes couleur apres les animations
-	int _whereInMenu;
+	int _whereInMenu;			//0 no menu 1 menu des action 3 menu de target 4 menu d'attaque 5 menu des sorts 6 menu de target pour les sorts
 	int _speedtimer[4];			//0 a 2 monstre 3 hero
+
+	RectangleShape _projectile;
+	animation _spell[15];
 
 public:
 
-	void initTemporaire(hero& hero);													//Initialise la couleur du monstre et du héro
+	void initBG(hero& hero);													//Initialise la couleur du monstre et du héro
 
 	void initMenuTarget(void);
 	void initMenuAttack(void);
 	void initMenuAction(void);
-
+	void initMenuSpell(void);
+	void initanimationSpell(void);
 	
 	void setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setWhereInMenu(int choice);												//navigation du menu : 1 Choix attaque ou consumable
 																				//Choisir sa potion consommable ( a faire plus tard )[p-a]
 																				//						3 Choisir sa cible
 																				//						4 Choisir son attaque
+	void setBackground(Texture& texture,IntRect & shape);
+
 	void initSpeedBar(void);
 	void moveSpeedindicator(void);
 	
@@ -99,12 +107,16 @@ public:
 	void printFull(RenderWindow& window,hero hero);
 	void printTargetMenu(RenderWindow& window);
 	void printAttackMenu(RenderWindow& window);
+	void printSpellMenu(RenderWindow& window);
 	void printActionMenu(RenderWindow& window);
 	void printOnlyBackgroundMenu(RenderWindow& window);
 	void printRessourcesBar(RenderWindow& window, hero hero);
 	void printSpeedIndicator(RenderWindow& window);
+	void printSpell(RenderWindow& window,hero hero);
 
 	void gestionAnimationAttaque(int target,RenderWindow& window, hero hero);
+	void gestionAnimationSpell(int target, RenderWindow& window, hero hero,int spellId);
+	
 	
 	/*void heroTurn(void);
 	void monsterTurn(void);*/

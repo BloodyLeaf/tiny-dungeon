@@ -16,9 +16,11 @@ using namespace sf;
 class animation {
 
 private:
-	
+
 	std::vector<IntRect> _sprite;
 	std::vector<Vector2f> _position;
+	std::vector<Vector2f> _size;
+	int _nbFrame;
 
 public:
 
@@ -26,5 +28,7 @@ public:
 
 	IntRect getSprite(int whereInAnimation);
 	Vector2f getPosition(int whereInAnimation);
+	Vector2f getSize(int whereInAnimation);
+	int getNbFrame(void);
 
 };

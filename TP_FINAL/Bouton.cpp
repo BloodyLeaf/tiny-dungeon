@@ -82,3 +82,14 @@ void bouton::setFillColor(Color color) {
 	_posBouton.setFillColor(color);
 
 }
+
+bool bouton::contain(Vector2i mousePosition)
+{
+	if (mousePosition.x > _posBouton.getPosition().x &&
+		mousePosition.x < (_posBouton.getPosition().x + _posBouton.getSize().x) &&
+		mousePosition.y > _posBouton.getPosition().y &&
+		mousePosition.y < (_posBouton.getPosition().y + _posBouton.getSize().y)) return true;
+	else return false;
+}
+
+

@@ -13,13 +13,16 @@ void hero::initHero()
     //initPersonnage(Color::Cyan, 100, 100);
     _position.setSize(Vector2f(100, 100));
     initHeroAttack();
-    setPv(35);
-    setMaxPv(35);
+    initHeroSpell();
+    setMaxPv(25);
+    setPv(25);
+    
     setStr(1);
     setDex(1);
-    setMana(12);
-    setMaxMana(12);
-    setInt(3);
+    setMaxMana(10);
+    setMana(10);
+    
+    setFaith(3);
     setSpeed(5);
 
     _texture.loadFromFile("ressources/hero.png");
@@ -28,14 +31,34 @@ void hero::initHero()
 
     _idle[0].loadAnimationFromNotePad("ressources/animation.txt","idleShop");
     _idle[1].loadAnimationFromNotePad("ressources/animation.txt", "idleBattleGround");
+
+    _attackAnimation[0].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackUp");
+    _attackAnimation[1].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackMid");
+    _attackAnimation[2].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackTop");
+    _attackAnimation[3].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[4].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[5].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[6].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[7].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    _attackAnimation[8].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
 }
 
 void hero::initHeroAttack()
 {
-    _attack[0].initAttack(0,1,"STR base attack");
-    _attack[1].initAttack(0,1,"DEX base attack");
-    _attack[2].initAttack(10,2,"STR base critical attack");
-    _attack[3].initAttack(10,2,"DEX base critical attack");
+    _attack[0].initAttack(0,1,1,"STR base attack");
+    _attack[1].initAttack(5,2,1,"STR critical attack");
+    _attack[2].initAttack(10, 3, 5, "STR bigHit");
+    _attack[3].initAttack(15, 6, 10, "STR big big hit");
+    _attack[4].initAttack(20, 10, 20, "STR giant hit");
+}
+
+void hero::initHeroSpell()
+{
+    _spell[0].initAttack(5, 1, 1, "basic Spell");
+    _spell[1].initAttack(10, 2, 1, "Second Spell");
+    _spell[2].initAttack(20, 3, 5, "third Spell");
+    _spell[3].initAttack(30, 6, 10, "fourth Spell");
+    _spell[4].initAttack(40, 10, 20, "big bang Spell");
 }
 
 //methode qui retourne la race du personnage [sophie]
@@ -61,9 +84,9 @@ int hero::getMaxMana()
     return _maxMana;
 }
 //Retourne l'intel du hero [P-A]
-int hero::getInt()
+int hero::getFaith()
 {
-    return _int;
+    return _faith;
 }
 
 //Retourne l'armes actuelle du hero[sophie]
@@ -113,6 +136,7 @@ void hero::setArmur(Item armor)
 void hero::setMana(int mana)
 {
     _mana = mana;
+    if (_mana > _maxMana)_mana = _maxMana;
 }
 
 //Set le mana max du hero
@@ -122,9 +146,9 @@ void hero::setMaxMana(int maxMana)
 }
 
 //Set l'intel du hero
-void hero::setInt(int intel)
+void hero::setFaith(int intel)
 {
-    _int = intel;
+    _faith = intel;
 }
 
 
@@ -158,21 +182,27 @@ void hero::rechercheHero(ifstream& fichier, int personnage)
 //permet au personnage d'utiliser un attaque
 void hero::useAnAttack(personnage & cible, int id)
 {
-    if (id ==0  || id == 2) {
         _attack[id].attackOnATarget(cible, getStr() + _weapon.GetStrengthMod());
         setMana(getMana() - _attack[id].getManaCost());
-    }
-    if (id == 1 || id == 3) {
-        _attack[id].attackOnATarget(cible, getDex() + _weapon.GetDexterityMod());
-        setMana(getMana() - _attack[id].getManaCost());
-    }
+    
+   
+}
+
+void hero::useASpell(personnage& cible, int id)
+{
+    _spell[id].attackOnATarget(cible, getFaith() + _weapon.GetStrengthMod());
+    setMana(getMana()-_spell[id].getManaCost());
 }
 bool hero::checkIfSkillCanBeUsed(int id)
-{
-    
-        if (_mana >= _attack[id].getManaCost()) return true;
+{   
+        if (_mana >= _attack[id].getManaCost() && _str>= _attack[id].getRequiredStats()) return true;
         else return false;
-    
+}
+
+bool hero::checkIfSpellCanBeUsed(int id)
+{
+    if (_mana >= _attack[id].getManaCost() && _faith >= _attack[id].getRequiredStats()) return true;
+    else return false;
 }
 
 void hero::useAnimation(int whereInAnimation,int animationID)

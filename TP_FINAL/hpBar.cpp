@@ -60,6 +60,7 @@ void RessourceBar::setToTransparent(void)
 	_remaining.setFillColor(Color::Transparent);
 	_background.setOutlineThickness(0);
 	_background.setOutlineColor(Color::Transparent);
+	_background.setSize(Vector2f(0, 0));
 	
 }
 void RessourceBar::printRessourceBar(RenderWindow& window)

@@ -257,7 +257,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 
 						//Option pour choisir son type d'action
 						if (_actionOption[0].contain(mousePosition)) {
-							// no in yet
+							
+							
 						}
 						
 						if (_actionOption[1].contain(mousePosition)) {
@@ -697,6 +698,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		if (_monster[0].getPv() <= 0 && _monster[1].getPv() <= 0 && _monster[2].getPv() <= 0) {
 			//animation sortir du level
 			aliveMonster = 0;
+			
 			animationQuitLevel(window, hero);
 			return true;
 		}

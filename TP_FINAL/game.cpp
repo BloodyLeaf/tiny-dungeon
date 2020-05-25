@@ -7,6 +7,7 @@ Définition des méthode de l'objet Game
 
 #include "game.h"
 
+
 void game::initHero(void)
 {
 	_hero.initHero();
@@ -67,7 +68,7 @@ void game::playGame()
 					_heroAlive = _currentBattleGround.game(_window, _hero, _world);
 					_level++;
 					_hero.setGold(_hero.getGold() + 15);
-
+					
 				}
 			}
 			

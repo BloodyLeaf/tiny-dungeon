@@ -190,7 +190,7 @@ void hero::useAnAttack(personnage & cible, int id)
 
 void hero::useASpell(personnage& cible, int id)
 {
-    _spell[id].attackOnATarget(cible, getFaith() + _weapon.GetStrengthMod());
+    _spell[id].attackOnATarget(cible, getFaith());
     setMana(getMana()-_spell[id].getManaCost());
 }
 bool hero::checkIfSkillCanBeUsed(int id)

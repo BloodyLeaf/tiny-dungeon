@@ -1,2 +1,6 @@
 PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.25.28610:TargetPlatformVersion=10.0.18362.0:
+<<<<<<< HEAD
 Debug|x64|C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\|
+=======
+Debug|x64|C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\|
+>>>>>>> 373dd759f266b781a6a29880915defcd808cc0ac

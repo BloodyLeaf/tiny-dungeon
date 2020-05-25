@@ -32,15 +32,7 @@ void hero::initHero()
     _idle[0].loadAnimationFromNotePad("ressources/animation.txt","idleShop");
     _idle[1].loadAnimationFromNotePad("ressources/animation.txt", "idleBattleGround");
 
-    _attackAnimation[0].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackUp");
-    _attackAnimation[1].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackMid");
-    _attackAnimation[2].loadAnimationFromNotePad("ressources/heroAttack.txt", "basicAttackTop");
-    _attackAnimation[3].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[4].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[5].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[6].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[7].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
-    _attackAnimation[8].loadAnimationFromNotePad("ressources/heroAttack.txt", "");
+    
 }
 
 void hero::initHeroAttack()
@@ -205,7 +197,7 @@ bool hero::checkIfSpellCanBeUsed(int id)
     else return false;
 }
 
-void hero::useAnimation(int whereInAnimation,int animationID)
+void hero::useAnimationIdle(int whereInAnimation,int animationID)
 {
     _position.setTextureRect(_idle[animationID].getSprite(whereInAnimation));
     _position.setPosition(_idle[animationID].getPosition(whereInAnimation));

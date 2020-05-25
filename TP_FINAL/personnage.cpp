@@ -149,6 +149,10 @@ void personnage::setPosition(int x, int y)
 {
     _position.setPosition(x, y);
 }
+void personnage::setPositionWithVector2f(Vector2f position)
+{
+    _position.setPosition(position);
+}
 //Temooraire Initialise un hero pour garder le jeu fonctionnel 
 void personnage::initPersonnage(void)
 {
@@ -167,6 +171,11 @@ void personnage::setIntRect(IntRect rect)
 {
     _sprite = rect;
     _position.setTextureRect(_sprite);
+}
+
+void personnage::setSize(Vector2f size)
+{
+    _position.setSize(size);
 }
 
 //methode qui prend un int et le soustrait a la valeur de pv [sophie]

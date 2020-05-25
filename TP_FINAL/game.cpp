@@ -39,7 +39,7 @@ void game::playGame()
 
 	Event event;
 	
-
+	
 
 	while (_window.isOpen()) {
 		menu.initMenuPrincipal();

@@ -238,7 +238,7 @@ bool town::townAction(RenderWindow& window, hero & hero)
 		whereInSprite++;
 		if (whereInSprite > 2)whereInSprite = 0;
 		updateText(hero);
-		hero.useAnimation(whereInSprite,0);
+		hero.useAnimationIdle(whereInSprite,0);
 		window.clear();
 		printTown(window,hero);
 		window.display();

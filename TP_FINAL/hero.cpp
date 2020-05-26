@@ -81,13 +81,13 @@ void hero::initHeroPoursuivre(int pv, int maxPv, int Str, int maxMana, int Faith
             }
         }
         if (id == armorID) {
-            armor.SetItem(id, name, type, speedMod, defMod, strMod);
+            _armor.SetItem(id, name, type, speedMod, defMod, strMod);
         }
         if (id == weaponID) {
-            weapon.SetItem(id, name, type, speedMod, defMod, strMod);
+            _weapon.SetItem(id, name, type, speedMod, defMod, strMod);
         }
         if (id == bootID) {
-            boot.SetItem(id, name, type, speedMod, defMod, strMod);
+            _boots.SetItem(id, name, type, speedMod, defMod, strMod);
         }
         if (file.eof()) { break; }
     }

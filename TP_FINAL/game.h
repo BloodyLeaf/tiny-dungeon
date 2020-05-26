@@ -32,6 +32,7 @@ private :
 
 	hero _hero;
 	
+	Item _itemList[30];
 
 public:
 
@@ -43,4 +44,7 @@ public:
 
 	void playGame(void);
 
+	void initItemList(void);
+
+	void generateLoot(void);
 };

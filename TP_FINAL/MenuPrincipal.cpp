@@ -38,6 +38,10 @@ void menuPrincipal::initMenuPrincipal()
 	_poursuivre.initialiserFondBouton(500, 440, 500, 100, Color::Black);
 	setText(_poursuivreText, "Poursuivre une aventure", _font, "ressources/ShadowsIntoLight-Regular.ttf", 600, 470, 30, Color::White, Text::Bold);
 
+	_boutonCredits.initialiserFondBouton(500, 550, 500, 100, Color::Black);
+	setText(_textBoutonCredits, "Crédits", _font, "ressources/ShadowsIntoLight-Regular.ttf", 700, 580, 30, Color::White, Text::Bold);
+
+
 }
 void menuPrincipal::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
 {
@@ -71,16 +75,19 @@ void menuPrincipal::print(RenderWindow& window)
 	_poursuivre.print(window);
 	window.draw(_poursuivreText);
 	window.draw(_logoAnimation);
+	_boutonCredits.print(window);
+	window.draw(_textBoutonCredits);
 	
 }
 
-void menuPrincipal::loadBoutons(bouton &nomBouton, const char *message, int posX, int posY,const Color &colorText,const Color &colorOutline, int style, const char *police, int w, int h, int taillePolice) {
+/*void menuPrincipal::loadBoutons(bouton &nomBouton, const char *message, int posX, int posY,const Color &colorText,const Color &colorOutline, int style, const char *police, int w, int h, int taillePolice) {
 	nomBouton.initialiserBouton(posX, posY, w, h, message);
 	nomBouton.setText(message, police, posX + 10, posY + 10, taillePolice, colorText, style);
 	nomBouton.setOutline(5, colorOutline);
 	nomBouton.setFillColor(Color::White);
 
-}
+}*/
+
 // boutons du menu (nouvelle aventure, poursuivre, credits, etc..) [emily] + animation de P-A
 int menuPrincipal::optionMenu(RenderWindow& window) {
 	
@@ -104,6 +111,10 @@ int menuPrincipal::optionMenu(RenderWindow& window) {
 				if (_poursuivre.contain(mousePosition)) {
 					return 2;
 				}
+				//Credits
+				if (_boutonCredits.contain(mousePosition)) {
+					ouvrirCredits(window);
+				}
 			}
 		}
 			
@@ -118,4 +129,20 @@ int menuPrincipal::optionMenu(RenderWindow& window) {
 
 	}
 }
+void menuPrincipal::ouvrirCredits(RenderWindow& window) {
+	if (_imageCredits.loadFromFile("credits.png")) {
+		exit;
+	}
+	
+	Event event;
+	if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+		Vector2i mousePosition = Mouse::getPosition(window);
+		while (!_boutonRetour.contain(mousePosition)) {
+			window.clear();
+			window.draw(_fondCredits);
+			window.display();
 
+
+		}
+	}
+}

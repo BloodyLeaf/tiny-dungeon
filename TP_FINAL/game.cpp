@@ -51,7 +51,13 @@ void game::playGame()
 		case 2:
 			//read in sauvegarde
 			_hero.readInSauvegarde();
-			_heroAlive = true;
+			if (_hero.getPv() > 0) { 
+				_heroAlive = true;
+			}
+			else {   //si hero = mort dans derniere partie, faire nouvelle partie
+				initHero();
+				_heroAlive = true;
+			}
 			break;
 
 		}

@@ -288,7 +288,7 @@ void hero::setPotion(int nbPotion) {
 }
 
 void hero::usePotion() {
-    setPv(getPv() + 20);
+    setPv(getPv() + 25);
 }
 
 

@@ -1,2 +1,9 @@
-﻿  hero.cpp
-  TP_FINAL.vcxproj -> C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\x64\Debug\TP_FINAL.exe
+﻿  game.cpp
+  MenuPrincipal.cpp
+C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\TP_FINAL\MenuPrincipal.cpp(54,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\TP_FINAL\MenuPrincipal.cpp(54,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\TP_FINAL\MenuPrincipal.cpp(116,20): error C2660: 'menuPrincipal::ouvrirCredits': function does not take 0 arguments
+C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\TP_FINAL\MenuPrincipal.h(49,7): message : see declaration of 'menuPrincipal::ouvrirCredits'
+C:\Users\emily\OneDrive\Desktop\Prog\tiny-dungeon\TP_FINAL\MenuPrincipal.cpp(134,3): warning C4551: function call missing argument list
+  Source.cpp
+  Generating Code...

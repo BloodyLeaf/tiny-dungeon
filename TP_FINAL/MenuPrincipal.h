@@ -22,11 +22,17 @@ private:
 	bouton _poursuivre;
 	Text _poursuivreText;
 
-	bouton credits;
+	bouton _boutonCredits;
+	Text _textBoutonCredits;
+	RectangleShape _fondCredits;
+	Texture _imageCredits;
+
 
 	bouton _boutonNouvelleAventure;
 	Text _textBoutonNouvelAventure;
 	Font _font;
+
+	bouton _boutonRetour;
 
 	RectangleShape _logoAnimation;
 	animation _animationIdle;
@@ -37,12 +43,10 @@ public:
 
 	void initMenuPrincipal();
 	void print(RenderWindow& window);
-	void loadBoutons(bouton &nomBouton, const char* message, int posX, int posY, const Color& colorText,const Color& colorOutline, int style, const char* police, int w, int h, int taillePolice);
+	//void loadBoutons(bouton &nomBouton, const char* message, int posX, int posY, const Color& colorText,const Color& colorOutline, int style, const char* police, int w, int h, int taillePolice);
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void changeAnimation(int whereInAnimation);
-
-	void writeInSauvegarde(int pv, int maxPv, int Str, int maxMana, int Faith, int Speed, int potions, int mana);
-	int readInSauvegarde();
+	void ouvrirCredits(RenderWindow& window);
 
 	int optionMenu(RenderWindow& window);
 };

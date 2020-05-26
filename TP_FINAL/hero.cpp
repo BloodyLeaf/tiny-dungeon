@@ -91,6 +91,7 @@ void hero::initHeroPoursuivre(int pv, int maxPv, int Str, int maxMana, int Faith
         }
         if (file.eof()) { break; }
     }
+    file.close();
 }
 
 void hero::initHeroAttack()
@@ -330,5 +331,6 @@ void hero::readInSauvegarde() {
 
 
     initHeroPoursuivre(pv, maxPv, Str, maxMana, Faith, Speed, potions, mana, armorID, weaponID, bootID);
+    sauvegarde.close();
 
 }

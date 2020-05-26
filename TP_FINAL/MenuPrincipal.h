@@ -33,6 +33,7 @@ private:
 	Font _font;
 
 	bouton _boutonRetour;
+	Texture _imageRetour;
 
 	RectangleShape _logoAnimation;
 	animation _animationIdle;

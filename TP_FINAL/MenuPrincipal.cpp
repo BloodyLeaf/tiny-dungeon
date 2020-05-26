@@ -38,8 +38,8 @@ void menuPrincipal::initMenuPrincipal()
 	_poursuivre.initialiserFondBouton(500, 440, 500, 100, Color::Black);
 	setText(_poursuivreText, "Poursuivre une aventure", _font, "ressources/ShadowsIntoLight-Regular.ttf", 600, 470, 30, Color::White, Text::Bold);
 
-	_boutonCredits.initialiserFondBouton(500, 550, 500, 100, Color::Black);
-	setText(_textBoutonCredits, "Crédits", _font, "ressources/ShadowsIntoLight-Regular.ttf", 700, 580, 30, Color::White, Text::Bold);
+	_boutonCredits.initialiserFondBouton(500, 580, 500, 100, Color::Black);
+	setText(_textBoutonCredits, "Crédits", _font, "ressources/ShadowsIntoLight-Regular.ttf", 700, 610, 30, Color::White, Text::Bold);
 
 
 }
@@ -130,19 +130,29 @@ int menuPrincipal::optionMenu(RenderWindow& window) {
 	}
 }
 void menuPrincipal::ouvrirCredits(RenderWindow& window) {
-	if (_imageCredits.loadFromFile("credits.png")) {
+
+	bool temp=false;
+
+	if (!_imageCredits.loadFromFile("ressources/credits.png")) {
 		exit;
 	}
-	
+	_imageCredits.loadFromFile("credits.png");
+	_boutonRetour.initialiserBouton(100, 100, 100, 100, "ressources/arrowBack.png");
+
+	_fondCredits.setSize(Vector2f(1500, 800));
+	_fondCredits.setTexture(&_imageCredits);
+
 	Event event;
-	if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+	while (window.waitEvent(event)) {
 		Vector2i mousePosition = Mouse::getPosition(window);
-		while (!_boutonRetour.contain(mousePosition)) {
 			window.clear();
 			window.draw(_fondCredits);
+			_boutonRetour.print(window);
 			window.display();
-
-
-		}
+			if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+				if (_boutonRetour.contain(mousePosition)==true) {
+					break;
+				}
+			}
 	}
 }

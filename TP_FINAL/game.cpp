@@ -45,13 +45,13 @@ void game::playGame()
 		int option= menu.optionMenu(_window);
 		switch (option) {
 		case 1: //si click sur bouton Nouvelle aventure, retourne 1 
-		  //si click sur bouton Nouvelle aventure, retourne true
 			initHero();
 			_heroAlive = true;
 			break;
 		case 2:
 			//read in sauvegarde
-			//_hero.initHeroPoursuivre();
+			_hero.readInSauvegarde();
+
 			_heroAlive = true;
 			break;
 
@@ -78,9 +78,9 @@ void game::playGame()
 					_level++;
 					_hero.setGold(_hero.getGold() + 15);
 				}
+				//write dans le fichier de sauvegarde
+				_hero.writeInSauvegarde();
 			}
-			//write dans le fichier de sauvegarde
-			//menu.writeInSauvegarde(_hero.getMaxPv, _hero.getStr, _hero.getMaxMana, _hero.getFaith, _hero.getSpeed);
 		}
 
 	}

@@ -118,30 +118,4 @@ int menuPrincipal::optionMenu(RenderWindow& window) {
 
 	}
 }
-//Met stats du personnage dans fichier Sauvegarde [Emily]
-void menuPrincipal::writeInSauvegarde(int maxPv, int Str, int maxMana, int Faith, int Speed) {
 
-	ofstream sauvegarde;
-	sauvegarde.open("sauvegarde.txt");
-
-
-	sauvegarde << maxPv << endl;
-	sauvegarde << Str << endl;
-	sauvegarde << maxMana << endl;
-	sauvegarde << Faith << endl;
-	sauvegarde << Speed << endl;
-
-	sauvegarde.close();
-
-}
-void menuPrincipal::readInSauvegarde() {
-	ifstream sauvegarde;
-	sauvegarde.open("sauvegarde.txt");
-
-	sauvegarde.seekg(0, ios::end);
-	if (sauvegarde.tellg() == 0) { //si fichier vide
-		
-	}
-
-
-}

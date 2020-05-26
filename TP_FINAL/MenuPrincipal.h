@@ -41,8 +41,8 @@ public:
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void changeAnimation(int whereInAnimation);
 
-	void writeInSauvegarde(int maxPv, int Str, int maxMana, int Faith, int Speed);
-	void readInSauvegarde();
+	void writeInSauvegarde(int pv, int maxPv, int Str, int maxMana, int Faith, int Speed, int potions, int mana);
+	int readInSauvegarde();
 
 	int optionMenu(RenderWindow& window);
 };

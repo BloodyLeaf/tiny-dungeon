@@ -35,13 +35,13 @@ void hero::initHero()
     
 }
 
-void hero::initHeroPoursuivre(int maxPv, int Str, int maxMana, int Faith, int Speed) {  //initialiser hero d'une aventure précédente [Emily]
+void hero::initHeroPoursuivre(int pv, int maxPv, int Str, int maxMana, int Faith, int Speed, int potions, int mana, int armorID, int weaponID, int bootID) {  //initialiser hero d'une aventure précédente [Emily]
 
     _position.setSize(Vector2f(100, 100));
     initHeroAttack();
     initHeroSpell();
     setMaxPv(maxPv);
-    setPv(25);
+    setPv(pv);
 
     setStr(Str);
     setMaxMana(maxMana);
@@ -56,6 +56,14 @@ void hero::initHeroPoursuivre(int maxPv, int Str, int maxMana, int Faith, int Sp
 
     _idle[0].loadAnimationFromNotePad("ressources/animation.txt", "idleShop");
     _idle[1].loadAnimationFromNotePad("ressources/animation.txt", "idleBattleGround");
+
+    Item armor;
+    Item weapon;
+    Item boot;
+
+    ifstream file;
+    file.open("items.txt");
+
 
 
 }
@@ -256,4 +264,46 @@ void hero::setPotion(int nbPotion) {
 
 void hero::usePotion() {
     setPv(getPv() + 20);
+}
+
+
+//Met stats du personnage dans fichier Sauvegarde [Emily]
+void hero::writeInSauvegarde() {
+
+    ofstream sauvegarde;
+    sauvegarde.open("sauvegarde.txt");
+
+    sauvegarde << getPv() << " " << getMaxPv() << " " << getStr() << " " << getMaxMana() << " " << getFaith() << " " << getSpeed() << " " << getPotion() << " " << getMana() << getArmor().GetID() << getWeapon().GetID() << getBoots().GetID();
+
+    sauvegarde.close();
+
+}
+void hero::readInSauvegarde() {
+    ifstream sauvegarde;
+    sauvegarde.open("sauvegarde.txt");
+
+    sauvegarde.seekg(0, ios::end);
+    if (sauvegarde.tellg() == 0) { //si fichier vide
+        sauvegarde.close();
+        system("PAUSE");
+    }
+
+    int pv;
+    int maxPv;
+    int Str;
+    int maxMana;
+    int Faith;
+    int Speed;
+    int potions;
+    int mana;
+    int armorID;
+    int weaponID;
+    int bootID;
+
+    sauvegarde >> pv >> maxPv >> Str >> maxMana >> Faith >> Speed >> potions >> mana >> armorID >> weaponID >> bootID;
+
+
+
+    initHeroPoursuivre(pv, maxPv, Str, maxMana, Faith, Speed, potions, mana, armorID, weaponID, bootID);
+
 }

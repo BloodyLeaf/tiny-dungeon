@@ -1069,8 +1069,6 @@ void battleGrounds::gestionAnimationSpell(int target, RenderWindow& window, hero
 	_projectile.setSize(Vector2f(0, 0));
 }
 
-
-
 /*void battleGrounds::heroTurn(void)
 {
 

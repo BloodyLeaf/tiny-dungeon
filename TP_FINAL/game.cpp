@@ -44,14 +44,13 @@ void game::playGame()
 	while (_window.isOpen()) {
 		int option= menu.optionMenu(_window);
 		switch (option) {
-		case 1: //si click sur bouton Nouvelle aventure, retourne 1 
+		case 1: //si click sur bouton Nouvelle aventure, retourne 1 [em]
 			initHero();
 			_heroAlive = true;
 			break;
 		case 2:
 			//read in sauvegarde
 			_hero.readInSauvegarde();
-
 			_heroAlive = true;
 			break;
 

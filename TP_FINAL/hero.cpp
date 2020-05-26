@@ -35,6 +35,7 @@ void hero::initHero()
     
 }
 
+//Fonction qui init hero selon stats de sauvegarde [Emily]
 void hero::initHeroPoursuivre(int pv, int maxPv, int Str, int maxMana, int Faith, int Speed, int potions, int mana, int armorID, int weaponID, int bootID) {  //initialiser hero d'une aventure précédente [Emily]
 
     _position.setSize(Vector2f(100, 100));
@@ -45,7 +46,7 @@ void hero::initHeroPoursuivre(int pv, int maxPv, int Str, int maxMana, int Faith
 
     setStr(Str);
     setMaxMana(maxMana);
-    setMana(10);
+    setMana(mana);
 
     setFaith(Faith);
     setSpeed(Speed);
@@ -61,11 +62,35 @@ void hero::initHeroPoursuivre(int pv, int maxPv, int Str, int maxMana, int Faith
     Item weapon;
     Item boot;
 
+    //Set items pour hero [Emily]
+    // Temp variables
+    int id;
+    std::string name;
+    int type;
+    int speedMod;
+    int defMod;
+    int strMod;
     ifstream file;
     file.open("items.txt");
 
-
-
+    while (true) {
+        file >> id >> name >> type >> speedMod >> defMod >> strMod;
+        for (int j = 0; j < name.length(); j++) {
+            if (name[j] == '_') {
+                name[j] = ' ';
+            }
+        }
+        if (id == armorID) {
+            armor.SetItem(id, name, type, speedMod, defMod, strMod);
+        }
+        if (id == weaponID) {
+            weapon.SetItem(id, name, type, speedMod, defMod, strMod);
+        }
+        if (id == bootID) {
+            boot.SetItem(id, name, type, speedMod, defMod, strMod);
+        }
+        if (file.eof()) { break; }
+    }
 }
 
 void hero::initHeroAttack()
@@ -273,17 +298,17 @@ void hero::writeInSauvegarde() {
     ofstream sauvegarde;
     sauvegarde.open("sauvegarde.txt");
 
-    sauvegarde << getPv() << " " << getMaxPv() << " " << getStr() << " " << getMaxMana() << " " << getFaith() << " " << getSpeed() << " " << getPotion() << " " << getMana() << getArmor().GetID() << getWeapon().GetID() << getBoots().GetID();
+    sauvegarde << getPv() << " " << getMaxPv() << " " << getStr() << " " << getMaxMana() << " " << getFaith() << " " << getSpeed() << " " << getPotion() << " " << getMana() << " " << getArmor().GetID()<< " " << getWeapon().GetID() << " " << getBoots().GetID();
 
     sauvegarde.close();
 
 }
+//Lit les stats du sauvegarde.txt
 void hero::readInSauvegarde() {
     ifstream sauvegarde;
     sauvegarde.open("sauvegarde.txt");
 
-    sauvegarde.seekg(0, ios::end);
-    if (sauvegarde.tellg() == 0) { //si fichier vide
+    if (sauvegarde.fail()) { //si fichier vide
         sauvegarde.close();
         system("PAUSE");
     }

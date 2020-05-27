@@ -29,7 +29,7 @@ public:
     ~personnage();
 
     void initPositionPersonnage(int x , int y);
-    void initPersonnage(Color color, int w, int h);
+    void initPersonnage( int w, int h);
 
     int getStr() const;                     //retourne valeur de strenght [Sophie]
     int getPv() const;                      //retourne valeur de point de vie [Sophie]
@@ -57,6 +57,7 @@ public:
     void setCharColor(Color color);         //Set la couleur du hero actuel [P-A]
     void setIntRect(IntRect rect);           //Modifie le sprite du personnage[P-A]
     void setSize(Vector2f Size);               //Modifie la size du personnage [ p-a]
+    void setTexture(Texture texture);
     
 
     void recevoirDegat(int degat);                                       //modifie les points de vie [Sophie]

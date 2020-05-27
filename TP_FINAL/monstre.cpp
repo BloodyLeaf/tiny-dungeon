@@ -7,9 +7,9 @@ But du programme: Définition de l'objet monstre.
 
 #include "monstre.h"
 
-void monstre::initMonster(Color color, int w, int h, int x, int y)
+void monstre::initMonster( int w, int h, int x, int y)
 {
-    initPersonnage(color, w, h);
+    initPersonnage(w, h);
     initPositionPersonnage(x, y);
 }
 

@@ -40,10 +40,10 @@ void personnage::initPositionPersonnage(int x , int y)
     
 }
 
-void personnage::initPersonnage(Color color, int w, int h)
+void personnage::initPersonnage( int w, int h)
 {
     _position.setSize(Vector2f(w, h));
-    _position.setFillColor(color);
+    
 }
 
 //methode qui retourne la valeur de str [Sophie]
@@ -176,6 +176,12 @@ void personnage::setIntRect(IntRect rect)
 void personnage::setSize(Vector2f size)
 {
     _position.setSize(size);
+}
+
+void personnage::setTexture(Texture texture)
+{
+    _texture = texture;
+    _position.setTexture(&texture);
 }
 
 //methode qui prend un int et le soustrait a la valeur de pv [sophie]

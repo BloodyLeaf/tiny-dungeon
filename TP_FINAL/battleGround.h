@@ -53,7 +53,8 @@ private:
 	animation _spell[15];
 
 	animation _heroAttackAnimation[9];
-
+	animation _heroProjectileAnimation[6];
+	animation _monsterAttack[6];
 public:
 
 	void initBG(hero& hero);													//Initialise la couleur du monstre et du héro
@@ -64,6 +65,8 @@ public:
 	void initMenuSpell(void);
 	void initanimationSpell(void);
 	void initAnimationHeroAttack(void);
+	void initProjectileAnimation(void);
+	void initmonsterAttackAnimation(void);
 	
 	void setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setWhereInMenu(int choice);												//navigation du menu : 1 Choix attaque ou consumable
@@ -98,9 +101,6 @@ public:
 
 	void animationLevelStart(RenderWindow& window, hero & hero);
 	void animationMonsterAttack(RenderWindow& window, int id,hero& hero);
-	void animationPlayerUpAttack(RenderWindow& window, hero& hero);
-	void animationPlayerMiddleAttack(RenderWindow& window, hero& hero);
-	void animationPlayerLowAttack(RenderWindow& window, hero& hero);
 	void animationQuitLevel(RenderWindow& window, hero& hero);
 
 	void checkIfDead(int id);
@@ -117,7 +117,7 @@ public:
 	void printSpeedIndicator(RenderWindow& window);
 	void printSpell(RenderWindow& window,hero hero);
 
-	void gestionAnimationAttaque(int target,RenderWindow& window, hero hero, int skillId);
+	void gestionAnimationAttaque(int target, RenderWindow& window, hero hero, int skillId);
 	void gestionAnimationSpell(int target, RenderWindow& window, hero hero,int spellId);
 	
 	

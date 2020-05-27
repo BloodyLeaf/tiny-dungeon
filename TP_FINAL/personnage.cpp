@@ -178,10 +178,11 @@ void personnage::setSize(Vector2f size)
     _position.setSize(size);
 }
 
-void personnage::setTexture(Texture texture)
+void personnage::setTexture(const char* nomSprite)
 {
-    _texture = texture;
-    _position.setTexture(&texture);
+    _texture.loadFromFile(nomSprite);
+    _position.setTexture(&_texture);
+   
 }
 
 //methode qui prend un int et le soustrait a la valeur de pv [sophie]

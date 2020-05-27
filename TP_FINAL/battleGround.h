@@ -91,7 +91,6 @@ public:
 																					// hasard un monstre ( carré de couleur differente for now
 													
 	void monsterAttack(int id,RenderWindow& window,hero & hero);
-	void animationMonsterIsFlashing(RenderWindow& window, int idMonstre,hero& hero);
 	void animationHeroIsFlashing(RenderWindow& window, hero& hero);
 	
 

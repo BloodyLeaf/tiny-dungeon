@@ -36,7 +36,6 @@ void battleGrounds::initBG(hero& hero)
 	_monster[1] = generateMonster(1800, 300);
 	_monster[2] = generateMonster(1700, 500);
 
-
 	
 
 	_heroHPBar.initHpBar(hero.getPositionX(),hero.getPositionY(),10,10);
@@ -180,12 +179,12 @@ void battleGrounds::initProjectileAnimation(void)
 }
 void battleGrounds::initmonsterAttackAnimation(void)
 {
-	_monsterAttack[0].loadAnimationFromNotePad("ressources/animationMonster.txt", "oeilUp");
-	_monsterAttack[1].loadAnimationFromNotePad("ressources/animationMonster.txt", "oeilMid");
-	_monsterAttack[2].loadAnimationFromNotePad("ressources/animationMonster.txt", "oeilDown");
-	_monsterAttack[3].loadAnimationFromNotePad("ressources/animationMonster.txt", "chienUp");
-	_monsterAttack[4].loadAnimationFromNotePad("ressources/animationMonster.txt", "chienMid");
-	_monsterAttack[5].loadAnimationFromNotePad("ressources/animationMonster.txt", "chienDown");
+	_monsterAttack[0].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "oeilUp");
+	_monsterAttack[1].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "oeilMid");
+	_monsterAttack[2].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "oeilDown");
+	_monsterAttack[3].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "chienUp");
+	_monsterAttack[4].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "chienMid");
+	_monsterAttack[5].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "chienDown");
 }
 //P-A
 //Init du texte
@@ -492,7 +491,6 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 		hero.useAnimationIdle(_whereInSprite, 1);
 		moveSpeedindicator();
 		updateMenu(hero);
-		replaceRessourcesBar(hero);
 		window.clear();
 		printFull(window, hero);
 		window.display();
@@ -541,26 +539,27 @@ monstre battleGrounds::generateMonster(int x , int y)
 
 	int indice;
 	indice = rand() % 2 + 1;
-	Texture texture;
+	
 	monstre monster;
 
 	switch (indice)
 	{
 	case 1:
-		monster.initMonster(70, 70, x, y);
+		monster.initMonster(100, 100, x, y);
 		monster.setId(0);
-		texture.loadFromFile("ressources/oeil.png");
+		
+		monster.setTexture("ressources/oeil.png");
 		monster.setIntRect(IntRect(4, 196, 29, 47));
-		monster.setTexture(texture);
 		
 		return monster;
 		
 	case 2:
-		monster.initMonster(50, 50, x, y);
+		monster.initMonster(100, 50, x, y);
 		monster.setId(1);
-		texture.loadFromFile("ressources/chien.png");
-		monster.setIntRect(IntRect(2, 19, 50, 38));
-		monster.setTexture(texture);
+		
+		
+		monster.setTexture("ressources/chien.png");
+		monster.setIntRect(IntRect(100, 100, 50, 38));
 		
 		return monster;
 
@@ -592,32 +591,13 @@ void battleGrounds::monsterAttack(int id,RenderWindow& window, hero& hero)
 	
 	
 	hero.setPv(hero.getPv() - _monster[id].getStr());
-	_heroHPBar.initHpBar(hero.getPositionX(), hero.getPositionY(), hero.getPv(), hero.getMaxPv());
+	replaceRessourcesBar(hero);
 }
 //P-A
 //Animation pour l'attaque du monstre
 //recois une RenderWindoe, une id de monstre et un hero
 //void
-void battleGrounds::animationMonsterIsFlashing(RenderWindow& window,int idMonstre,hero& hero)
-{
-	_text.setPosition(_monster[0].getPositionX(),_monster[0].getPositionY() -30);
-	
-	Time pause = seconds(0.25f);
-	for (int i = 0; i < 4; i++) {
 
-		_monster[idMonstre].setCharColor(Color::Transparent);
-		window.clear();
-		printFull(window,hero);
-		window.display();
-		sf::sleep(pause);
-
-		_monster[idMonstre].setCharColor(_monsterColor[idMonstre]);
-		window.clear();
-		printFull(window, hero);
-		window.display();
-		sf::sleep(pause);
-	}
-}
 //P-A
 //Animation du hero lorsqu'il se fait attaquer
 //recois une RenderWindoe et un hero
@@ -627,7 +607,7 @@ void battleGrounds::animationHeroIsFlashing(RenderWindow& window, hero& hero)
 	_text.setPosition(hero.getPositionX(), hero.getPositionY() - 30);
 	Time pause = seconds(0.25f);
 	
-	for (int i = 0; i < 4; i++) {
+	
 		hero.setIntRect(IntRect(120,235,43,43));
 		window.clear();
 		printFull(window,hero);
@@ -638,7 +618,7 @@ void battleGrounds::animationHeroIsFlashing(RenderWindow& window, hero& hero)
 		printFull(window,hero);
 		window.display();
 		sf::sleep(pause);
-	}
+	
 
 }
 //P-A
@@ -726,7 +706,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		hero.useAnimationIdle(_whereInSprite, 1);
 		moveSpeedindicator();
 		updateMenu(hero);
-		replaceRessourcesBar(hero);
+		
 		window.clear();
 		printFull(window,hero);
 		window.display();
@@ -978,6 +958,7 @@ void battleGrounds::gestionAnimationAttaque(int target, RenderWindow& window, he
 		sf::sleep(seconds(0.1f));
 	}
 	_projectile.setSize(Vector2f(0, 0));
+	replaceRessourcesBar(hero);
 }
 
 void battleGrounds::gestionAnimationSpell(int target, RenderWindow& window, hero hero,int spellId)
@@ -1018,6 +999,7 @@ void battleGrounds::gestionAnimationSpell(int target, RenderWindow& window, hero
 		sf::sleep(seconds(0.1f));
 	}
 	_projectile.setSize(Vector2f(0, 0));
+	replaceRessourcesBar(hero);
 }
 
 /*void battleGrounds::heroTurn(void)

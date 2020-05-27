@@ -29,5 +29,6 @@ public:
     void setAttackHasard(int hasard);    //modifie la valeur de lattack hasard du personnage monstre [sophie]
 
     void rechercheMonstre(ifstream& fichier, int personnage);        //recherche dans un fichier texte a laide de id et attribution de donnee [sophie]
+    void setTextureWithId(int id);
     
 };

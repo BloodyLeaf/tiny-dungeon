@@ -178,10 +178,10 @@ void personnage::setSize(Vector2f size)
     _position.setSize(size);
 }
 
-void personnage::setTexture(const char* nomSprite)
+void personnage::setTexture(Texture texture)
 {
-    _texture.loadFromFile(nomSprite);
-    _position.setTexture(&_texture);
+    
+    _position.setTexture(&texture);
    
 }
 

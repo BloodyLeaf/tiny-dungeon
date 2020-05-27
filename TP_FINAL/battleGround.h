@@ -23,6 +23,8 @@ class battleGrounds {
 private: 
 	int _whereInSprite;
 	RectangleShape _background;
+	Texture _textureBackground;
+	Texture _textureMonster[2];
 	
 
 	monstre _monster[3];  //3 monstre du battleground [Sophie]
@@ -73,7 +75,7 @@ public:
 																				//Choisir sa potion consommable ( a faire plus tard )[p-a]
 																				//						3 Choisir sa cible
 																				//						4 Choisir son attaque
-	void setBackground(Texture& texture,IntRect & shape);
+	void setBackground();
 
 	void initSpeedBar(void);
 	void moveSpeedindicator(void);
@@ -87,7 +89,7 @@ public:
 
 	int getWhereMenu(void);
 
-	monstre generateMonster(int x , int y);									//Genere au hasard un indice qui permet de choisir au 
+	void generateMonster(int x , int y,int monsterID);									//Genere au hasard un indice qui permet de choisir au 
 																					// hasard un monstre ( carré de couleur differente for now
 													
 	void monsterAttack(int id,RenderWindow& window,hero & hero);

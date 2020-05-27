@@ -64,3 +64,21 @@ void monstre::rechercheMonstre(ifstream& fichier, int personnage)
     }
 }
 
+void monstre::setTextureWithId(int id)
+{
+    switch (id)
+    {
+    case 0:
+        break;
+        _texture.loadFromFile("ressources/oeil.png");
+        
+    case 1 :
+        _texture.loadFromFile("ressources/chien.png");
+        break;
+        
+    default:
+        break;
+    }
+    _position.setTexture(&_texture);
+}
+

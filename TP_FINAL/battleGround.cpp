@@ -16,12 +16,11 @@ void battleGrounds::initBG(hero& hero)
 {
 	Font font;
 	_whereInSprite = 0;
-	Texture texture;
-	texture.loadFromFile("ressources/background.png");
-	IntRect shape(0,0,1001,417);
-	_background.setSize(Vector2f(1500, 800));
-	//_background.setFillColor(Color::White);
-	setBackground(texture,shape);
+	
+	
+	
+	
+	setBackground();
 
 
 	
@@ -32,9 +31,8 @@ void battleGrounds::initBG(hero& hero)
 
 
 
-	_monster[0] = generateMonster(1600, 150);
-	_monster[1] = generateMonster(1800, 300);
-	_monster[2] = generateMonster(1700, 500);
+	_textureMonster[0].loadFromFile("ressources/oeil.png");
+	_textureMonster[1].loadFromFile("ressources/chien.png");
 
 	
 
@@ -46,7 +44,9 @@ void battleGrounds::initBG(hero& hero)
 	_MonsterHPBar[1].initMonsterHpBar(_monster[1].getPositionX(), _monster[1].getPositionY(), 10, 10);
 	_MonsterHPBar[2].initMonsterHpBar(_monster[2].getPositionX(), _monster[2].getPositionY(), 10, 10);
 
-
+	generateMonster(850,150,0);
+	generateMonster(1050,300,1);
+	generateMonster(950,500,2);
 	
 
 	initMenuTarget();
@@ -207,10 +207,12 @@ void battleGrounds::setWhereInMenu(int choice)
 {
 	_whereInMenu = choice;
 }
-void battleGrounds::setBackground(Texture& texture,IntRect& shape)
+void battleGrounds::setBackground()
 {
-	_background.setTexture(&texture);
-	_background.setTextureRect(shape);
+	_textureBackground.loadFromFile("ressources/background_3.png");
+	_background.setTexture(&_textureBackground);
+	_background.setPosition(0, 0);
+	_background.setSize(Vector2f(1500, 625));
 }
 //P-A
 //Initialise la bar que  je fais afficher dans le haut pour les vitesse
@@ -533,35 +535,32 @@ int battleGrounds::getWhereMenu(void)
 //genere les monstres au hasard ( leur size et leur couleur ) 
 //recois une position x et y
 //Retourne un monstre
-monstre battleGrounds::generateMonster(int x , int y)
+void battleGrounds::generateMonster(int x , int y,int indiceMonstre)
 {
 	srand(time(NULL));
 
 	int indice;
 	indice = rand() % 2 + 1;
 	
-	monstre monster;
+	
 
 	switch (indice)
 	{
 	case 1:
-		monster.initMonster(100, 100, x, y);
-		monster.setId(0);
+		_monster[indiceMonstre].initMonster(67, 109, x, y);
+		_monster[indiceMonstre].setId(0);
+		_monster[indiceMonstre].setTexture(_textureMonster[0]);
+		_monster[indiceMonstre].setIntRect(IntRect(4, 196, 29, 47));
 		
-		monster.setTexture("ressources/oeil.png");
-		monster.setIntRect(IntRect(4, 196, 29, 47));
-		
-		return monster;
+		break;
 		
 	case 2:
-		monster.initMonster(100, 50, x, y);
-		monster.setId(1);
+		_monster[indiceMonstre].initMonster(116, 88, x, y);
+		_monster[indiceMonstre].setId(1);		
+		_monster[indiceMonstre].setTexture(_textureMonster[1]);
+		_monster[indiceMonstre].setIntRect(IntRect(100, 100, 50, 38));
 		
-		
-		monster.setTexture("ressources/chien.png");
-		monster.setIntRect(IntRect(100, 100, 50, 38));
-		
-		return monster;
+		break;
 
 	
 	default:
@@ -719,7 +718,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 		if (_monster[0].getPv() <= 0 && _monster[1].getPv() <= 0 && _monster[2].getPv() <= 0) {
 			//animation sortir du level
 			aliveMonster = 0;
-			
+			setWhereInMenu(0);
 			animationQuitLevel(window, hero);
 			return true;
 		}
@@ -733,15 +732,13 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 void battleGrounds::animationLevelStart(RenderWindow& window,hero& hero)
 {
 	for (int i = 0; i < 125; i++) {
-		_monster[0].initPositionPersonnage(_monster[0].getPositionX() - 6, _monster[0].getPositionY());
-		_monster[1].initPositionPersonnage(_monster[1].getPositionX() - 6, _monster[1].getPositionY());
-		_monster[2].initPositionPersonnage(_monster[2].getPositionX() - 6, _monster[2].getPositionY());
+		
 		hero.setPosition(hero.getPositionX() + 4, hero.getPositionY());
 
 
 		replaceRessourcesBar(hero);
 		window.clear();
-		print(window, hero);
+		printFull(window, hero);
 		window.display();
 
 	}
@@ -789,7 +786,7 @@ void battleGrounds::animationQuitLevel(RenderWindow& window,hero& hero)
 		hero.setPosition(hero.getPositionX() + 6, hero.getPositionY());
 		replaceRessourcesBar(hero);
 		window.clear();
-		print(window, hero);
+		printFull(window, hero);
 		window.display();
 	}
 }

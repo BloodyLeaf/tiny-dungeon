@@ -14,8 +14,8 @@ void hero::initHero()
     _position.setSize(Vector2f(100, 100));
     initHeroAttack();
     initHeroSpell();
-    setMaxPv(25);
-    setPv(25);
+    setMaxPv(30);
+    setPv(30);
     
     setStr(1);
     setDex(1);
@@ -23,7 +23,7 @@ void hero::initHero()
     setMana(10);
     
     setFaith(3);
-    setSpeed(5);
+    setSpeed(6);
 
     _texture.loadFromFile("ressources/hero.png");
     _position.setTexture(&_texture);

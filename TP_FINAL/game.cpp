@@ -140,7 +140,7 @@ void game::playGame()
 					_currentBattleGround.initBG(_hero);
 					_heroAlive = _currentBattleGround.game(_window, _hero, _world);
 					_level++;
-					_hero.setGold(_hero.getGold() + 15);
+					_hero.setGold(_hero.getGold() + 21);
 					generateLoot();
 				}
 				//write dans le fichier de sauvegarde

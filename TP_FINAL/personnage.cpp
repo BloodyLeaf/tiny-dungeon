@@ -131,7 +131,7 @@ void personnage::setGold(int gold)
 
 void personnage::setId(int id)
 {
-    _id - id;
+    _id = id;
 }
 
 
@@ -180,8 +180,8 @@ void personnage::setSize(Vector2f size)
 
 void personnage::setTexture(Texture texture)
 {
-    
-    _position.setTexture(&texture);
+    _texture = texture;
+    _position.setTexture(&_texture);
    
 }
 

@@ -7,6 +7,7 @@ But du projet : Réaliser un jeu de style D&D tour par tour
 */
 
 #include <SFML/Graphics.hpp>
+#include <SFML/audio.hpp>
 
 #include "MenuPrincipal.h"
 #include "battleGround.h"
@@ -19,6 +20,11 @@ int main(void) {
 
 
 	game tiny_Dungeon;
+	Music music;
+	music.openFromFile("ressources/village.wav");
+	music.setVolume(50);
+
+	music.play();
 
 	tiny_Dungeon.playGame();
 

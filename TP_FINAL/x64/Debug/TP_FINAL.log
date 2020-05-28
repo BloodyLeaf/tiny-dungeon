@@ -1,21 +1,2 @@
-﻿  battleGround.cpp
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(209,26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(209,20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(235,41): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(248,9): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(533,92): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(533,75): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(534,100): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(534,81): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(535,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(535,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(536,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(536,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(537,133): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(537,109): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(603,24): warning C4305: 'argument' : troncation de 'double' à 'float'
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(629,61): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(629,37): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(659,6): warning C4101: 'monsterhp' : variable locale non référencée
-C:\Users\piera\Desktop\TP_FINAL\TP_FINAL\battleGround.cpp(683,6): warning C4101: 'target' : variable locale non référencée
-  TP_FINAL.vcxproj -> C:\Users\piera\Desktop\TP_FINAL\x64\Debug\TP_FINAL.exe
+﻿  Source.cpp
+  TP_FINAL.vcxproj -> C:\Users\Sophi\OneDrive\Bureau\Tiny Dungeon\tiny-dungeon\x64\Debug\TP_FINAL.exe

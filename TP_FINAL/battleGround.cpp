@@ -307,7 +307,7 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							mousePosition = Vector2i(0, 0);
 						}
 						if (_actionOption[2].contain(mousePosition)) {
-							if(hero.getFaith()>hero.getStr())hero.setPv(hero.getPv() + (hero.getFaith()));
+							if(hero.getFaith()>=hero.getStr())hero.setPv(hero.getPv() + (hero.getFaith()));
 							else hero.setPv(hero.getPv() + (hero.getStr()));
 							hero.setMana(hero.getMana() + 2 * (hero.getFaith()));
 							mousePosition = Vector2i(0, 0);

@@ -14,8 +14,8 @@ void hero::initHero()
     _position.setSize(Vector2f(100, 100));
     initHeroAttack();
     initHeroSpell();
-    setMaxPv(30);
-    setPv(30);
+    setMaxPv(35);
+    setPv(35);
     
     setStr(1);
     setDex(1);

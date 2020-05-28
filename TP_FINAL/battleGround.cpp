@@ -662,15 +662,15 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	bool heroAlive = true;
 	int aliveMonster = 3;
 	
-	_monster[0].setSpeed(3 + (world * 3));
-	_monster[1].setSpeed(4 + (world * 2));
-	_monster[2].setSpeed(3 + (world * 2));
-	_monster[0].setMaxPv(2 + (world * 2));
+	_monster[0].setSpeed(3 + (world));
+	_monster[1].setSpeed(4 + (world / 2));
+	_monster[2].setSpeed(3 + (world));
+	_monster[0].setMaxPv(4 + (world * 2));
 	_monster[1].setMaxPv(3 + (world * 3));
-	_monster[2].setMaxPv(4 + (world * 4));
-	_monster[0].setStr(2 + (world * 2));
-	_monster[1].setStr(2 + (world * 2));
-	_monster[2].setStr(3 + (world * 3));
+	_monster[2].setMaxPv(2 + (world * 2));
+	_monster[0].setStr(2 + (world));
+	_monster[1].setStr(1 + (world + 1));
+	_monster[2].setStr(3 + (world ));
 	for (int i = 0; i < 3; i++) {
 		
 		_monster[i].setPv(_monster[i].getMaxPv());
@@ -777,10 +777,10 @@ void battleGrounds::animationQuitLevel(RenderWindow& window, hero& hero)
 	int nbFrame = _heroMouvement[1].getNbFrame();
 
 	for (int i = 0; i < nbFrame; i++) {
-		hero.setPositionWithVector2f(_heroMouvement[0].getPosition(i));
+		hero.setPositionWithVector2f(_heroMouvement[1].getPosition(i));
 		hero.setIntRect(_heroMouvement[1].getSprite(i));
 		hero.setSize(_heroMouvement[1].getSize(i));
-
+		replaceRessourcesBar(hero);
 		window.clear();
 		printFull(window, hero);
 		window.display();

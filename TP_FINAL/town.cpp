@@ -88,8 +88,8 @@ void town::initMenu(void)
 
 void town::initAnimationHero(void)
 {
-	_heroMouvement[0].loadAnimationFromNotePad("ressources/townheroMouvement.txt.txt", "townEntrance");
-	_heroMouvement[1].loadAnimationFromNotePad("ressources/townheroMouvement.txt.txt", "townExit");
+	_heroMouvement[0].loadAnimationFromNotePad("ressources/townheroMouvement.txt", "townEntrance");
+	_heroMouvement[1].loadAnimationFromNotePad("ressources/townheroMouvement.txt", "townExit");
 }
 
 void town::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)

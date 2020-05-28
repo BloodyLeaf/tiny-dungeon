@@ -57,6 +57,8 @@ private :
 
 	bool _freeUpgrade;
 
+	animation _heroMouvement[2];
+
 public:
 
 	void init(hero & hero);
@@ -68,6 +70,8 @@ public:
 	void initBackground(void);
 
 	void initMenu(void);
+
+	void initAnimationHero(void);
 
 	void setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setTextIntegerStats(Text& text, int stats, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);

@@ -13,6 +13,7 @@ void town::init(hero & hero)
 	initHero(hero);
 	initBackground();
 	initMenu();
+	initAnimationHero();
 	
 	updateText(hero);
 
@@ -83,6 +84,12 @@ void town::initMenu(void)
 	_backgroundMenu.setFillColor(Color::White);
 
 
+}
+
+void town::initAnimationHero(void)
+{
+	_heroMouvement[0].loadAnimationFromNotePad("ressources/townheroMouvement.txt.txt", "townEntrance");
+	_heroMouvement[1].loadAnimationFromNotePad("ressources/townheroMouvement.txt.txt", "townExit");
 }
 
 void town::setText(Text& text, const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style)
@@ -214,10 +221,12 @@ bool town::townAction(RenderWindow& window, hero & hero)
 					if (_freeUpgrade == false) {
 						if (_boutonfreeUpgrade[0].contain(mousePosition)) {
 							hero.setMaxPv(hero.getMaxPv() + hero.getStr());
+							mousePosition = Vector2i(0, 0);
 							_freeUpgrade = true;
 						}
 						if (_boutonfreeUpgrade[1].contain(mousePosition)) {
 							hero.setMaxMana(hero.getMaxMana() + hero.getFaith());
+							mousePosition = Vector2i(0, 0);
 							_freeUpgrade = true;
 						}
 					}
@@ -248,21 +257,35 @@ bool town::townAction(RenderWindow& window, hero & hero)
 
 void town::townEntrance(RenderWindow& window,hero & hero)
 {
-	for (int i = 0; i < 117; i++) {
-		hero.setPosition(hero.getPositionX() + 5, hero.getPositionY());
+	int nbFrame;
+	nbFrame = _heroMouvement[0].getNbFrame();
+
+	for (int i = 0; i < nbFrame; i++) {
+		hero.setPositionWithVector2f(_heroMouvement[0].getPosition(i));
+		hero.setIntRect(_heroMouvement[0].getSprite(i));
+		hero.setSize(_heroMouvement[0].getSize(i));
+
 		window.clear();
-		printTown(window,hero);
+		printTown(window, hero);
 		window.display();
+		sf::sleep(seconds(0.1f));
 	}
 }
 
 void town::townExit(RenderWindow& window,hero & hero)
 {
-	for (int i = 0; i < 117; i++) {
-		hero.setPosition(hero.getPositionX() - 5 , hero.getPositionY());
+	int nbFrame;
+	nbFrame = _heroMouvement[0].getNbFrame();
+
+	for (int i = 0; i < nbFrame; i++) {
+		hero.setPositionWithVector2f(_heroMouvement[1].getPosition(i));
+		hero.setIntRect(_heroMouvement[1].getSprite(i));
+		hero.setSize(_heroMouvement[1].getSize(i));
+
 		window.clear();
-		printTown(window,hero);
+		printTown(window, hero);
 		window.display();
+		sf::sleep(seconds(0.1f));
 	}
 }
 

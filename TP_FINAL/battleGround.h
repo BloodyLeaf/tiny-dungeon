@@ -57,6 +57,7 @@ private:
 	animation _heroAttackAnimation[9];
 	animation _heroProjectileAnimation[6];
 	animation _monsterAttack[6];
+	animation _heroMouvement[2];
 public:
 
 	void initBG(hero& hero);													//Initialise la couleur du monstre et du héro
@@ -69,6 +70,7 @@ public:
 	void initAnimationHeroAttack(void);
 	void initProjectileAnimation(void);
 	void initmonsterAttackAnimation(void);
+	void initHeroMouvement(void);
 	
 	void setText(const char* message, Font& font, const char* police, int posX, int posY, int taille, const Color& color, int style);
 	void setWhereInMenu(int choice);												//navigation du menu : 1 Choix attaque ou consumable
@@ -101,7 +103,6 @@ public:
 	bool game(RenderWindow& window,hero& hero, int world);
 
 	void animationLevelStart(RenderWindow& window, hero & hero);
-	void animationMonsterAttack(RenderWindow& window, int id,hero& hero);
 	void animationQuitLevel(RenderWindow& window, hero& hero);
 
 	void checkIfDead(int id);

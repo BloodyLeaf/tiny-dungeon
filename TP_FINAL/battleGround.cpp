@@ -58,6 +58,7 @@ void battleGrounds::initBG(hero& hero)
 	initAnimationHeroAttack();
 	initProjectileAnimation();
 	initmonsterAttackAnimation();
+	initHeroMouvement();
 
 	initSpeedBar();
 
@@ -187,6 +188,12 @@ void battleGrounds::initmonsterAttackAnimation(void)
 	_monsterAttack[4].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "chienMid");
 	_monsterAttack[5].loadAnimationFromNotePad("ressources/monsterAttackAnimation.txt", "chienDown");
 }
+void battleGrounds::initHeroMouvement(void)
+{
+	_heroMouvement[0].loadAnimationFromNotePad("ressources/battleGroundHeroMouvement.txt", "heroEnterBG");
+	_heroMouvement[1].loadAnimationFromNotePad("ressources/battleGroundHeroMouvement.txt", "heroExitBG");
+
+}
 //P-A
 //Init du texte
 //recois beaucoup de parametre de texte
@@ -300,7 +307,8 @@ bool battleGrounds::heroTurn(hero & hero,RenderWindow & window)
 							mousePosition = Vector2i(0, 0);
 						}
 						if (_actionOption[2].contain(mousePosition)) {
-							hero.setPv(hero.getPv() +  ( hero.getFaith()));
+							if(hero.getFaith()>hero.getStr())hero.setPv(hero.getPv() + (hero.getFaith()));
+							else hero.setPv(hero.getPv() + (hero.getStr()));
 							hero.setMana(hero.getMana() + 2 * (hero.getFaith()));
 							mousePosition = Vector2i(0, 0);
 							replaceRessourcesBar(hero);
@@ -545,8 +553,7 @@ int battleGrounds::getWhereMenu(void)
 //Retourne un monstre
 void battleGrounds::generateMonster(int x , int y,int indiceMonstre)
 {
-	srand(time(NULL));
-	Texture texture;
+	
 	int indice;
 	indice = rand() % 2 + 1;
 	
@@ -655,15 +662,15 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 	bool heroAlive = true;
 	int aliveMonster = 3;
 	
-	_monster[0].setSpeed(3 + (world / 3));
-	_monster[1].setSpeed(4 + (world / 2));
-	_monster[2].setSpeed(3 + (world / 2));
-	_monster[0].setMaxPv(2 + (world / 2));
-	_monster[1].setMaxPv(3 + (world / 3));
-	_monster[2].setMaxPv(4 + (world / 4));
-	_monster[0].setStr(2 + (world / 2));
-	_monster[1].setStr(2 + (world / 2));
-	_monster[2].setStr(3 + (world / 3));
+	_monster[0].setSpeed(3 + (world * 3));
+	_monster[1].setSpeed(4 + (world * 2));
+	_monster[2].setSpeed(3 + (world * 2));
+	_monster[0].setMaxPv(2 + (world * 2));
+	_monster[1].setMaxPv(3 + (world * 3));
+	_monster[2].setMaxPv(4 + (world * 4));
+	_monster[0].setStr(2 + (world * 2));
+	_monster[1].setStr(2 + (world * 2));
+	_monster[2].setStr(3 + (world * 3));
 	for (int i = 0; i < 3; i++) {
 		
 		_monster[i].setPv(_monster[i].getMaxPv());
@@ -693,7 +700,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 			
 		} 
 		
-		
+		//Augmenter es turn
 		for (int i = 0; i < 4; i++) {
 			if(_speedtimer[i]>=50){
 				
@@ -736,6 +743,7 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 			aliveMonster = 0;
 			setWhereInMenu(0);
 			animationQuitLevel(window, hero);
+			
 			return true;
 		}
 	
@@ -745,37 +753,45 @@ bool battleGrounds::game(RenderWindow& window,hero& hero, int world)
 //Animation pour le debut du level
 //recois une RenderWindoe  et un hero
 //void
-void battleGrounds::animationLevelStart(RenderWindow& window,hero& hero)
+void battleGrounds::animationLevelStart(RenderWindow& window, hero& hero)
 {
-	for (int i = 0; i < 125; i++) {
-		
-		hero.setPosition(hero.getPositionX() + 4, hero.getPositionY());
+	int nbFrame;
+	nbFrame = _heroMouvement[0].getNbFrame();
 
+	for (int i = 0; i < nbFrame; i++) {
+		hero.setPositionWithVector2f(_heroMouvement[0].getPosition(i));
+		hero.setIntRect(_heroMouvement[0].getSprite(i));
+		hero.setSize(_heroMouvement[0].getSize(i));
 
-		replaceRessourcesBar(hero);
 		window.clear();
 		printFull(window, hero);
 		window.display();
-
+		sf::sleep(seconds(0.1f));
 	}
+	replaceRessourcesBar(hero);
 }
 
 
-void battleGrounds::animationQuitLevel(RenderWindow& window,hero& hero)
+void battleGrounds::animationQuitLevel(RenderWindow& window, hero& hero)
 {
-	for (int j = 0; j < 200; j++) {
-		hero.setPosition(hero.getPositionX() + 6, hero.getPositionY());
-		replaceRessourcesBar(hero);
+	int nbFrame = _heroMouvement[1].getNbFrame();
+
+	for (int i = 0; i < nbFrame; i++) {
+		hero.setPositionWithVector2f(_heroMouvement[0].getPosition(i));
+		hero.setIntRect(_heroMouvement[1].getSprite(i));
+		hero.setSize(_heroMouvement[1].getSize(i));
+
 		window.clear();
 		printFull(window, hero);
 		window.display();
+		sf::sleep(seconds(0.1f));
 	}
 }
 
 void battleGrounds::checkIfDead(int id)
 {
 	if(_monster[id].getPv()<=0){
-		_monster[id].setCharColor(Color::Transparent);
+		
 		_MonsterHPBar[id].setToTransparent();
 		
 		_targetOption[id].setToTransparent();
@@ -823,9 +839,13 @@ void battleGrounds::print(RenderWindow& window,hero hero)
 void battleGrounds::printFull(RenderWindow& window,hero hero)
 {
 	window.draw(_background);
-	_monster[0].printChar(window);
-	_monster[1].printChar(window);
-	_monster[2].printChar(window);
+
+	for (int i = 0; i < 3; i++) {
+		if(_monster[i].getPv()>0){
+			_monster[i].printChar(window);
+		}	
+	}
+	
 	hero.printChar(window);
 	printRessourcesBar(window,hero);
 	printSpeedIndicator(window);
